@@ -4,12 +4,12 @@
     {
       "path": "data/certificate.json",
       "sha256": "70f8aa19d9df2bda362a0873cbd45a9c2a4e6324c2f3b422a29376b013d88a48",
-      "bytes": 612329
+      "bytes": 1083943
     },
     {
       "path": "data/endpoint.json",
       "sha256": "e1426dde5d49594a2303ebf38d5c37b1a5001493c83770678874af87e3c86131",
-      "bytes": 356511
+      "bytes": 1146488
     },
     {
       "path": "data/witnesses/leaf_0000.json",

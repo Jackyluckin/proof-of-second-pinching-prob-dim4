@@ -652,7 +652,7 @@ PrintingStyleEnvironment->"Printout",
 WindowSize->{808, 911},
 WindowMargins->{{4, Automatic}, {Automatic, 4}},
 WindowTitle->"Second pinching: exact verification",
-Visible->False,
+Visible->True,
 PrintingCopies->1,
 PrintingPageRange->{1, Automatic},
 PageHeaders->{{
