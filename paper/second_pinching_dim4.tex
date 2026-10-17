@@ -1199,15 +1199,25 @@ Lemma~\ref{lem:certificate} and
 \eqref{eq:Pidentity} then prove Proposition~\ref{prop:endpoint}.
 
 \subsection*{Electronic supplement}
-The directories \texttt{paper/}, \texttt{mathematica/} and \texttt{lean/}
-contain the paper sources, exact verification and Lean project.
-The notebook \texttt{Verification.nb} and its PDF export give the
-computational argument; \texttt{DATA\_SPEC.md} gives the complete data
-specification. The Lean entry theorem has an explicit premise for the
-finite assertions supplied by Mathematica. Simons' identity is proved
-in the included development. Declarations and hypotheses are listed in
-\texttt{lean/README.md}; the root \texttt{README.md} gives execution
-and build instructions.
+The supplementary material is available at
+\begin{center}
+\url{https://github.com/Jackyluckin/proof-of-second-pinching-prob-dim4}.
+\end{center}
+The repository contains the paper sources, the Mathematica notebook
+\texttt{Verification.nb} and its PDF export, the exact verification
+program and data, and a Lean~4 development.
+The root \texttt{README.md} gives execution and build instructions;
+\texttt{DATA\_SPEC.md} specifies the computational data.
+
+The Lean entry theorem derives the conclusion of Theorem~\ref{thm:main}
+from its geometric hypotheses and an additional premise asserting the
+finite coefficient identities and integer positivity checks.
+These checks are performed in Mathematica, but no Lean proof of this
+premise is included. The formalisation therefore does not yet provide
+a complete proof within the Lean kernel. The classical classification
+results used in Corollary~\ref{cor:main} and its full image classification
+also lie outside its scope. The precise statements and remaining premise
+are documented in \texttt{lean/README.md}.
 
 \subsection*{Use of AI}
 AI tools, including GPT-6 Astra, were used to explore candidate estimates,
@@ -1215,6 +1225,7 @@ develop the verification code, review the arguments, and revise the
 manuscript. The author is responsible for the mathematical content and
 its presentation.
 
+\clearpage
 \begin{thebibliography}{99}
 \bibitem{Cartan}
 \'{E}. Cartan,
