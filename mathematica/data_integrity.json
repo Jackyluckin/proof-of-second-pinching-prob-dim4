@@ -1,0 +1,135 @@
+{
+  "source_archive_sha256": "20a8e9d327799934dcc2be6a73e2b29ff6c7c66a362627bf5aa00f647e729edc",
+  "files": [
+    {
+      "path": "data/certificate.json",
+      "sha256": "70f8aa19d9df2bda362a0873cbd45a9c2a4e6324c2f3b422a29376b013d88a48",
+      "bytes": 612329
+    },
+    {
+      "path": "data/endpoint.json",
+      "sha256": "e1426dde5d49594a2303ebf38d5c37b1a5001493c83770678874af87e3c86131",
+      "bytes": 356511
+    },
+    {
+      "path": "data/witnesses/leaf_0000.json",
+      "sha256": "9faf0768a62a220a038446abf07b4fad27655c4306a7165d2a458859c992fa99",
+      "bytes": 24278
+    },
+    {
+      "path": "data/witnesses/leaf_0001.json",
+      "sha256": "0a5180a7ba0c11aca2077e18ef966268c4a88af40fcbb2da72e56d544ce3aa61",
+      "bytes": 72326
+    },
+    {
+      "path": "data/witnesses/leaf_0002.json",
+      "sha256": "83b82ebb6323c2461e4b3445f57d6fd4ca20ff23df87d24f3a1011085f4f3dcf",
+      "bytes": 37508
+    },
+    {
+      "path": "data/witnesses/leaf_0003.json",
+      "sha256": "b92d235308d7ee5db23ab1e42e4e8e1035c2969d73b6478f005652653a896104",
+      "bytes": 58388
+    },
+    {
+      "path": "data/witnesses/leaf_0004.json",
+      "sha256": "f779032a07ca05dfc2f91b2af9d0e0d289d71a6d7753519f2038e8dbf6f82b8b",
+      "bytes": 32520
+    },
+    {
+      "path": "data/witnesses/leaf_0005.json",
+      "sha256": "11173a0ae91a357cd18679540d6e62633d99a816f399b5c5731a995e57f9c184",
+      "bytes": 35954
+    },
+    {
+      "path": "data/witnesses/leaf_0006.json",
+      "sha256": "b8d7d63f649235b159c2a5f3121f869b5179f3b3fb47b1f63feb0f1c1334fe94",
+      "bytes": 71025
+    },
+    {
+      "path": "data/witnesses/leaf_0007.json",
+      "sha256": "15fe2a3417c15a92d698414be5023256002ee727eb9792249c213c927b5a5c37",
+      "bytes": 73433
+    },
+    {
+      "path": "data/witnesses/leaf_0008.json",
+      "sha256": "bfb4b3e0ebb0bb175ab6089125a7aa90686a9e663d840b7afc7e6c0efc7b3c2e",
+      "bytes": 34341
+    },
+    {
+      "path": "data/witnesses/leaf_0009.json",
+      "sha256": "dca2143fae795f7c4568c8c7e7c64a9373f4e5601c22a764d4f975a5c20cadfc",
+      "bytes": 24349
+    },
+    {
+      "path": "data/witnesses/leaf_0010.json",
+      "sha256": "5e068ff57d9e8a1f14c31bb28771009f0ce0d622f415e5ad264e5a1b30c849b4",
+      "bytes": 58432
+    },
+    {
+      "path": "data/witnesses/leaf_0011.json",
+      "sha256": "16de6426c35fdc2634f0c1b85c20ebc7bb299ab1f76fa1d6610b81d927812be4",
+      "bytes": 87749
+    },
+    {
+      "path": "data/witnesses/leaf_0012.json",
+      "sha256": "0156c81e4eb5f3b1e7b0325863a23a61d460f2c0e4fc18f0bc582c93b69a8925",
+      "bytes": 67612
+    },
+    {
+      "path": "data/witnesses/leaf_0013.json",
+      "sha256": "369085c539a7d0abdcb21e15ac1c2825869a8df12f4b7f964d8c0ffacae12295",
+      "bytes": 33818
+    },
+    {
+      "path": "data/witnesses/leaf_0014.json",
+      "sha256": "f7dac9e38a467744485062670ad0044d7211902fdc3b13149ed12c8b16f88b46",
+      "bytes": 41004
+    },
+    {
+      "path": "data/witnesses/leaf_0015.json",
+      "sha256": "005e208d9fefabe0e9ee926b4fec508de3328e02dd9d732cc884fc1a2fc520e7",
+      "bytes": 71719
+    },
+    {
+      "path": "data/witnesses/leaf_0016.json",
+      "sha256": "21e37f6704498a799f082c6f9e44d7e515f594fc2ca64e14251d7551b629345e",
+      "bytes": 33645
+    },
+    {
+      "path": "data/witnesses/leaf_0017.json",
+      "sha256": "dad6d4ca658b8917dfed68709a4362cfa878925257c8408e5e5f937333d9adc4",
+      "bytes": 33706
+    },
+    {
+      "path": "data/witnesses/leaf_0018.json",
+      "sha256": "6571129f269176fa8869bac7921ad1b3928d45a942101374ab30542338dc8b24",
+      "bytes": 17527
+    },
+    {
+      "path": "data/witnesses/leaf_0019.json",
+      "sha256": "4b45550ce37a19deff2107c8650359f9406aa2afd6e34b78b209571993d9cb5f",
+      "bytes": 22542
+    },
+    {
+      "path": "data/witnesses/leaf_0020.json",
+      "sha256": "f5e5eb8c4159bffb944c9709192087137de970f3c581f19f695c3e899648e243",
+      "bytes": 23679
+    },
+    {
+      "path": "data/witnesses/leaf_0021.json",
+      "sha256": "24f56f5436eca8a4890d684770348cdd95aae3070b8f786675797573ceb78890",
+      "bytes": 37772
+    },
+    {
+      "path": "data/witnesses/leaf_0022.json",
+      "sha256": "e911e7c7328b9500fd27d185a470b664faea57116eeb02e4f32e60a55a731fb6",
+      "bytes": 33027
+    },
+    {
+      "path": "data/witnesses/leaf_0023.json",
+      "sha256": "cd22a6b09fa8982e01c2a58cd836d1884084ac84bacad19fc9d2372453af0cdc",
+      "bytes": 34100
+    }
+  ]
+}

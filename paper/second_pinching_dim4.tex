@@ -1,0 +1,1311 @@
+\documentclass[11pt,a4paper]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amssymb,mathtools,mathrsfs,microtype,booktabs}
+\usepackage[margin=28mm]{geometry}
+\usepackage{needspace}
+\usepackage[hidelinks]{hyperref}
+\urlstyle{same}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Scal}{Scal}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\diver}{div}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Sph}{\mathbb S}
+\newcommand{\K}{\mathcal K}
+\newcommand{\T}{\mathsf T}
+\newcommand{\N}{\mathsf N}
+\newcommand{\Pz}{\mathsf P_0}
+\newcommand{\av}[1]{\langle #1\rangle_M}
+\newcommand{\Szero}{\operatorname{Sym}^2_0\R^4}
+\newcommand{\Hfour}{\mathscr H_4}
+\setlength{\emergencystretch}{1.5em}
+\allowdisplaybreaks[2]
+\title[The second pinching problem in dimension four]{A proof of the second pinching theorem\\
+in dimension four}
+\author{Jinxi Zhang}
+\address{University of Cambridge, Cambridge, United Kingdom}
+\date{15 October 2026}
+\subjclass[2020]{53C42, 53C24}
+\keywords{Minimal hypersurface, constant scalar curvature, Chern conjecture, second pinching problem}
+\hypersetup{pdftitle={A proof of the second pinching theorem in dimension four},
+ pdfsubject={Second pinching problem for minimal hypersurfaces},pdfauthor={Jinxi Zhang}}
+\begin{document}
+\begin{abstract}
+Let $M^4$ be a closed connected manifold minimally immersed in
+$\Sph^5(1)$, and let $h$ be its second fundamental form. We prove
+that constant $S=|h|^2>4$ implies $S>8$. No constancy of
+$\tr(h^3)$ is assumed. The proof combines integral curvature identities
+with a joint estimate for two contractions of the symmetrized Hessian.
+The remaining algebraic inequality is verified in Mathematica using
+exact rational arithmetic. The code and data are included in the
+supplementary material.
+\end{abstract}
+\maketitle
+
+\section{Introduction}
+Let $F:M^n\to\Sph^{n+1}(1)$ be a smooth minimal immersion of a closed
+connected manifold, with second fundamental form $h$ and $S=|h|^2$.
+Here closed means compact without boundary. The Gauss equation
+\[
+ \Scal_M=n(n-1)-S
+\]
+shows that the scalar curvature $\Scal_M$ of the induced metric
+is constant if and only if $S$ is constant. Let
+$\mathcal C_n$ denote the set of constant values of $S$ realized
+by such immersions.
+
+\begin{conjecture}[Chern; see \cite{CDK,HXZ}]
+For each $n\ge2$, the set $\mathcal C_n$ is discrete.
+\end{conjecture}
+
+The \emph{strong Chern conjecture} asserts that every such immersion
+with constant $S$ is isoparametric: its principal curvatures and their
+multiplicities are locally constant; see \cite[Conjecture~1.4]{HXZ}.
+In dimension four, the minimal isoparametric examples have $S=0,4,12$
+\cite{Cartan,Munzner1,Munzner2}.
+The \emph{second pinching problem} asks whether $S>n$ implies
+$S\ge2n$ when $S$ is constant. We prove a strict bound in dimension four.
+
+\begin{theorem}\label{thm:main}
+Let $F:M^4\to\Sph^5(1)$ be a smooth minimal immersion of a nonempty
+closed connected manifold, and let $h$ be its second fundamental form.
+If $S=|h|^2$ is constant and $S>4$, then
+\[
+ S>8.
+\]
+\end{theorem}
+
+Recall the classical first pinching theorem.
+
+\begin{theorem}[\cite{Simons,Lawson,CDK}]\label{thm:first}
+If $M^n$ is closed and connected, $F:M^n\to\Sph^{n+1}(1)$ is minimal,
+and $S=|h|^2\le n$, then either $S\equiv0$ or $S\equiv n$. The image is,
+respectively, an equatorial sphere or a Clifford minimal hypersurface
+\[
+ \Sph^k\!\left(\sqrt{k/n}\right)\times
+ \Sph^{n-k}\!\left(\sqrt{(n-k)/n}\right),\qquad 1\le k\le n-1.
+\]
+\end{theorem}
+
+\Needspace{13\baselineskip}
+Together, these theorems give the following classification for $S\le8$.
+
+\begin{corollary}\label{cor:main}
+Let $F:M^4\to\Sph^5(1)$ be a smooth minimal immersion of a nonempty
+closed connected manifold. Let $h$ be its second fundamental form.
+If $S=|h|^2$ is constant and $S\le8$, then $S=0$ or $S=4$.
+Up to an ambient isometry, the image
+is an equatorial $\Sph^4$, or one of
+\[
+ \Sph^1(1/2)\times\Sph^3(\sqrt3/2),\qquad
+ \Sph^2(1/\sqrt2)\times\Sph^2(1/\sqrt2).
+\]
+In particular, $\mathcal C_4\cap[0,8]=\{0,4\}$.
+\end{corollary}
+\begin{proof}
+If $S>4$, Theorem~\ref{thm:main} contradicts $S\le8$. Apply
+Theorem~\ref{thm:first} to the remaining interval.
+\end{proof}
+The region $S>8$ remains unclassified here.
+
+For earlier bounds on the second gap, see \cite{PT1,PT2,SY}. For closed connected
+minimal immersions with constant $S>n$, Chen \cite[Theorem~1.1]{Chen}
+obtains $S>85n/59$ when $n\ge4$. For complete minimal immersions in
+dimension four with constant $S>4$, Cheng--Li--Wei
+\cite[Theorem~1.2]{CLW} obtain $S>200000/29609$.
+Neither result assumes constant $f_3=\tr(h^3)$.
+
+For closed connected minimal four-dimensional immersions with constant
+$S$, isoparametricity follows from constant third mean curvature
+$H_3=f_3/12$ \cite[Theorem~1.8]{HXZ} or constant Gauss--Kronecker
+curvature \cite[Theorem~1.1]{GLLY}. With constant $S,f_3$, the implication
+$S>n\Rightarrow S\ge2n$ holds for closed connected minimal immersions
+with $n\ge5$ \cite[Theorem~1.1]{GTYZ}, and for closed oriented minimal
+immersions with $n\ge3$ \cite[Theorem~1.1]{Guan}.
+
+\subsection*{Proof strategy}
+The argument combines pointwise estimates with integral curvature
+identities, as in
+\cite[Sections~2 and~4]{LXX} and \cite[Section~4]{Chen}.
+We use the curvature defect, Hessian symmetrization and two trace
+constraints in the form given in \cite[Sections~2.2, 3.1 and~3.3]{Chen}.
+
+The two contraction constraints act on the same reduced Hessian.
+A single square-completion estimate retains the mixed term between
+the two contractions. The second constraint involves $\nabla f_3$,
+represented after normalization by the vector $d$ in \eqref{eq:d}.
+
+Assume $4<S\le8$ and put $t=(S-4)/S$. A joint estimate for two
+contractions of the symmetrized Hessian, combined with three
+zero-average identities, gives a quadratic polynomial $W_t$ with
+nonnegative average. For each fixed admissible pair of normalized
+tensors (Definition~\ref{def:admissible}), $W_0\le0$ and $W_t$ is convex in $t$.
+Appendix~\ref{app:certificate} proves $W_{1/2}\le-10^{-4}$
+by a finite calculation using exact rational arithmetic. Convexity gives
+$W_t<0$ throughout $0<t\le1/2$, contradicting its nonnegative average.
+
+\section{Curvature identities and normalization}\label{sec:curvature}
+We first collect the curvature identities that determine the Hessian
+norm, then normalize the second fundamental form and its first
+derivative. The normalization separates the constant $S$ from the
+pointwise algebraic constraints.
+
+Let $F:M^4\to\Sph^5(1)$ be a smooth minimal immersion. The metric
+and covariant derivative $\nabla$ are induced by $F$. Choose a local
+unit normal and an orthonormal tangent frame $e_1,\ldots,e_4$.
+In this frame, let $h=(h_{ij})$ be the second fundamental form,
+$S=|h|^2$, and $f_j=\tr(h^j)$. Powers of $h$ refer to the
+associated self-adjoint endomorphism.
+
+Indices range from $1$ to $4$. For covariant tensors of order $r$,
+\[
+ \langle U,V\rangle=\sum_{i_1,\ldots,i_r=1}^4
+ U_{i_1\cdots i_r}V_{i_1\cdots i_r},\qquad |U|^2=\langle U,U\rangle.
+\]
+Thus $\langle X,Y\rangle=\tr(XY)$ for symmetric matrices.
+Write $I$ for the $4\times4$ identity matrix and $\Sym^r\R^4$ for
+the symmetric covariant $r$-tensors. For symmetric matrices,
+$X\preceq Y$ means $v^T(Y-X)v\ge0$ for every $v\in\R^4$;
+$X\prec Y$ means strict inequality for every $v\ne0$.
+The derivative and Laplacian conventions are
+\[
+ h_{ijk}=(\nabla_k h)_{ij},\qquad
+ h_{ijkl}=(\nabla_l\nabla h)_{ijk},\qquad
+ \Delta=\diver\nabla.
+\]
+For a scalar function $f$, write $f_{;k}=(\nabla f)_k$.
+On tensors, $\Delta$ is the rough Laplacian with the same sign.
+Pointwise formulas use a local unit normal. If $M$ is closed and has
+no global unit normal, the integral formulas are applied on its compact
+unit normal double cover.
+
+The scalar integrands are unchanged by normal
+reversal, so their normalized integrals agree with those on $M$.
+
+Let $\delta_{ij}$ be the Kronecker symbol and $\mathrm{Rm}_{ijkl}$
+the curvature tensor. The Gauss, Codazzi and Ricci equations are
+\begin{align}
+ \mathrm{Rm}_{ijkl}&=\delta_{ik}\delta_{jl}-\delta_{il}\delta_{jk}
+              +h_{ik}h_{jl}-h_{il}h_{jk},\label{eq:gauss}\\
+ h_{ijk}&=h_{ikj},\label{eq:codazzi}\\
+ h_{ijkl}-h_{ijlk}
+ &=\sum_r h_{rj}\mathrm{Rm}_{rikl}+\sum_r h_{ir}\mathrm{Rm}_{rjkl}.\label{eq:ricci}
+\end{align}
+Thus $\nabla h$ is fully symmetric and $\nabla^2h$ is symmetric in its
+first three indices. At a fixed point choose a principal frame
+$h_{ij}=\lambda_i\delta_{ij}$, where $\lambda_i$ are the principal
+curvatures. Covariant differentiations are performed
+before this choice. In particular,
+\begin{equation}\label{eq:riccipair}
+ h_{iijj}-h_{jjii}=(\lambda_i-\lambda_j)(1+\lambda_i\lambda_j).
+\end{equation}
+
+Define the three scalar contractions
+\begin{equation}\label{eq:unnormalized}
+ \mathcal A=\sum_{ijk}\lambda_i^2h_{ijk}^2,\qquad
+ \mathcal B=\sum_{ijk}\lambda_i\lambda_jh_{ijk}^2,\qquad
+ \mathcal C=\sum_{ijk}\lambda_i h_{ijk}^2.
+\end{equation}
+\Needspace{15\baselineskip}
+\begin{lemma}[Curvature identities]\label{lem:classical}
+Let $F:M^4\to\Sph^5(1)$ be a smooth minimal immersion.
+Let $h$ be its second fundamental form, $S=|h|^2$,
+$f_j=\tr(h^j)$, and let $\mathcal A,\mathcal B,\mathcal C$ be
+as in \eqref{eq:unnormalized}. Then
+\begin{gather}
+ \Delta h=(4-S)h,\qquad
+ \tfrac12\Delta S=|\nabla h|^2+S(4-S),\label{eq:simons}\\
+ \tfrac12\Delta|\nabla h|^2
+ =|\nabla^2h|^2+(11-S)|\nabla h|^2
+       -3(\mathcal A-2\mathcal B)-\tfrac32|\nabla S|^2.\label{eq:PT}
+\end{gather}
+Moreover,
+\begin{align}
+ \Delta f_3&=3(4-S)f_3+6\mathcal C,
+ & (f_3)_{;k}&=3\sum_i\lambda_i^2h_{iik},\label{eq:f3}\\
+ \Delta f_4&=4(4-S)f_4+8\mathcal A+4\mathcal B.\label{eq:f4}
+\end{align}
+\end{lemma}
+\begin{proof}
+The tensor equation and the first scalar equation in \eqref{eq:simons}
+are Simons' identities \cite{Simons}. Equation~\eqref{eq:PT} is the
+Peng--Terng identity \cite{PT1,PT2}; the scalar formulas, with these
+signs, are recorded in \cite[Section~2, equations~(2.1)--(2.2)]{LXX}.
+The product rule applied to $\tr(h^3)$ and $\tr(h^4)$ gives
+\eqref{eq:f3} and \eqref{eq:f4}.
+\end{proof}
+
+\subsection{Normalized tensors}
+From this point on, the geometric applications have constant $S>4$.
+The following normalization gives unit tensors and puts the interval
+$4<S\le8$ in correspondence with $0<t\le1/2$. Define
+\begin{equation}\label{eq:normalization}
+ t=\frac{S-4}{S},\qquad A=\frac h{\sqrt S},\qquad
+ \mu_i=\frac{\lambda_i}{\sqrt S},\qquad
+ \tau=\frac{\nabla h}{\sqrt{S(S-4)}}.
+\end{equation}
+Simons' identity gives $|\nabla h|^2=tS^2$. Thus $A$ and $\tau$
+have norm one.
+
+\begin{definition}[Admissible pair]\label{def:admissible}
+An \emph{admissible pair} consists of a symmetric matrix
+$A\in\R^{4\times4}$ and a tensor $\tau\in\Sym^3\R^4$ such that
+\begin{equation}\label{eq:admissible}
+ \tr A=0,\qquad |A|=|\tau|=1,\qquad
+ \sum_i\tau_{iik}=0,\qquad
+ \sum_{ij}A_{ij}\tau_{ijk}=0\quad(1\le k\le4).
+\end{equation}
+In a basis with $A=\diag(\mu_1,\ldots,\mu_4)$, the last condition
+is $\sum_i\mu_i\tau_{iik}=0$. All component formulas below use
+such a basis unless a different basis is specified.
+\end{definition}
+The pair \eqref{eq:normalization} is admissible: differentiating
+$\tr h=0$ gives its ordinary trace condition, and differentiating
+$S$ gives its $A$-weighted trace condition.
+
+\Needspace{8\baselineskip}
+For each $k$, the symmetric matrix $(\tau_{ijk})_{ij}$ is orthogonal
+to $I$ and $A$ by the two trace constraints. Its contraction with
+$A^2$ therefore depends only on the component of $A^2$ orthogonal
+to $I$ and $A$.
+For an admissible pair $(A,\tau)$, define the scalars $m,u,p$ and
+the symmetric matrix $\Phi$ by
+\begin{align}
+ m&=\tr A^3,\qquad u=\tr A^4,\label{eq:moments}\\
+ \Phi&=A^2-mA-\tfrac14I,\qquad
+ p=|\Phi|^2=u-m^2-\tfrac14.\label{eq:phi}
+\end{align}
+The scalars $a,b,c$ below are the normalized versions of
+$\mathcal A,\mathcal B,\mathcal C$. We also define the contraction
+$d$ of $A^2$ with $\tau$ and the Gram matrix $R$ of the four
+matrices $(\tau_{ijk})_{ij}$, indexed by $k$:
+\begin{align}
+ a&=\sum_{ijk}\mu_i^2\tau_{ijk}^2,\qquad
+ b=\sum_{ijk}\mu_i\mu_j\tau_{ijk}^2,\qquad
+ c=\sum_{ijk}\mu_i\tau_{ijk}^2,\label{eq:abc}\\
+ d_k&=\sum_i\mu_i^2\tau_{iik},\label{eq:d}\\
+ R_{kl}&=\sum_{ij}\tau_{ijk}\tau_{ijl}.\label{eq:Rmu}
+\end{align}
+Thus $d\in\R^4$ and $R\in\Sym^2\R^4$, with
+$R\succeq0$ and $\tr R=1$.
+For the geometric pair \eqref{eq:normalization}, these contractions
+recover the unnormalized quantities:
+\[
+ \mathcal A=tS^3a,\qquad \mathcal B=tS^3b,\qquad
+ \mathcal C=tS^{5/2}c.
+\]
+The vector $d$ records the variation of the cubic trace:
+\[
+ \nabla f_3=3S^2\sqrt t\,d.
+\]
+The two trace constraints in \eqref{eq:admissible} do not imply $d=0$.
+The identities $\tr A=0$ and $|A|=1$ imply
+\begin{equation}\label{eq:phiorth}
+ \tr\Phi=\tr(A\Phi)=0,\qquad
+ p\ge0,\qquad \mu_i^2\le\tfrac34.
+\end{equation}
+The last inequality follows from
+$\mu_i^2=(\sum_{j\ne i}\mu_j)^2\le3(1-\mu_i^2)$.
+Since $S$ and $|\nabla h|^2$ are constant, \eqref{eq:PT} now reads
+\begin{equation}\label{eq:PTnorm}
+ \frac{|\nabla^2h|^2}{S^3}
+       =3t(a-2b)+\frac{t(11t-7)}4.
+\end{equation}
+
+\section{The reduced Hessian}\label{sec:Hessian}
+Equation~\eqref{eq:PTnorm} gives the normalized squared norm of the
+Hessian. Differentiating the constant quantities $\tr h$, $S$ and
+$|\nabla h|^2$ gives three of its contractions.
+To use this information in a norm estimate, we pass to a fully symmetric
+tensor and remove its ordinary trace. The tensor that remains will have
+two prescribed contractions and a known squared norm.
+
+\subsection{The reduction statement}
+The three contractions are the ordinary trace, the $A$-weighted trace,
+and contraction against the cubic tensor $\tau$.
+
+\begin{definition}[Contraction maps]\label{def:maps}
+Fix an admissible pair $(A,\tau)$. Define
+\[
+ \T_0,\T_A:\Sym^4\R^4\longrightarrow\Sym^2\R^4,
+ \qquad \N_\tau:\Sym^4\R^4\longrightarrow\R^4
+\]
+by
+\begin{equation}\label{eq:maps}
+ (\T_0U)_{kl}=\sum_iU_{iikl},\quad
+ (\T_AU)_{kl}=\sum_i\mu_iU_{iikl},\quad
+ (\N_\tau U)_l=\sum_{ijk}\tau_{ijk}U_{ijkl}.
+\end{equation}
+Let
+\[
+ \Hfour=\{U\in\Sym^4\R^4:\T_0U=0\},
+ \qquad \Pz:\Sym^4\R^4\longrightarrow\Hfour
+\]
+be, respectively, the trace-free subspace and its orthogonal projection.
+For four-tensors symmetric only in the first three indices,
+$\T_0,\T_A,\N_\tau$ still denote the component contractions in
+\eqref{eq:maps}.
+\end{definition}
+
+The two contractions retained after trace removal will be denoted by
+$E_t$ and $b_0$. Write
+\[
+ \Szero=\{X\in\R^{4\times4}:X^T=X,\ \tr X=0\}.
+\]
+For an admissible pair $(A,\tau)$ and $t\in\R$, define
+\begin{equation}\label{eq:Edefinitions}
+ \Psi=\tfrac14A^2+\tfrac3{16}I-R,\qquad
+ E_t=\tfrac12\Phi+t\Psi,\qquad b_0=-\tfrac32Ad.
+\end{equation}
+Here $\Psi,E_t\in\Szero$ and $b_0\in\R^4$. The term $\Phi/2$ is
+independent of $t$, while $\Psi$ is the coefficient of $t$ in $E_t$.
+
+\begin{proposition}[Hessian contractions]\label{prop:reduction}
+Let $F:M^4\to\Sph^5(1)$ be a smooth minimal immersion with
+constant $S=|h|^2>4$. At each point, define $t,A,\tau$ by
+\eqref{eq:normalization} and $E_t,b_0$ by \eqref{eq:Edefinitions}.
+There exists $V\in\Hfour$ such that
+\begin{align}
+ \T_AV&=E_t,\label{eq:Et}\\
+ \N_\tau V&=b_0,\label{eq:b0}\\
+ |V|^2&=3t(a-2b)+\frac{t(35t-28)}{16}-\tfrac32p.\label{eq:Vnorm}
+\end{align}
+\end{proposition}
+
+\subsection{Symmetrization and trace removal}
+We prove the proposition by subtracting two orthogonal corrections:
+the part fixed by the Ricci equation, and the least-norm tensor with
+the remaining ordinary trace. The latter correction is supplied by
+Lemma~\ref{lem:T0}.
+
+For a covariant $r$-tensor $T$, define
+\[
+ (\Sym T)_{i_1\cdots i_r}
+ =\frac1{r!}\sum_{\sigma\in\mathfrak S_r}
+ T_{i_{\sigma(1)}\cdots i_{\sigma(r)}},
+\]
+where $\mathfrak S_r$ is the permutation group.
+Adjoints $L^*$ are taken with respect to the ordered-index inner product
+of Section~\ref{sec:curvature}. The product $F\otimes G$ denotes the
+tensor product without symmetrization.
+
+\begin{lemma}[Ordinary trace and its adjoint]\label{lem:T0}
+For every $X\in\Sym^2\R^4$,
+\begin{gather}
+ \T_0^*X=\Sym(I\otimes X),\qquad
+ \T_0\T_0^*X=\tfrac43X+\tfrac16\tr(X)I,\label{eq:T0Gram}\\
+ (\T_0\T_0^*)^{-1}X=\tfrac34X-\tfrac1{16}\tr(X)I,\qquad
+ \Pz=\operatorname{Id}_{\Sym^4\R^4}-\T_0^*(\T_0\T_0^*)^{-1}\T_0.\label{eq:P0}
+\end{gather}
+\end{lemma}
+\begin{proof}
+The adjoint formula follows by symmetry. In components,
+\begin{align*}
+ (\T_0^*X)_{ijkl}=\tfrac16(&\delta_{ij}X_{kl}+\delta_{ik}X_{jl}
+ +\delta_{il}X_{jk}\\
+ &+\delta_{jk}X_{il}+\delta_{jl}X_{ik}+\delta_{kl}X_{ij}).
+\end{align*}
+Tracing the first two indices proves \eqref{eq:T0Gram}.
+This operator acts by $4/3$ on trace-free matrices and by $2$ on
+multiples of $I$, giving the stated inverse.
+In \eqref{eq:P0}, the subtracted tensor has the same ordinary trace
+as the input and lies in $\operatorname{im}\T_0^*=(\ker\T_0)^\perp$.
+The remainder is therefore the orthogonal projection onto $\Hfour$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:reduction}]
+Set $\mathcal D=S^{-3/2}\nabla^2h$. Since $S$ is constant,
+\eqref{eq:simons} makes $|\nabla h|^2$ constant as well.
+Differentiating $\tr h=0$ and $S$ twice, and $|\nabla h|^2$ once, gives
+\begin{equation}\label{eq:rawtraces}
+ \T_0\mathcal D=0,\qquad
+ \T_A\mathcal D=-tR,\qquad
+ \N_\tau\mathcal D=0.
+\end{equation}
+First remove the failure of full symmetry. Put
+$\widehat U=\Sym\mathcal D$, $C=\mathcal D-\widehat U$ and
+$\kappa=S^{-1}=(1-t)/4$.
+Since $\mathcal D$ is symmetric in its first three indices,
+\[
+ \widehat U_{ijkl}=\tfrac14(\mathcal D_{ijkl}+\mathcal D_{ijlk}
+                         +\mathcal D_{iklj}+\mathcal D_{jkli}).
+\]
+\Needspace{8\baselineskip}
+For $i\ne j$, symmetry in the first three indices gives
+$\widehat U_{iijj}=(\mathcal D_{iijj}+\mathcal D_{jjii})/2$.
+Thus $C_{iijj}=(\mathcal D_{iijj}-\mathcal D_{jjii})/2$;
+\eqref{eq:riccipair}, divided by $S^{3/2}$, determines its sign
+and the factor $1/2$. In a principal frame, \eqref{eq:gauss}
+and~\eqref{eq:ricci} show that $C$ vanishes outside the index patterns
+$\{i,i,j,j\}$.
+The possibly nonzero components are therefore
+\begin{gather*}
+ C_{iijj}=\tfrac12(\mu_i-\mu_j)(\kappa+\mu_i\mu_j),\qquad
+ C_{ijij}=C_{jiij}=C_{iijj},\\*
+ C_{jjii}=C_{jiji}=C_{ijji}=-C_{iijj}.
+\end{gather*}
+
+Summing these components, using $\sum_i\mu_i=0$, $\sum_i\mu_i^2=1$
+and $\sum_i\mu_i^3=m$, gives the first two contractions below.
+For the third, each pattern $(i,i,l)$ with $i\ne l$ occurs three
+times in the ordered contraction, giving
+\begin{align}
+ \T_0C&=\tfrac t2A,&
+ \T_AC&=\tfrac12(\kappa I+mA-A^2),\label{eq:Ctraces}\\
+ (\N_\tau C)_l
+ &=\tfrac32\sum_i(\mu_i-\mu_l)(\kappa+\mu_i\mu_l)\tau_{iil}
+ =\tfrac32\mu_ld_l.\label{eq:Cthird}
+\end{align}
+Indeed, the weight in this sum is
+$(\kappa-\mu_l^2)\mu_i-\kappa\mu_l+\mu_l\mu_i^2$.
+The first two terms vanish after summation by the two trace constraints;
+the last gives $\mu_ld_l$ by \eqref{eq:d}.
+Subtracting these contractions from \eqref{eq:rawtraces} gives
+\begin{equation}\label{eq:Utraces}
+ \T_0\widehat U=-\tfrac t2A,\qquad
+ \T_A\widehat U=-tR-\tfrac12(\kappa I+mA-A^2),\qquad
+ \N_\tau\widehat U=-\tfrac32Ad.
+\end{equation}
+
+Next remove the ordinary trace of $\widehat U$.
+By Lemma~\ref{lem:T0}, the least-norm tensor with trace
+$-tA/2$ is
+\[
+ U_0=\T_0^*(\T_0\T_0^*)^{-1}(-tA/2)
+     =-\tfrac{3t}{8}\Sym(I\otimes A).
+\]
+Its squared norm follows from
+$|U_0|^2=\langle-tA/2,(\T_0\T_0^*)^{-1}(-tA/2)\rangle$;
+its contractions follow from the six-term adjoint formula in
+Lemma~\ref{lem:T0}. Thus
+\begin{equation}\label{eq:U0}
+ |U_0|^2=\tfrac3{16}t^2,\qquad
+ \T_AU_0=-\tfrac t{16}(I+4A^2),\qquad \N_\tau U_0=0.
+\end{equation}
+Set $V=\widehat U-U_0$. Then $V\in\Hfour$ and
+\eqref{eq:Utraces}--\eqref{eq:U0} give \eqref{eq:Et} and
+\eqref{eq:b0}.
+
+It remains to compute $|V|^2$. Symmetrization is an orthogonal projection, so
+$C\perp\Sym^4\R^4$; also $U_0\in(\ker\T_0)^\perp$ and
+$V\in\ker\T_0$. Thus $\mathcal D=C+U_0+V$ is an orthogonal
+decomposition.
+
+The components of $C$ give
+\begin{align}
+ |C|^2
+ &=\tfrac34\sum_{ij}(\mu_i-\mu_j)^2(\kappa+\mu_i\mu_j)^2
+ =\tfrac32p+\tfrac38t^2.\label{eq:Cnorm}
+\end{align}
+For each unordered pair $\{i,j\}$, the six ordered components displayed
+above have squared sum $6C_{iijj}^2$; this gives the factor $3/4$ in
+the sum over ordered pairs. Expanding the sum before multiplication
+by $3/4$, and using
+$\sum_i\mu_i=0$, $\sum_i\mu_i^2=1$ gives
+$8\kappa^2-4\kappa+2u-2m^2=2p+t^2/2$.
+Together with $|U_0|^2$ in \eqref{eq:U0}, this gives
+\begin{equation}\label{eq:orthnorm}
+ \frac{|\nabla^2h|^2}{S^3}=|V|^2+\tfrac32p+\tfrac9{16}t^2.
+\end{equation}
+Equation~\eqref{eq:PTnorm} now gives
+\eqref{eq:Vnorm}.
+\end{proof}
+
+\section{The joint contraction estimate}\label{sec:algebra}
+We now bound the squared norm of a tensor in $\Hfour$ from its two
+prescribed contractions. The estimate is purely algebraic. For the
+geometric application in Proposition~\ref{prop:reduction}, take
+$E=E_t$ and $b_0=-\tfrac32Ad$.
+Fix an admissible pair $(A,\tau)$.
+
+\subsection{The estimate}
+Suppose $V\in\Hfour$ satisfies $\T_AV=E$ and $\N_\tau V=b_0$,
+where $E\in\Szero$ and $b_0\in\R^4$. For any $Y\in\Szero$ and
+$v\in\R^4$, square completion gives
+\[
+ |V|^2\ge2\langle E,Y\rangle+2b_0\cdot v
+          -|\Pz(\T_A^*Y+\N_\tau^*v)|^2,
+\]
+where $b_0\cdot v=b_0^Tv$. The two terms inside the projection
+contribute a cross term. The squared norm has a matrix term, a
+mixed term and a vector term, represented by $\K_A$, $Z$ and
+$H_\tau$, respectively.
+
+For $Y\in\Szero$, set
+\begin{align}
+ \K_AY={}&\tfrac16Y+\tfrac14(A^2Y+YA^2)-\tfrac16AYA
+ \notag\\
+ &+\tfrac7{36}\tr(AY)A-\tfrac1{12}\tr(A^2Y)I,\label{eq:K}\\
+ (ZY)_l={}&\tfrac18\sum_{ij}(4\mu_l-\mu_i-\mu_j)\tau_{ijl}Y_{ij},
+ \qquad H_\tau=\tfrac14I+\tfrac9{16}R.\label{eq:ZH}
+\end{align}
+The map $Z$ depends on both $A$ and $\tau$. The domains and codomains are
+\[
+ \K_A:\Szero\to\Szero,\qquad
+ Z:\Szero\to\R^4,\qquad H_\tau:\R^4\to\R^4.
+\]
+
+\begin{proposition}[Two prescribed contractions]\label{prop:joint}
+Let $(A,\tau)$ be admissible. Let $E\in\Szero$, $b_0\in\R^4$,
+and $V\in\Hfour$ satisfy
+\[
+ \T_AV=E,\qquad \N_\tau V=b_0.
+\]
+For every $Y\in\Szero$ and $v\in\R^4$,
+\begin{equation}\label{eq:joint}
+ |V|^2\ge2\langle E,Y\rangle+2b_0\cdot v
+ -\langle Y,\K_AY\rangle-2v\cdot ZY-v^TH_\tau v.
+\end{equation}
+\end{proposition}
+
+\subsection{The Gram identities}
+To prove Proposition~\ref{prop:joint}, we identify the three terms
+in the projected squared norm. The same calculation gives a lower
+bound for $\K_A$ that will control the quadratic coefficient in
+Section~\ref{sec:integral}.
+
+\begin{lemma}[Contraction identities]\label{lem:Gram}
+For an admissible pair $(A,\tau)$,
+\begin{equation}\label{eq:Grams}
+ \T_A\Pz\T_A^*=\K_A,\qquad
+ \N_\tau\Pz\T_A^*=Z,\qquad
+ \N_\tau\Pz\N_\tau^*=H_\tau.
+\end{equation}
+The first two identities act on $\Szero$, and the third on $\R^4$.
+For every $Y\in\Szero$,
+\begin{equation}\label{eq:Klower}
+ \langle Y,\K_AY\rangle
+ \ge\tfrac16|Y|^2+\tfrac13\tr(A^2Y^2).
+\end{equation}
+\end{lemma}
+\begin{proof}
+The adjoints are $\T_A^*Y=\Sym(A\otimes Y)$ and
+$\N_\tau^*v=\Sym(\tau\otimes v)$.
+For the matrix term, compute the unprojected contraction and then
+subtract the ordinary trace correction from \eqref{eq:P0}:
+\begin{align*}
+ \T_A\T_A^*Y
+ &=\tfrac16Y+\tfrac13(A^2Y+YA^2)+\tfrac16\tr(AY)A,\\
+ \T_0\T_A^*Y&=\tfrac13(AY+YA),\\
+ \T_A\T_0^*(\T_0\T_0^*)^{-1}\T_0\T_A^*Y
+ &=\tfrac1{12}(A^2Y+2AYA+YA^2)-\tfrac1{36}\tr(AY)A
+       +\tfrac1{12}\tr(A^2Y)I.
+\end{align*}
+The first expression minus the third is $\K_AY$, proving the
+matrix identity.
+
+For the mixed term, the vanishing $A$-weighted trace of $\tau$ gives
+\[
+ (\N_\tau\T_A^*Y)_l=\tfrac12\mu_l\sum_{ij}\tau_{ijl}Y_{ij}.
+\]
+Substitution in \eqref{eq:P0} gives the trace correction
+$\frac18\sum_{ij}(\mu_i+\mu_j)\tau_{ijl}Y_{ij}$; the scalar part
+of $(\T_0\T_0^*)^{-1}$ contributes nothing because the ordinary trace
+of $\tau$ vanishes. Subtraction gives $Z$.
+
+For the vector term,
+\[
+ \N_\tau\N_\tau^*=\tfrac14I+\tfrac34R,\qquad
+ (\T_0\N_\tau^*v)_{ij}=\tfrac12\sum_k\tau_{ijk}v_k.
+\]
+The latter matrix is trace-free and has squared norm $v^TRv/4$.
+On trace-free matrices, $(\T_0\T_0^*)^{-1}$ acts by $3/4$.
+The projection therefore subtracts $3R/16$, giving $H_\tau$.
+
+To obtain \eqref{eq:Klower}, expand
+\[
+ \langle Y,\K_AY\rangle
+ =\tfrac16|Y|^2+\tfrac12\tr(A^2Y^2)
+   -\tfrac16\tr(AYAY)+\tfrac7{36}\tr(AY)^2
+\]
+The squared trace term is nonnegative, and
+\[
+ \tr(A^2Y^2)-\tr(AYAY)
+ =\frac12\sum_{ij}(\mu_i-\mu_j)^2Y_{ij}^2\ge0.\qedhere
+\]
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:joint}]
+Set $U=\Pz(\T_A^*Y+\N_\tau^*v)$. Since $V=\Pz V$,
+\[
+ \langle V,U\rangle=\langle E,Y\rangle+b_0\cdot v.
+\]
+Lemma~\ref{lem:Gram} gives
+\[
+ |U|^2=\langle Y,\K_AY\rangle+2v\cdot ZY+v^TH_\tau v.
+\]
+Substitution in $0\le|V-U|^2=|V|^2-2\langle V,U\rangle+|U|^2$
+proves \eqref{eq:joint}.
+\end{proof}
+
+\section{The averaged inequality and the contradiction}\label{sec:integral}
+For the geometric tensor in Proposition~\ref{prop:reduction}, the
+difference between its squared norm and the lower bound in
+Proposition~\ref{prop:joint} is itself a squared norm. We will add
+three divergence terms to this difference, preserving its average.
+The resulting polynomial $W_t$ will be quadratic in $t$; convexity
+will reduce its sign on $0<t\le1/2$ to the two endpoints.
+
+For a nonempty closed Riemannian manifold $M$ and an integrable
+scalar function $g$, write
+\[
+ \av g=\frac1{\Vol(M)}\int_M g\,d\Vol.
+\]
+
+\subsection{The polynomial \texorpdfstring{$W_t$}{W(t)}}
+We use \eqref{eq:joint} with $E=E_t$. Its terms linear in $Y$ are
+$2\langle E_t-Z^*v,Y\rangle$. We take $v$ proportional to $b_0$
+and $Y_t$ linear in $t$, with coefficient proportional to the matrix
+$E_{1/2}-Z^*v$.
+
+For an admissible pair $(A,\tau)$ and real $t$, define
+\begin{equation}\label{eq:L}
+ L_4=t(2a+b-u),\qquad
+ L_3=t(-m^2+2mc+3|d|^2),\qquad
+ J=t(a-2b)-p-\tfrac t4.
+\end{equation}
+On the geometric pair these are divergences; their zero averages
+will be proved in Lemma~\ref{lem:mean}.
+
+\begin{definition}[The polynomial $W_t$]\label{def:Wt}
+Fix an admissible pair $(A,\tau)$.
+For a real parameter $t$, set
+\begin{equation}\label{eq:choice}
+ v=-7Ad,\qquad B_t=E_t-Z^*v,\qquad
+ B=B_{1/2},\qquad Y_t=8tB.
+\end{equation}
+Thus $v\in\R^4$, $B_t,B,Y_t\in\Szero$, and $Y_{1/2}=4B$.
+The pair $(A,\tau)$ and the matrix $B$ are held fixed as $t$ varies.
+Let $Q_t$ be the right-hand side of \eqref{eq:joint} for these choices.
+Using the norm expression \eqref{eq:Vnorm} and $L_4,L_3,J$ from
+\eqref{eq:L}, set
+\begin{align}
+ Q_t={}&16t\langle B_t,B\rangle-64t^2\langle B,\K_AB\rangle
+               +2b_0\cdot v-v^TH_\tau v,\label{eq:Qt}\\
+ W_t={}&3t(a-2b)+\frac{t(35t-28)}{16}-\tfrac32p-Q_t
+              -\tfrac{89}{8}L_4+16L_3+\tfrac{13}{4}J.\label{eq:Wt}
+\end{align}
+
+The adjoint $Z^*:\R^4\to\Szero$ and $B$ have components
+\begin{equation}\label{eq:Zadjoint}
+ \begin{aligned}
+ (Z^*v)_{ij}&=\tfrac18\sum_l(4\mu_l-\mu_i-\mu_j)\tau_{ijl}v_l,\\
+ B&=\tfrac58A^2-\tfrac m2A-\tfrac1{32}I-\tfrac12R+7Z^*Ad.
+ \end{aligned}
+\end{equation}
+\end{definition}
+
+The vector trial follows the direction of the prescribed contraction
+$b_0=-3Ad/2$. The matrix trial vanishes at $t=0$ and is proportional
+to $B_{1/2}$ at $t=1/2$, where the remaining algebraic inequality
+will be checked. Keeping $B=B_{1/2}$ fixed makes $W_t$ quadratic in $t$.
+The divergence terms change only its constant and linear coefficients.
+The coefficients in \eqref{eq:choice} and~\eqref{eq:Wt} give a
+nonpositive value at zero and a positive quadratic coefficient,
+as proved in Proposition~\ref{prop:convex}; the value at $1/2$ is
+bounded in Appendix~\ref{app:certificate}.
+
+\subsection{The nonnegative average}
+The formulas for $a,b,c,d,R$ are tensor contractions of $A$ and
+$\tau$, and \eqref{eq:Grams} expresses $\K_A,Z,H_\tau$ in terms
+of contractions and orthogonal projection. Thus $W_t$ is independent
+of the orthonormal frame. Reversing the unit normal sends
+$(A,\tau)$ to $(-A,-\tau)$ and also leaves $W_t$ unchanged.
+For the geometric pair, $W_t$ therefore defines a smooth scalar
+function on $M$, including at repeated principal curvatures.
+
+The joint estimate gives a nonnegative average for $W_t$ once
+$L_4,L_3,J$ are shown to have zero average.
+
+\begin{proposition}[The integral inequality]\label{prop:meanconvex}
+Let $F:M^4\to\Sph^5(1)$ be a smooth minimal immersion of a nonempty
+closed manifold, with constant $S=|h|^2>4$. Define $t,A,\tau$ by
+\eqref{eq:normalization} and $W_t$ by Definition~\ref{def:Wt}.
+Then
+\begin{equation}\label{eq:Wmean}
+ \av{W_t}\ge0.
+\end{equation}
+\end{proposition}
+
+The following divergence identities supply these zero averages.
+
+\begin{lemma}[Three zero averages]\label{lem:mean}
+Let $F:M^4\to\Sph^5(1)$ be a smooth minimal immersion of a nonempty
+closed manifold, with constant $S=|h|^2>4$. Define $t,A,\tau$ by
+\eqref{eq:normalization}, and $L_4,L_3,J$ by \eqref{eq:L}. Then
+\begin{equation}\label{eq:divergences}
+ L_4=\frac{\Delta(Sf_4/4)}{S^4},\qquad
+ L_3=\frac{\Delta(f_3^2/6)}{S^4},\qquad
+ J=-\frac1{S^3}\diver(h\nabla f_3/3).
+\end{equation}
+Consequently,
+\[
+ \av{L_4}=\av{L_3}=\av J=0.
+\]
+\end{lemma}
+\begin{proof}
+Equation~\eqref{eq:f4} gives the first formula. For the second, use
+\[
+ \Delta(f_3^2/6)=\tfrac13f_3\Delta f_3+\tfrac13|\nabla f_3|^2,
+ \qquad |\nabla f_3|^2=9tS^4|d|^2.
+\]
+For the third identity, put $D=\nabla f_3/3$ and compute $\diver(hD)$.
+In a principal frame, $D_k=\sum_i\lambda_i^2h_{iik}=(f_3)_{;k}/3$.
+Codazzi and $\tr h=0$ give $\diver h=0$, so
+\begin{align*}
+ \diver(hD)
+ &=2\mathcal B+\sum_{ik}\lambda_i^2\lambda_k h_{iikk}\\
+ &=2\mathcal B-\mathcal A
+   +\sum_{ik}\lambda_i^2\lambda_k(\lambda_i-\lambda_k)
+                                  (1+\lambda_i\lambda_k)\\
+ &=2\mathcal B-\mathcal A+Sf_4-f_3^2-S^2.
+\end{align*}
+In the second line we used \eqref{eq:riccipair} and
+$\sum_k\lambda_kh_{kkii}=-\sum_{jk}h_{jki}^2$, obtained by
+differentiating $S$ twice. Division by $-S^3$ gives the stated $J$.
+The integral identities follow from the divergence theorem.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:meanconvex}]
+Take $V$ from Proposition~\ref{prop:reduction} and put
+$U_t=\Pz(\T_A^*Y_t+\N_\tau^*v)$. The adjoint relations and
+Lemma~\ref{lem:Gram} give
+\[
+ |V|^2-Q_t=|V-U_t|^2.
+\]
+By \eqref{eq:Vnorm}, $W_t$ differs from $|V|^2-Q_t$ by the
+linear combination of $L_4,L_3,J$ in \eqref{eq:Wt}.
+This combination has zero average by Lemma~\ref{lem:mean}, so
+\[
+ \av{W_t}=\av{|V-U_t|^2}\ge0.\qedhere
+\]
+\end{proof}
+
+\subsection{The value at zero and convexity}
+It remains to make $W_t$ pointwise negative on $0<t\le1/2$.
+We first control its value at zero and its quadratic coefficient.
+The evaluation at $t=0$ is algebraic: the geometric
+normalization of $\tau$ requires $S>4$.
+
+\begin{proposition}[Convexity in $t$]\label{prop:convex}
+Fix an admissible pair $(A,\tau)$, and let $W_t$ be the polynomial
+in Definition~\ref{def:Wt}. With $p=|A^2-mA-I/4|^2$ and
+$m=\tr A^3$, one has
+\begin{equation}\label{eq:Wbounds}
+ W_0\le-\tfrac{75}{32}p\le0,\qquad
+ \frac{d^2}{dt^2}W_t\ge\tfrac13\quad(t\in\R).
+\end{equation}
+\end{proposition}
+
+The value at zero is controlled by $H_\tau$ and $Ad$.
+The quadratic coefficient is controlled by $\Psi$ and $\K_A$.
+The next two lemmas give these bounds.
+
+\begin{lemma}[Bounds for $R$ and $Ad$]\label{lem:bounds}
+For an admissible pair $(A,\tau)$,
+\begin{equation}\label{eq:bounds}
+ R\preceq\tfrac23I,\qquad H_\tau\preceq\tfrac58I,
+ \qquad |Ad|^2\le\tfrac p4.
+\end{equation}
+\end{lemma}
+\begin{proof}
+To estimate $R$ in a unit direction, choose that direction as $e_1$
+and split $\tau$ into
+\[
+ a_0=\tau_{111},\quad \xi_\alpha=\tau_{11\alpha},\quad
+ \Gamma_{\alpha\beta}=\tau_{1\alpha\beta},\quad
+ \Xi_{\alpha\beta\gamma}=\tau_{\alpha\beta\gamma},
+ \qquad \alpha,\beta,\gamma>1.
+\]
+Then $\tr\Gamma=-a_0$ and
+\[
+ |\tau|^2=a_0^2+3|\xi|^2+3|\Gamma|^2+|\Xi|^2,\qquad
+ R_{11}=a_0^2+2|\xi|^2+|\Gamma|^2.
+\]
+\begin{samepage}
+Cauchy--Schwarz gives $a_0^2=(\tr\Gamma)^2\le3|\Gamma|^2$.
+Consequently
+\[
+ 2|\tau|^2-3R_{11}=-a_0^2+3|\Gamma|^2+2|\Xi|^2\ge0.
+\]
+This holds in every direction and proves the first two bounds.
+\end{samepage}
+
+For the bound on $Ad$, choose a basis with $A$ diagonal. Fix $k$ and set
+$z^{(k)}=(\tau_{iik})_i$ and
+$\theta_k=3|z^{(k)}|^2-2\tau_{kkk}^2$.
+Here $\theta_k$ is the contribution of the index patterns
+$\{i,i,k\}$ to the ordered norm: each pattern with $i\ne k$ occurs
+three times, while $(k,k,k)$ occurs once.
+Write $\boldsymbol1=(1,1,1,1)^T$ and
+$\mu=(\mu_1,\ldots,\mu_4)^T$. The two trace conditions give
+$z^{(k)}\perp\boldsymbol1,\mu$.
+
+The projection of $e_k$ onto this common orthogonal complement has
+squared norm $3/4-\mu_k^2$. Hence
+$\tau_{kkk}^2\le(3/4-\mu_k^2)|z^{(k)}|^2$.
+Using $d_k=\sum_i\Phi_{ii}z_i^{(k)}$ and Cauchy--Schwarz gives
+\[
+ \theta_k\ge(\tfrac32+2\mu_k^2)|z^{(k)}|^2,
+ \qquad
+ d_k^2=\left(\sum_i\Phi_{ii}z_i^{(k)}\right)^2
+       \le\frac{2p\theta_k}{3+4\mu_k^2}.
+\]
+The repeated-index groups have disjoint ordered supports, so
+$\sum_k\theta_k\le1$. Since $\mu_k^2\le3/4$,
+\[
+ |Ad|^2\le p\sum_k\frac{2\mu_k^2\theta_k}{3+4\mu_k^2}
+       \le\tfrac p4.\qedhere
+\]
+
+\end{proof}
+
+The next estimate will be applied with $X=8B$ in the quadratic coefficient.
+
+\begin{lemma}[A quadratic bound]\label{lem:Ebound}
+For an admissible pair $(A,\tau)$ and every $X\in\Szero$,
+\begin{equation}\label{eq:Ebound}
+ 2\langle \Psi,X\rangle-\langle X,\K_AX\rangle\le\tfrac{97}{48}.
+\end{equation}
+\end{lemma}
+\begin{proof}
+By Lemma~\ref{lem:bounds}, the eigenvalues of $R$ lie in $[0,2/3]$
+and sum to one. The vertices of this constraint set are the permutations
+of $(2/3,1/3,0,0)$, so convexity of the sum of squares gives
+$\tr R^2\le5/9$ and $|R-I/4|^2\le11/36$.
+
+The contribution involving $A^2$ is controlled by
+\[
+ X/2-X^2/3=3I/16-\tfrac13(X-3I/4)^2\preceq3I/16.
+\]
+Taking the trace against the positive semidefinite matrix $A^2$
+preserves this inequality; $\tr A^2=1$ bounds that contribution by
+$3/16$. Combining this with \eqref{eq:Klower} gives
+\begin{align*}
+ 2\langle \Psi,X\rangle-\langle X,\K_AX\rangle
+ &\le-2\langle R-I/4,X\rangle-\tfrac16|X|^2
+       +\tr\bigl(A^2(X/2-X^2/3)\bigr)\\
+ &\le-2\langle R-I/4,X\rangle-\tfrac16|X|^2+\tfrac3{16}\\
+ &\le6|R-I/4|^2+\tfrac3{16}\le\tfrac{97}{48}.
+\end{align*}
+The last line completes the square in $X$ and uses the bound on
+$|R-I/4|^2$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:convex}]
+For the constant term, put $w=Ad$ and use Lemma~\ref{lem:bounds}:
+\[
+ W_0=-\tfrac{19}{4}p-21|w|^2+49w^TH_\tau w
+     \le-\tfrac{19}{4}p+\tfrac{77}{8}|w|^2
+     \le-\tfrac{75}{32}p.
+\]
+\begin{samepage}
+For the quadratic term, $B$ is fixed, $B_t$ is affine in $t$,
+and so are $L_4,L_3,J$. Equations~\eqref{eq:Qt}--\eqref{eq:Wt}
+therefore give the coefficient of $t^2$ as
+\[
+ \tfrac{35}{16}+64\langle B,\K_AB\rangle
+                    -16\langle \Psi,B\rangle.
+\]
+Apply \eqref{eq:Ebound} with $X=8B$ to bound this below by
+$35/16-97/48=1/6$. Thus $W_t''\ge1/3$.
+\end{samepage}
+\end{proof}
+
+\subsection{Completing the proof}
+Appendix~\ref{app:certificate} proves the following bound for every
+admissible pair.
+
+\begin{proposition}[The bound at $t=1/2$]\label{prop:endpoint}
+Let $(A,\tau)$ be an admissible pair as in
+Definition~\ref{def:admissible}, and let $W_t$ be defined by
+Definition~\ref{def:Wt}. Then
+\begin{equation}\label{eq:endpointbound}
+ W_{1/2}(A,\tau)\le-\frac1{10000}.
+\end{equation}
+\end{proposition}
+
+We finish by applying convexity on $[0,1/2]$.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Suppose $4<S\le8$. Then $0<t\le1/2$, and the tensors defined by
+\eqref{eq:normalization} satisfy \eqref{eq:admissible} at every point.
+Propositions~\ref{prop:convex} and~\ref{prop:endpoint} give
+\[
+ W_t\le(1-2t)W_0+2tW_{1/2}\le-\frac{t}{5000}<0.
+\]
+Since $t$ is constant, integration contradicts \eqref{eq:Wmean}.
+\end{proof}
+
+\clearpage
+\appendix
+\section{The bound at \texorpdfstring{$t=1/2$}{t=1/2}}\label{app:certificate}
+We prove Proposition~\ref{prop:endpoint} by parametrizing the spectrum
+of $A$ and the components of $\tau$, then reducing the inequality to
+positivity of a quartic. Bernstein expansion on a rectangular cover of
+$[0,1]^2$ reduces this to Gram identities and integer matrix inequalities.
+Setting $t=1/2$ in \eqref{eq:Wt} gives
+\begin{equation}\label{eq:endpointexpanded}
+\begin{split}
+ W_{1/2}={}&\tfrac{21}{32}+\tfrac{13}{16}p-\tfrac{39}{16}m^2
+ -8a-\tfrac{189}{16}b+16mc+24|d|^2\\
+ &-8|B|^2+16\langle B,\K_AB\rangle
+ -21|Ad|^2+49(Ad)^TH_\tau(Ad).
+\end{split}
+\end{equation}
+
+\subsection*{Parametrization}
+Since $W_{1/2}$ is invariant under orthogonal changes of basis, we may
+diagonalize $A$. Its eigenvalue vector
+$\mu=(\mu_1,\ldots,\mu_4)^T$ is a unit vector in
+$\boldsymbol1^\perp$, where $\boldsymbol1=(1,1,1,1)^T$.
+The separate transformations $A\mapsto-A$ and $\tau\mapsto-\tau$
+preserve \eqref{eq:endpointexpanded}. Define
+\[
+ U=\frac12\begin{pmatrix}
+ 1&1&1\\ 1&-1&-1\\ -1&1&-1\\ -1&-1&1
+ \end{pmatrix}.
+\]
+Its columns form an orthonormal basis of $\boldsymbol1^\perp$.
+Permuting the four eigenvalues acts on $U^T\mu$ by coordinate
+permutations and even sign changes. Together with $\mu\mapsto-\mu$,
+these allow us to arrange the three coordinates of $U^T\mu$ in
+nonincreasing order, all nonnegative. The first coordinate is positive;
+dividing by it gives $(1,r,ry)^T$ with $0\le r,y\le1$. If the second
+coordinate of $U^T\mu$ is zero, take $r=y=0$. Thus every spectrum is
+represented, up to these symmetries, by
+\begin{equation}\label{eq:spectralchart}
+ \begin{gathered}
+ \ell=(1+r+ry,\ 1-r-ry,\ -1+r-ry,\ -1-r+ry),\\
+ L=|\ell|^2=4(1+r^2+r^2y^2),\qquad \mu=\ell/\sqrt L.
+ \end{gathered}
+\end{equation}
+For each repeated-index group, the two trace constraints leave the
+two-dimensional space $\{\boldsymbol1,\ell\}^\perp$. A basis valid
+throughout the closed square is given by the columns of
+\begin{equation}\label{eq:cubicchart}
+ C(r,y)=\begin{pmatrix}
+ -1+ry&-r+ry\\
+ 1+r&0\\
+ 0&1+r\\
+ -r-ry&-1-ry
+ \end{pmatrix}.
+\end{equation}
+The columns satisfy both trace constraints; the two rows containing
+$1+r$ prove independence, including at the boundary. The four
+repeated-index groups and four distinct-index components give twelve
+coordinates. For $x=(x_1,\ldots,x_{12})\in\R^{12}$, define the symmetric
+cubic tensor $T=T(r,y,x)$ by
+\[
+ (T_{234},T_{134},T_{124},T_{123})=(x_1,x_2,x_3,x_4)
+\]
+and, for $k=1,\ldots,4$,
+\begin{equation}\label{eq:repeatedchart}
+ (T_{iik})_{i=1}^4=C(r,y)(x_{2k+3},x_{2k+4})^T.
+\end{equation}
+Since these groups of components are disjoint, the formulas parametrize
+the whole constrained cubic space, with
+\[
+ N(r,y,x):=|T(r,y,x)|^2>0\quad(x\ne0).
+\]
+Set
+\begin{equation}\label{eq:normalizedchart}
+ A(r,y)=\diag(\ell/\sqrt L),\qquad
+ \tau(r,y,x)=T(r,y,x)/\sqrt{N(r,y,x)}.
+\end{equation}
+These formulas also apply at repeated or zero principal curvatures.
+
+\subsection*{Polynomial identity}
+Set $\mathscr D(r,y)=5625L^5/32>0$. For $x\ne0$, define
+\begin{equation}\label{eq:Pidentity}
+ P(r,y,x)=\mathscr D(r,y)N(r,y,x)^2
+ \left[-W_{1/2}\bigl(A(r,y),\tau(r,y,x)\bigr)-\frac1{10000}\right].
+\end{equation}
+Substitution of \eqref{eq:endpointexpanded} cancels the denominators
+and extends $P$ to an integer polynomial, homogeneous of degree four
+in $x$ and of degree at most $14$ in each of $r,y$. It has 196 quartic
+monomials and 19\,020 nonzero bivariate coefficient terms.
+
+\subsection*{Bernstein coefficients and positivity}
+Fix $r_0<r_1$ and $y_0<y_1$. On the rectangle
+$[r_0,r_1]\times[y_0,y_1]$, set
+\[
+ s_1=\frac{r-r_0}{r_1-r_0},\qquad
+ s_2=\frac{y-y_0}{y_1-y_0}.
+\]
+For $0\le i,j\le14$, define
+\begin{equation}\label{eq:Bernsteinbasis}
+ \beta_{ij}(r,y)=\binom{14}{i}s_1^i(1-s_1)^{14-i}
+                 \binom{14}{j}s_2^j(1-s_2)^{14-j}.
+\end{equation}
+These nonnegative polynomials satisfy $\sum_{i,j=0}^{14}\beta_{ij}=1$.
+Define the quartics $P_{ij}$ and scalars $d_{ij}$ by
+\begin{equation}\label{eq:Bernstein}
+ P=\sum_{i,j=0}^{14}\beta_{ij}P_{ij}(x),\qquad
+ \mathscr D=\sum_{i,j=0}^{14}\beta_{ij}d_{ij}.
+\end{equation}
+Label each quadratic monomial $x_ax_b$ by $(a,b)$, with
+$1\le a\le b\le12$, and let $z(x)\in\R^{78}$ list these monomials
+in lexicographic order. It contains every $x_a^2$, so $z(x)\ne0$
+whenever $x\ne0$.
+
+\begin{lemma}[Bernstein positivity]\label{lem:certificate}
+Fix a rectangle and the expansions \eqref{eq:Bernstein}.
+Suppose that $d_{ij}>0$ for every $0\le i,j\le14$, and that for
+each such pair there is a positive definite symmetric matrix
+$G_{ij}\in\R^{78\times78}$ satisfying
+\[
+ P_{ij}(x)=d_{ij}\,z(x)^TG_{ij}z(x)\qquad(x\in\R^{12}).
+\]
+Then $P(r,y,x)>0$ for every point $(r,y)$ of the rectangle and
+every $x\ne0$.
+\end{lemma}
+\begin{proof}
+For $x\ne0$, each $P_{ij}(x)$ is positive. Equation~\eqref{eq:Bernstein}
+is a weighted sum of these values with nonnegative weights of sum one.
+\end{proof}
+
+\begin{lemma}[Integer positivity test]\label{lem:integer}
+Let $s\ge1$, let $Q\in\mathbb Z^{s\times s}$ be symmetric,
+and let $V\in\mathbb Z^{s\times s}$. If
+\begin{equation}\label{eq:integercriterion}
+ (VQV^T)_{ii}>\sum_{j\ne i}|(VQV^T)_{ij}|\qquad(1\le i\le s),
+\end{equation}
+then $Q$ is positive definite.
+\end{lemma}
+\begin{proof}
+Put $M=VQV^T$. For $w\in\R^s$, the inequality
+$2|w_iw_j|\le w_i^2+w_j^2$ gives
+\[
+ w^TMw\ge\sum_i\left(M_{ii}-\sum_{j\ne i}|M_{ij}|\right)w_i^2.
+\]
+Hence $M$ is positive definite. If $V$ were singular, a nonzero
+$w\in\ker V^T$ would satisfy $w^TMw=0$. Thus $V$ is invertible
+and $Q$ is positive definite by congruence.
+\end{proof}
+
+\subsection*{The rational certificate}
+A binary word selects closed halves of $[0,1]^2$: bisect in $r$ at
+even depth and $y$ at odd depth, starting at depth zero, and retain
+the lower half for 0 and the upper half for 1. The 24 leaves listed
+in \texttt{DATA\_SPEC.md} form a complete prefix tree: every non-leaf
+prefix has both children, and no leaf has a listed descendant.
+Their rectangles therefore cover the closed square with disjoint interiors.
+
+To prove $d_{ij}>0$, use $\mathscr D=180000(1+r^2+r^2y^2)^5$.
+On any listed rectangle,
+write $r=r_0+hs_1$, $y=y_0+ks_2$, where $r_0,y_0\ge0$ and $h,k>0$.
+If $\mathscr D=\sum_{a,b}e_{ab}s_1^as_2^b$, then $e_{ab}\ge0$ and
+$e_{00}>0$. The degree is at most ten in each variable. Conversion
+to degree $(14,14)$ gives
+\[
+ d_{ij}=\sum_{a\le i,\,b\le j}e_{ab}
+ \frac{\binom ia}{\binom{14}a}\frac{\binom jb}{\binom{14}b}>0.
+\]
+The positive term $e_{00}$ contributes to every coefficient.
+
+Reversing a basis vector $e_k$ changes the sign of a tensor component
+once for each occurrence of $k$ among its indices. Group the quadratic
+monomials according to their signs under these four reversals.
+This gives eight groups of sizes $16,9,9,9,9,9,9,8$. We take
+$G_{ij}$ block diagonal with respect to these groups, each block
+indexed by the monomials in that group. The encoding and ordering
+are specified in \texttt{DATA\_SPEC.md}.
+Index the 442 upper-triangular positions by $e$,
+with weight $w_e=1$ on the diagonal and $w_e=2$ otherwise.
+The sorted concatenation of the two quadratic labels gives a quartic
+label $\gamma(e)$; there are 196 such labels. Set
+\[
+ c_\gamma=\sum_{\gamma(e)=\gamma}w_e.
+\]
+These labels give precisely the degree-four monomials unchanged by
+all four sign reversals.
+The other 1\,169 of the $\binom{15}{4}=1365$ quartic types have zero
+coefficient; all are included in the coefficient checks.
+
+At each rectangle and control index $(i,j)$, choose a common positive
+integer scale $\sigma$ clearing the denominators of $P_{ij}$ and $d_{ij}$,
+as specified in \texttt{DATA\_SPEC.md}. Let $p_\gamma$ be the coefficient
+of $x^\gamma$ in $\sigma P_{ij}$, and let $d$ be the positive integer
+$\sigma d_{ij}$.
+Here $x^\gamma=x_{a_1}x_{a_2}x_{a_3}x_{a_4}$ if
+$\gamma=(a_1,a_2,a_3,a_4)$. The canonical Gram entry is
+$p_{\gamma(e)}/(c_{\gamma(e)}d)$. Each rectangle supplies
+$n^{00},n^{10},n^{01},n^{11}\in\mathbb Z^{442}$ and the positive
+denominator $n_*=12884901888$, with
+\[
+ \sum_{\gamma(e)=\gamma}w_e n_e^{ab}=0
+ \quad\text{for every label $\gamma$ and }ab\in\{00,10,01,11\}.
+\]
+Define the integer vector
+\[
+ \nu(i,j)=(14-i)(14-j)n^{00}+i(14-j)n^{10}
+                +(14-i)j n^{01}+ij n^{11}.
+\]
+The Gram entry at position $e$ is
+\begin{equation}\label{eq:compressedgram}
+ (G_{ij})_e=\frac{p_{\gamma(e)}}{c_{\gamma(e)}d}
+                     +\frac{\nu_e(i,j)}{196n_*}.
+\end{equation}
+The first term supplies the coefficients of $P_{ij}/d_{ij}$;
+the second represents the zero quartic. Thus
+\begin{equation}\label{eq:Gramcertificate}
+ P_{ij}(x)/d_{ij}=z(x)^TG_{ij}z(x).
+\end{equation}
+Positive definiteness is checked at every control index, not inferred
+from the four corners.
+
+The integer numerator $Q_{ij}=(196n_*d)G_{ij}$ has entries
+\[
+ (Q_{ij})_e=\frac{196n_*}{c_{\gamma(e)}}p_{\gamma(e)}
+                      +d\,\nu_e(i,j).
+\]
+The possible multiplicities $c_\gamma$ are $1,2,3,4,6$, according
+to the repeated indices in $\gamma$. Each divides $196n_*$, so
+these entries are integers.
+The positive factor $196n_*d$ preserves definiteness. For each block,
+the data supply an integer matrix $V$ satisfying
+\eqref{eq:integercriterion}. The Bernstein coefficients are computed
+both by affine substitution and by midpoint restriction.
+For each computation, the verification includes
+$24\cdot15^2=5400$ full Gram identities, $43\,200$ block tests and
+$5400\cdot78=421\,200$ strict row inequalities.
+
+The verification consists of checking:
+\begin{enumerate}
+\item the full coefficient identity \eqref{eq:Pidentity}, reconstructed
+both from \eqref{eq:K}--\eqref{eq:ZH} and from contractions on
+$\Sym^4\R^4$ with the ordered inner product;
+\item the 24-rectangle cover, the Bernstein expansions and
+\eqref{eq:Gramcertificate} coefficient by coefficient, including
+positivity of all denominators and all $d_{ij}$;
+\item symmetry and the strict inequalities \eqref{eq:integercriterion}
+after the supplied congruence, for all $43\,200$ integer blocks.
+\end{enumerate}
+These checks have been completed using exact rational arithmetic.
+Lemma~\ref{lem:certificate} and
+\eqref{eq:Pidentity} then prove Proposition~\ref{prop:endpoint}.
+
+\subsection*{Electronic supplement}
+The directories \texttt{paper/}, \texttt{mathematica/} and \texttt{lean/}
+contain the paper sources, exact verification and Lean project.
+The notebook \texttt{Verification.nb} and its PDF export give the
+computational argument; \texttt{DATA\_SPEC.md} gives the complete data
+specification. The Lean entry theorem has an explicit premise for the
+finite assertions supplied by Mathematica. Simons' identity is proved
+in the included development. Declarations and hypotheses are listed in
+\texttt{lean/README.md}; the root \texttt{README.md} gives execution
+and build instructions.
+
+\subsection*{Use of AI}
+AI tools, including GPT-6 Astra, were used to explore candidate estimates,
+develop the verification code, review the arguments, and revise the
+manuscript. The author is responsible for the mathematical content and
+its presentation.
+
+\begin{thebibliography}{99}
+\bibitem{Cartan}
+\'{E}. Cartan,
+\emph{Sur des familles remarquables d'hypersurfaces isoparam\'etriques dans les espaces sph\'eriques},
+Math. Z. \textbf{45} (1939), 335--367,
+\href{https://doi.org/10.1007/BF01580289}{\nolinkurl{doi:10.1007/BF01580289}}.
+
+\bibitem{CDK}
+S.-S. Chern, M. do Carmo and S. Kobayashi,
+\emph{Minimal submanifolds of a sphere with second fundamental form of constant length},
+in \emph{Functional Analysis and Related Fields}, F. E. Browder (ed.),
+Springer, Berlin, Heidelberg, 1970, pp.~59--75,
+\href{https://doi.org/10.1007/978-3-642-48272-4_2}{\nolinkurl{doi:10.1007/978-3-642-48272-4_2}}.
+
+\bibitem{Chen}
+R. Chen,
+\emph{An improved second pinching theorem for minimal hypersurfaces with constant scalar curvature in spheres},
+preprint (2026), \href{https://arxiv.org/abs/2609.17586v1}{arXiv:2609.17586v1}.
+
+\bibitem{CLW}
+Q.-M. Cheng, F. Li and G. Wei,
+\emph{An improved result on Chern conjecture},
+preprint (2026), \href{https://arxiv.org/abs/2610.05276v1}{\nolinkurl{arXiv:2610.05276v1}}.
+
+\bibitem{GLLY}
+J. Ge, T. Liu, K. Luo and W. Yan,
+\emph{Rigidity of closed minimal hypersurfaces in $\Sph^5$},
+preprint (2026), \href{https://arxiv.org/abs/2606.29246v1}{arXiv:2606.29246v1}.
+
+\bibitem{Guan}
+S. Guan,
+\emph{The second gap for minimal hypersurfaces in the unit sphere with constant cubic trace},
+preprint (2026), \href{https://arxiv.org/abs/2609.26852v1}{arXiv:2609.26852v1}.
+
+\bibitem{GTYZ}
+J. Ge, H. Tan, W. Yan and Y. Zhang,
+\emph{The second gap and rigidity in Chern's conjecture with constant cubic trace},
+preprint (2026), \href{https://arxiv.org/abs/2609.27661v1}{arXiv:2609.27661v1}.
+
+\bibitem{HXZ}
+C. He, H. Xu and E. Zhao,
+\emph{Classification of closed minimal hypersurfaces with constant scalar curvature in $\Sph^5$},
+preprint (2026), \href{https://arxiv.org/abs/2603.01181v1}{arXiv:2603.01181v1}.
+
+\bibitem{Lawson}
+H. B. Lawson, Jr.,
+\emph{Local rigidity theorems for minimal hypersurfaces},
+Ann. of Math. (2) \textbf{89} (1969), 187--197,
+\href{https://doi.org/10.2307/1970816}{\nolinkurl{doi:10.2307/1970816}}.
+
+\bibitem{LXX}
+L. Lei, H. Xu and Z. Xu,
+\emph{On Chern's conjecture for minimal hypersurfaces in spheres},
+preprint (2017), \href{https://arxiv.org/abs/1712.01175v1}{arXiv:1712.01175v1}.
+
+\bibitem{Munzner1}
+H. F. M\"unzner,
+\emph{Isoparametrische Hyperfl\"achen in Sph\"aren},
+Math. Ann. \textbf{251} (1980), 57--71,
+\href{https://doi.org/10.1007/BF01420281}{\nolinkurl{doi:10.1007/BF01420281}}.
+
+\bibitem{Munzner2}
+H. F. M\"unzner,
+\emph{Isoparametrische Hyperfl\"achen in Sph\"aren. II.
+\"Uber die Zerlegung der Sph\"are in Ballb\"undel},
+Math. Ann. \textbf{256} (1981), 215--232,
+\href{https://doi.org/10.1007/BF01450799}{\nolinkurl{doi:10.1007/BF01450799}}.
+
+\bibitem{PT1}
+C. K. Peng and C. L. Terng,
+\emph{Minimal hypersurfaces of spheres with constant scalar curvature},
+in \emph{Seminar on Minimal Submanifolds}, E. Bombieri (ed.),
+Ann. of Math. Stud. \textbf{103},
+Princeton University Press, Princeton, NJ, 1983, pp.~177--198.
+
+\bibitem{PT2}
+C. K. Peng and C. L. Terng,
+\emph{The scalar curvature of minimal hypersurfaces in spheres},
+Math. Ann. \textbf{266} (1983), 105--113,
+\href{https://doi.org/10.1007/BF01458707}{\nolinkurl{doi:10.1007/BF01458707}}.
+
+\bibitem{Simons}
+J. Simons,
+\emph{Minimal varieties in Riemannian manifolds},
+Ann. of Math. (2) \textbf{88} (1968), 62--105,
+\href{https://doi.org/10.2307/1970556}{\nolinkurl{doi:10.2307/1970556}}.
+
+\bibitem{SY}
+Y. J. Suh and H. Y. Yang,
+\emph{The scalar curvature of minimal hypersurfaces in a unit sphere},
+Commun. Contemp. Math. \textbf{9} (2007), no.~2, 183--200,
+\href{https://doi.org/10.1142/S021919970700237X}{\nolinkurl{doi:10.1142/S021919970700237X}}.
+\end{thebibliography}
+\end{document}

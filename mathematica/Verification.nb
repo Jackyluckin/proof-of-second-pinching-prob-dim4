@@ -1,0 +1,811 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 15.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     44625,        801]
+NotebookOptionsPosition[     36047,        650]
+NotebookOutlinePosition[     37890,        707]
+CellTagsIndexPosition[     37847,        704]
+WindowTitle->Second pinching: exact verification
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[
+      "Exact verification of the dimension-four second pinching inequality", 
+      "Title", FontSize -> 23, ExpressionUUID -> 
+       "f6e7424b-9f45-4b32-bd62-04d8e11f3073"],
+
+Cell["Jinxi Zhang\nUniversity of Cambridge", "Subtitle", FontSize -> 12, 
+      ExpressionUUID -> "737ee410-6cf9-42d7-8796-51608d6bbf0d"],
+
+Cell["Computational supplement to A proof of the second pinching theorem \
+in dimension four. This notebook explains the finite calculation in Appendix \
+A and calls the accompanying implementation. Its last section executes the \
+complete verification and records the resulting counts.", "Text", 
+      CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+      FontSize -> 11, ExpressionUUID -> 
+       "116e40df-d279-478f-8eb2-2e8c0edc2c98"],
+
+Cell[CellGroupData[{
+
+Cell["1. Notation and exact arithmetic", "Section", 
+         FontSize -> 17, ExpressionUUID -> 
+          "fb3c7a63-c282-4527-8429-06cb7a21908a"],
+
+Cell["An admissible pair \
+consists of a symmetric trace-free 4 by 4 matrix A and a symmetric cubic \
+tensor tau, both of ordered norm one, with vanishing ordinary and A-weighted \
+cubic traces. In a principal frame A = diag(mu_1,...,mu_4). These are \
+Definition def:admissible and equation eq:admissible of the paper. No \
+restriction to distinct or nonzero principal curvatures is imposed.", "Text", 
+         CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+         FontSize -> 11, ExpressionUUID -> 
+          "f5c93156-6e1d-4657-86a4-59cd577071b3"],
+
+Cell[BoxData[TagBox[FormBox[TagBox[RowBox[{RowBox[{"Tr", "[", "A", 
+                 "]"}], "\[LongEqual]", "0"}], HoldForm], TraditionalForm], 
+           TraditionalForm, Editable -> True]], "DisplayFormula", 
+         CellMargins -> {{32, 12}, {9, 9}}, FontSize -> 12, 
+         ExpressionUUID -> "d197dbb6-ae94-406a-8c52-7abc4408d21b"],
+
+Cell[BoxData[TagBox[FormBox[TagBox[RowBox[{RowBox[{UnderoverscriptBox[
+                  "\[Sum]", RowBox[{"i", "=", "1"}], "4"], SubscriptBox[
+                  "tau", RowBox[{"i", ",", "i", ",", "k"}]]}], 
+               "\[LongEqual]", "0"}], HoldForm], TraditionalForm], 
+           TraditionalForm, Editable -> True]], "DisplayFormula", 
+         CellMargins -> {{32, 12}, {9, 9}}, FontSize -> 12, 
+         ExpressionUUID -> "22ba8e9c-8893-4327-a6f1-d6594d6e2ee8"],
+
+Cell[BoxData[TagBox[FormBox[TagBox[RowBox[{RowBox[{UnderoverscriptBox[
+                  "\[Sum]", RowBox[{"i", "=", "1"}], "4"], RowBox[
+                  {SubscriptBox["mu", "i"], " ", SubscriptBox["tau", 
+                    RowBox[{"i", ",", "i", ",", "k"}]]}]}], "\[LongEqual]", 
+               "0"}], HoldForm], TraditionalForm], TraditionalForm, 
+           Editable -> True]], "DisplayFormula", CellMargins -> 
+          {{32, 12}, {9, 9}}, FontSize -> 12, ExpressionUUID -> 
+          "4edf7a3f-cc1b-4b3b-928d-8d3e061b12cc"],
+
+Cell["Tensor inner \
+products sum over all ordered indices. A compressed symmetric coordinate with \
+multiplicities n_1,...,n_4 has weight r!/(n_1!...n_4!) for tensors of order \
+r. The implementation retains these weights. Acceptance uses integers and \
+rational numbers; elapsed time and software-version strings are separate \
+output metadata.", "Text", CellMargins -> {{24, 12}, {5, 5}}, 
+         LineSpacing -> {1.1, 0}, FontSize -> 11, ExpressionUUID -> 
+          "86312713-e243-4abb-ad55-76b1ade6e878"],
+
+Cell["Evaluate the input \
+cells in order in a fresh kernel. The package and its data are read relative \
+to this notebook. The named internal routines below are executed by \
+VerifyChern4; their formulas are not reimplemented in this notebook.", 
+         "Text", CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+         FontSize -> 11, ExpressionUUID -> 
+          "c4020600-96f9-45d6-af9d-27bfb780c515"],
+
+Cell[BoxData[RowBox[{RowBox[{"packageDirectory", "=", 
+              RowBox[{"NotebookDirectory", "[", "]"}]}], ";", 
+            RowBox[{"Get", "[", RowBox[{"FileNameJoin", "[", RowBox[
+                 {"{", RowBox[{"packageDirectory", ",", 
+                    "\"Chern4Verifier.wl\""}], "}"}], "]"}], "]"}], ";"}]], 
+         "Input", CellMargins -> {{24, 12}, {7, 7}}, FontSize -> 10, 
+         CellLabel -> " In[1]:=", ExpressionUUID -> 
+          "8f0e59de-4136-4871-a2d1-b945faee2eaf"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["2. Spectral and cubic parametrization", 
+         "Section", PageBreakAbove -> True, FontSize -> 17, 
+         ExpressionUUID -> "11d94940-5656-440e-8d35-ef6ac3d3e203"],
+
+Cell["Input: (r,y) in the closed unit square and a nonzero vector x \
+of twelve real amplitudes. Output: the unnormalized eigenvalue vector ell, a \
+symmetric cubic T, and the positive normalizations L and N. Routine makeChart \
+constructs these objects. Paper labels: eq:spectralchart, eq:cubicchart and \
+eq:normalizedchart.", "Text", CellMargins -> {{24, 12}, {5, 5}}, 
+         LineSpacing -> {1.1, 0}, FontSize -> 11, ExpressionUUID -> 
+          "fa0af5fd-0258-47ce-80ac-e1a2fcff6afe"],
+
+Cell[BoxData[TagBox[FormBox[TagBox[RowBox[{"ell", "\[LongEqual]", 
+               RowBox[{"{", RowBox[{RowBox[{"1", "+", "r", "+", RowBox[
+                      {"r", " ", "y"}]}], ",", RowBox[{"1", "-", "r", "-", 
+                     RowBox[{"r", " ", "y"}]}], ",", RowBox[{RowBox[
+                      {"-", "1"}], "+", "r", "-", RowBox[{"r", " ", "y"}]}], 
+                   ",", RowBox[{RowBox[{"-", "1"}], "-", "r", "+", RowBox[
+                      {"r", " ", "y"}]}]}], "}"}]}], HoldForm], 
+            TraditionalForm], TraditionalForm, Editable -> True]], 
+         "DisplayFormula", CellMargins -> {{32, 12}, {9, 9}}, FontSize -> 12, 
+         ExpressionUUID -> "1225e510-444a-4191-87ae-16b3cfdd3f7d"],
+
+Cell[BoxData[TagBox[FormBox[TagBox[RowBox[{"L", "\[LongEqual]", 
+               RowBox[{"ell", ".", "ell"}], "\[LongEqual]", RowBox[
+                {"4", " ", RowBox[{"(", RowBox[{"1", "+", SuperscriptBox["r", 
+                      "2"], "+", RowBox[{SuperscriptBox["r", "2"], " ", 
+                       SuperscriptBox["y", "2"]}]}], ")"}]}]}], HoldForm], 
+            TraditionalForm], TraditionalForm, Editable -> True]], 
+         "DisplayFormula", CellMargins -> {{32, 12}, {9, 9}}, FontSize -> 12, 
+         ExpressionUUID -> "5dc1df6a-3b02-4e97-b16a-691d41dacffa"],
+
+Cell["The Hadamard map is an isometry from three-dimensional \
+Euclidean space to the trace-free diagonal matrices. Eigenvalue permutations \
+and reversal give all 48 signed permutations of its three coordinates. \
+Arrange their absolute values in decreasing order and divide by the largest. \
+This gives (1,r,ry). When the second coordinate vanishes, take r = y = 0. \
+Routine checkSpectralGroup verifies the finite group identity.", "Text", 
+         CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+         FontSize -> 11, ExpressionUUID -> 
+          "93c87324-0fe8-425b-af4b-c827d93da0ac"],
+
+Cell[BoxData[TagBox[FormBox[TagBox[RowBox[{RowBox[{"C", "[", 
+                 RowBox[{"r", ",", "y"}], "]"}], "\[LongEqual]", RowBox[
+                {"(", "\[NoBreak]", GridBox[{{RowBox[{RowBox[{"-", "1"}], 
+                      "+", RowBox[{"r", " ", "y"}]}], RowBox[{RowBox[
+                       {"-", "r"}], "+", RowBox[{"r", " ", "y"}]}]}, 
+                   {RowBox[{"1", "+", "r"}], "0"}, {"0", RowBox[{"1", "+", 
+                      "r"}]}, {RowBox[{RowBox[{"-", "r"}], "-", RowBox[
+                       {"r", " ", "y"}]}], RowBox[{RowBox[{"-", "1"}], "-", 
+                      RowBox[{"r", " ", "y"}]}]}}, GridBoxAlignment -> 
+                   {"Columns" -> {{Center}}, "Rows" -> {{Baseline}}}, 
+                  GridBoxSpacings -> {"Columns" -> {Offset[
+                       0.27999999999999997], {Offset[0.7]}, Offset[
+                       0.27999999999999997]}, "Rows" -> {Offset[0.2], 
+                      {Offset[0.4]}, Offset[0.2]}}], "\[NoBreak]", ")"}]}], 
+             HoldForm], TraditionalForm], TraditionalForm, 
+           Editable -> True]], "DisplayFormula", CellMargins -> 
+          {{32, 12}, {9, 9}}, FontSize -> 12, ExpressionUUID -> 
+          "69bbd3b3-687e-4bcb-a820-b09d39b05383"],
+
+Cell["For each k, the \
+vector (T_iik)_i is C(r,y) applied to (x_(2k+3),x_(2k+4)). The four \
+distinct-index entries (T_234,T_134,T_124,T_123) are (x_1,x_2,x_3,x_4). \
+Symmetry gives the other ordered entries. The columns of C lie in the common \
+orthogonal complement of 1 and ell; their minor in rows 2 and 3 is (1+r)^2. \
+They span that complement throughout the square.", "Text", 
+         CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+         FontSize -> 11, ExpressionUUID -> 
+          "ee865140-c762-46d8-8e29-95fcd457cad5"],
+
+Cell[BoxData[TagBox[FormBox[TagBox[RowBox[{"N", "\[LongEqual]", 
+               RowBox[{UnderoverscriptBox["\[Sum]", RowBox[{"i", "=", "1"}], 
+                  "4"], RowBox[{UnderoverscriptBox["\[Sum]", RowBox[
+                     {"j", "=", "1"}], "4"], RowBox[{UnderoverscriptBox[
+                      "\[Sum]", RowBox[{"k", "=", "1"}], "4"], 
+                     SubsuperscriptBox["T", RowBox[{"i", ",", "j", ",", 
+                        "k"}], "2"]}]}]}]}], HoldForm], TraditionalForm], 
+           TraditionalForm, Editable -> True]], "DisplayFormula", 
+         CellMargins -> {{32, 12}, {9, 9}}, FontSize -> 12, 
+         ExpressionUUID -> "9643b5ff-b76e-43b4-ac17-716b7e68144f"],
+
+Cell[BoxData[TagBox[FormBox[TagBox[RowBox[{"A", "\[LongEqual]", 
+               FractionBox[RowBox[{"DiagonalMatrix", "[", "ell", "]"}], 
+                SqrtBox["L"]]}], HoldForm], TraditionalForm], 
+           TraditionalForm, Editable -> True]], "DisplayFormula", 
+         CellMargins -> {{32, 12}, {9, 9}}, FontSize -> 12, 
+         ExpressionUUID -> "308802ab-4986-4fb8-91be-b4710e74bc8f"],
+
+Cell[BoxData[TagBox[FormBox[TagBox[RowBox[{"tau", "\[LongEqual]", 
+               FractionBox["T", SqrtBox["N"]]}], HoldForm], TraditionalForm], 
+           TraditionalForm, Editable -> True]], "DisplayFormula", 
+         CellMargins -> {{32, 12}, {9, 9}}, FontSize -> 12, 
+         ExpressionUUID -> "a9f5d019-3767-43eb-8b23-3c236b0e5b19"],
+
+Cell["The repeated-index groups and the distinct-index entries have \
+disjoint ordered supports. The rank statement therefore gives N > 0 when x is \
+nonzero. Also L >= 4. Normalization covers every admissible pair up to the \
+frame and normal-reversal symmetries of the endpoint functional, including \
+repeated and zero eigenvalues.", "Text", CellMargins -> {{24, 12}, {5, 5}}, 
+         LineSpacing -> {1.1, 0}, FontSize -> 11, ExpressionUUID -> 
+          "fc67c43f-843c-46b9-a732-9212bc965eb7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["3. Fourth-tensor contractions and Gram operators", "Section", 
+         PageBreakAbove -> True, FontSize -> 17, ExpressionUUID -> 
+          "e0819e9c-2d1a-4a76-bfb7-f63c9b1335fe"],
+
+Cell["Input: the \
+unnormalized ell and T. Output: the ordinary-trace-free dual Gram matrix and \
+the matrices for the two contractions. Routine rawGram constructs them \
+directly from 35 symmetric fourth-tensor coordinates. Routine \
+checkGramFormulas compares them with the closed matrix formulas of the paper. \
+Paper labels: eq:maps, eq:P0, eq:K, eq:ZH and eq:Grams.", "Text", 
+         CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+         FontSize -> 11, ExpressionUUID -> 
+          "8b825023-34d7-4142-b155-c5b78b2933a5"],
+
+Cell["There are ten \
+symmetric matrix coordinates, nine trace-free matrix coordinates and 35 \
+symmetric fourth-tensor coordinates. Let D_4 be the diagonal matrix of \
+ordered fourth-tensor multiplicities and T_0 the ordinary-trace matrix. The \
+dual Gram matrix of the trace-free orthogonal projection is", "Text", 
+         CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+         FontSize -> 11, ExpressionUUID -> 
+          "49c1e18f-2173-4e94-a6c9-81ac787b8392"],
+
+Cell[BoxData[TagBox[FormBox[TagBox[RowBox[{SubscriptBox["C", "4"], 
+               "\[LongEqual]", RowBox[{TemplateBox[{RowBox[{"(", SubscriptBox[
+                      "D", "4"], ")"}]}, "Inverse"], "-", RowBox[
+                  {TemplateBox[{RowBox[{"(", SubscriptBox["D", "4"], ")"}]}, 
+                    "Inverse"], ".", TemplateBox[{RowBox[{"(", SubscriptBox[
+                        "T", "0"], ")"}]}, "Transpose"], ".", TemplateBox[
+                    {RowBox[{"(", RowBox[{SubscriptBox["T", "0"], ".", 
+                         TemplateBox[{RowBox[{"(", SubscriptBox["D", "4"], 
+                          ")"}]}, "Inverse", SyntaxForm -> SuperscriptBox], 
+                         ".", TemplateBox[{RowBox[{"(", SubscriptBox["T", 
+                          "0"], ")"}]}, "Transpose", SyntaxForm -> 
+                          SuperscriptBox]}], ")"}]}, "Inverse"], ".", 
+                   SubscriptBox["T", "0"], ".", TemplateBox[{RowBox[
+                      {"(", SubscriptBox["D", "4"], ")"}]}, "Inverse"]}]}]}], 
+             HoldForm], TraditionalForm], TraditionalForm, 
+           Editable -> True]], "DisplayFormula", CellMargins -> 
+          {{32, 12}, {9, 9}}, FontSize -> 12, ExpressionUUID -> 
+          "cfcd6fb7-fa63-4e51-b423-0b904aac9d15"],
+
+Cell["The code checks \
+symmetry, vanishing ordinary trace and C_4 D_4 C_4 = C_4. Applying the \
+contraction matrices to this dual Gram matrix gives the matrix, mixed and \
+vector terms in the joint estimate. The nine-dimensional matrix basis carries \
+its own ordered metric; its inverse enters the contractions in \
+rawPolynomial.", "Text", CellMargins -> {{24, 12}, {5, 5}}, 
+         LineSpacing -> {1.1, 0}, FontSize -> 11, ExpressionUUID -> 
+          "7a110654-52bf-4b48-88bd-450d0e1145dd"],
+
+Cell["The closed \
+expressions are not used to construct rawGram. They enter only the comparison \
+performed by checkGramFormulas. Both constructions use the same ordered-index \
+convention as the paper. Their intermediate matrices include the positive \
+powers of L and N appropriate to the unnormalized input; equality of the \
+final polynomial is checked after those scalings are removed.", "Text", 
+         CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+         FontSize -> 11, ExpressionUUID -> 
+          "0e0a6898-e190-447b-bd7a-cf614bf14e9f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["4. Reconstruction of the endpoint polynomial", 
+         "Section", PageBreakAbove -> True, FontSize -> 17, 
+         ExpressionUUID -> "025ae182-c0d1-47ab-b797-a4cf0fbe2b37"],
+
+Cell["Input: the symbolic chart and the trial choices in equation \
+eq:choice. Output: an exact polynomial P in r,y,x_1,...,x_12. Routine \
+closedPolynomial uses the expanded formula for W_(1/2). Routine rawPolynomial \
+instead assembles the projected fourth-tensor norm and the three zero-average \
+corrections. Paper labels: eq:endpointexpanded and eq:Pidentity.", "Text", 
+         CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+         FontSize -> 11, ExpressionUUID -> 
+          "01c687b2-afda-406b-9e3a-74b7f77a9180"],
+
+Cell[BoxData[TagBox[FormBox[TagBox[RowBox[{"P", "\[LongEqual]", 
+               RowBox[{FractionBox["5625", "32"], " ", SuperscriptBox["L", 
+                  "5"], " ", SuperscriptBox["N", "2"], " ", RowBox[
+                  {"(", RowBox[{RowBox[{"-", RowBox[{SubscriptBox["W", 
+                          FractionBox["1", "2"]], "(", RowBox[{"A", ",", 
+                          "tau"}], ")"}]}], "-", FractionBox["1", "10000"]}], 
+                   ")"}]}]}], HoldForm], TraditionalForm], TraditionalForm, 
+           Editable -> True]], "DisplayFormula", CellMargins -> 
+          {{32, 12}, {9, 9}}, FontSize -> 12, ExpressionUUID -> 
+          "c4714fa6-c3b8-4d93-b8a5-e808d1d2351d"],
+
+Cell["Here A and tau are \
+the normalized chart tensors from Section 2. The factor 5625 L^5 N^2/32 is \
+positive for every nonzero amplitude vector. Thus positivity of P implies \
+W_(1/2) <= -1/10000.", "Text", CellMargins -> {{24, 12}, {5, 5}}, 
+         LineSpacing -> {1.1, 0}, FontSize -> 11, ExpressionUUID -> 
+          "6ef4c5fd-9c9c-4354-a2c3-d8e6b9f1cd05"],
+
+Cell["P is quartic in the \
+twelve amplitudes and has bidegree at most (14,14) in (r,y). The data contain \
+196 nonzero quartic channels and 19020 nonzero bivariate coefficient terms. \
+comparePolynomial checks the complete coefficient support: all 1365 quartic \
+types are accounted for, including the 1169 types asserted to vanish. A \
+second check compares the two reconstructed polynomials exactly.", "Text", 
+         CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+         FontSize -> 11, ExpressionUUID -> 
+          "99119a24-c33e-41a9-87b3-401c123b2493"],
+
+Cell["The stored \
+denominator channel is (5625/32)L^5 = 180000(1+r^2+r^2 y^2)^5. It is compared \
+as a polynomial, separately from the numerator channels. No evaluation at \
+sampled spectra enters coefficient acceptance.", "Text", 
+         CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+         FontSize -> 11, ExpressionUUID -> 
+          "e153949b-24a4-40dc-ae32-e3fc38afa557"],
+
+Cell["In closedPolynomial \
+the matrix ff represents L^2 N B. The auxiliary Python constructor retained \
+in the development archive uses L^3 N B. These are different intermediate \
+arrays. The final scaled P is the object compared in all reconstructions.", 
+         "Text", CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+         FontSize -> 11, ExpressionUUID -> 
+          "7e3ac9ff-9f5d-4474-aa34-c174add8a77b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["5. The rectangular cover and Bernstein expansion", "Section", 
+         PageBreakAbove -> True, FontSize -> 17, ExpressionUUID -> 
+          "ec0192ce-a5b2-44d0-ac2b-fece6ad5b719"],
+
+Cell["Input: P, its \
+denominator channel and the 24 binary leaf paths in certificate.json. Output: \
+integer-scaled Bernstein arrays on every closed leaf rectangle. Routine \
+checkCover verifies the full binary prefix tree. Routines integerTransforms \
+and affineTransform provide the two conversion methods used by replay. Paper \
+labels: lem:certificate and eq:Bernstein.", "Text", CellMargins -> 
+          {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, FontSize -> 11, 
+         ExpressionUUID -> "a49f54f4-9141-4fc5-8eee-b817a9d5dc25"],
+
+Cell["At even tree depth a bit bisects the r interval; at odd depth \
+it bisects the y interval. The two children retain the lower and upper closed \
+halves. Every non-leaf prefix has both children, and no listed leaf contains \
+another. The leaf rectangles cover the entire closed square, including its \
+boundary. The literal paths and their order are specified in DATA_SPEC.md.", 
+         "Text", CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+         FontSize -> 11, ExpressionUUID -> 
+          "1586e7de-bcb4-471b-8494-c763fa5f130d"],
+
+Cell[BoxData[TagBox[FormBox[TagBox[RowBox[{SubscriptBox["b", "i"], 
+               "\[LongEqual]", RowBox[{UnderoverscriptBox["\[Sum]", 
+                  RowBox[{"k", "=", "0"}], "i"], FractionBox[RowBox[
+                   {SubscriptBox["a", "k"], " ", TemplateBox[{"i", "k"}, 
+                     "Binomial"]}], TemplateBox[{"n", "k"}, "Binomial"]]}]}], 
+             HoldForm], TraditionalForm], TraditionalForm, 
+           Editable -> True]], "DisplayFormula", CellMargins -> 
+          {{32, 12}, {9, 9}}, FontSize -> 12, ExpressionUUID -> 
+          "0a6fac09-1e33-4efd-b17b-dd783aa93ab1"],
+
+Cell["This is the \
+coefficient of the ith Bernstein basis polynomial when the power coefficients \
+are a_k and the degree is n. The calculation uses n = 14 in each variable. \
+Midpoint restriction starts with the factor (14!)^2 and multiplies by 2^14 at \
+each bisection. The direct affine conversion uses (14!)^2 q_r^14 q_y^14, \
+where q_r and q_y are positive endpoint-denominator clearing factors.", 
+         "Text", CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+         FontSize -> 11, ExpressionUUID -> 
+          "7eb52afa-4768-43d2-8f3d-1fc7baeb6ff7"],
+
+Cell["For a rational \
+interval [a,b], take a positive integer q clearing both endpoint denominators \
+and set alpha = qa, beta = q(b-a). The integer affine matrix is", "Text", 
+         CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+         FontSize -> 11, ExpressionUUID -> 
+          "782917cc-f476-40e3-b6f5-b534d04f6aff"],
+
+Cell[BoxData[TagBox[FormBox[TagBox[RowBox[{SubscriptBox["T", 
+                RowBox[{"i", ",", "k"}]], "\[LongEqual]", RowBox[
+                {SuperscriptBox["q", RowBox[{"n", "-", "k"}]], " ", 
+                 RowBox[{UnderoverscriptBox["\[Sum]", RowBox[{"s", "=", 
+                      "0"}], RowBox[{"min", "(", RowBox[{"i", ",", "k"}], 
+                      ")"}]], RowBox[{TemplateBox[{"k", "s"}, "Binomial"], 
+                     " ", SuperscriptBox["alpha", RowBox[{"k", "-", "s"}]], 
+                     " ", SuperscriptBox["beta", "s"], " ", TemplateBox[
+                      {"i", "s"}, "Binomial"], " ", RowBox[{"s", "!"}], " ", 
+                     RowBox[{RowBox[{"(", RowBox[{"n", "-", "s"}], ")"}], 
+                       "!"}]}]}]}]}], HoldForm], TraditionalForm], 
+           TraditionalForm, Editable -> True]], "DisplayFormula", 
+         CellMargins -> {{32, 12}, {9, 9}}, FontSize -> 12, 
+         ExpressionUUID -> "88d3b9cc-a41e-475a-83e2-018ae7403b2f"],
+
+Cell["It gives n! q^n times the local Bernstein coefficients. In this \
+combinatorial formula a zero base to exponent zero is assigned the value \
+one.", "Text", CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+         FontSize -> 11, ExpressionUUID -> 
+          "9dbfdb7c-92a0-4cf4-9c97-56289fb48b6f"],
+
+Cell["The polynomial and \
+denominator channels always share the same positive integer scale. The 15 by \
+15 controls on each of the 24 rectangles give 5400 control quartics. \
+Bernstein basis functions are nonnegative and sum to one, so positivity of \
+every control quartic implies positivity on each complete closed rectangle.", 
+         "Text", CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+         FontSize -> 11, ExpressionUUID -> 
+          "0fb605b7-5142-4a0b-a6f6-c12190463dba"],
+
+Cell["Midpoint and Affine \
+are two complete conversions of the same data on the same rectangles. Their \
+counts are reported separately. They do not cover different mathematical \
+regions.", "Text", CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> 
+          {1.1, 0}, FontSize -> 11, ExpressionUUID -> 
+          "caf507f1-4046-48da-9a62-0e9ed252e6f0"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["6. Gram identities and integer positive definiteness", 
+         "Section", PageBreakAbove -> True, FontSize -> 17, 
+         ExpressionUUID -> "24f14d37-0de4-43c8-a7a1-a943d4b2ef9f"],
+
+Cell["Input: each control quartic, its positive denominator \
+coefficient and the supplied Gram correction and congruence witness. Output: \
+the full Gram coefficient identity and positivity of all eight blocks. \
+Routine bookkeeping fixes the ordered monomial positions; verifyLeaf checks \
+all controls. Paper labels: eq:compressedgram, eq:Gramcertificate and \
+eq:integercriterion.", "Text", CellMargins -> {{24, 12}, {5, 5}}, 
+         LineSpacing -> {1.1, 0}, FontSize -> 11, ExpressionUUID -> 
+          "048e7fbc-b077-49dd-8220-69862c775734"],
+
+Cell["The vector z(x) \
+contains the 78 quadratic monomials in twelve amplitudes. Frame-sign \
+characters partition it into blocks of sizes 16,9,9,9,9,9,9,8. The 442 \
+upper-triangular positions carry weight one on the diagonal and two off the \
+diagonal. For a quartic label gamma, c_gamma is the sum of these weights over \
+the positions with that label.\n\nAt a fixed control, let p_gamma be the \
+integer-scaled coefficients of P and let d > 0 be the denominator-channel \
+coefficient with the same scale. The Gram matrix G represents (sum_gamma \
+p_gamma x^gamma)/d. Since d > 0, its positivity implies positivity of the \
+polynomial control.", "Text", CellMargins -> {{24, 12}, {5, 5}}, 
+         LineSpacing -> {1.1, 0}, FontSize -> 11, ExpressionUUID -> 
+          "ce8504d3-1558-479d-9b97-d8a6e0b55902"],
+
+Cell[BoxData[TagBox[FormBox[TagBox[RowBox[{SubscriptBox["G", "e"], 
+               "\[LongEqual]", RowBox[{FractionBox[SubscriptBox["p", 
+                   RowBox[{"gamma", "(", "e", ")"}]], RowBox[{SubscriptBox[
+                     "c", RowBox[{"gamma", "(", "e", ")"}]], " ", "d"}]], 
+                 "+", FractionBox[SubscriptBox["nu", "e"], RowBox[{"196", 
+                    " ", SubscriptBox["n", "star"]}]]}]}], HoldForm], 
+            TraditionalForm], TraditionalForm, Editable -> True]], 
+         "DisplayFormula", CellMargins -> {{32, 12}, {9, 9}}, FontSize -> 12, 
+         ExpressionUUID -> "d7678f28-2109-495f-be0e-1814af80e331"],
+
+Cell["The first term is the canonical Gram representation. The second \
+is the bilinear interpolation of four stored zero-polynomial corrections. \
+Their weighted coefficient sums vanish. The common null denominator is n_star \
+= 12884901888. With d > 0, clearing the positive factor 196 n_star d gives \
+the integer matrix Q. DATA_SPEC.md gives the complete interpolation and index \
+conventions.", "Text", CellMargins -> {{24, 12}, {5, 5}}, 
+         LineSpacing -> {1.1, 0}, FontSize -> 11, ExpressionUUID -> 
+          "ad2f18da-03fe-490b-adfd-502893faa420"],
+
+Cell[BoxData[TagBox[FormBox[TagBox[RowBox[{SubscriptBox["Q", "e"], 
+               "\[LongEqual]", RowBox[{FractionBox[RowBox[{RowBox[{"(", 
+                      RowBox[{"196", " ", SubscriptBox["n", "star"]}], ")"}], 
+                    " ", SubscriptBox["p", RowBox[{"gamma", "(", "e", 
+                       ")"}]]}], SubscriptBox["c", RowBox[{"gamma", "(", "e", 
+                     ")"}]]], "+", RowBox[{"d", " ", SubscriptBox["nu", 
+                    "e"]}]}]}], HoldForm], TraditionalForm], TraditionalForm, 
+           Editable -> True]], "DisplayFormula", CellMargins -> 
+          {{32, 12}, {9, 9}}, FontSize -> 12, ExpressionUUID -> 
+          "f95ccddf-4e29-4f15-9dd0-0c98c7f5771f"],
+
+Cell["At every control, \
+the code reconstructs all Gram coefficients and checks the denominator. For \
+each symmetric block Q, the supplied integer matrix V is tested by the strict \
+inequalities below. They imply V Q V^T is positive definite, force V to be \
+nonsingular and hence imply Q is positive definite.", "Text", 
+         CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+         FontSize -> 11, ExpressionUUID -> 
+          "cb10d300-9768-452c-9da1-d511f673e59f"],
+
+Cell[BoxData[TagBox[FormBox[TagBox[RowBox[{SubscriptBox[
+                RowBox[{"(", RowBox[{"V", ".", "Q", ".", TemplateBox[{"V"}, 
+                     "Transpose"]}], ")"}], RowBox[{"i", ",", "i"}]], ">", 
+               RowBox[{RowBox[{UnderoverscriptBox["\[Sum]", RowBox[{"j", "=", 
+                      "1"}], RowBox[{"i", "-", "1"}]], TemplateBox[
+                    {SubscriptBox[RowBox[{"(", RowBox[{"V", ".", "Q", ".", 
+                          TemplateBox[{"V"}, "Transpose", SyntaxForm -> 
+                          SuperscriptBox]}], ")"}], RowBox[{"i", ",", 
+                        "j"}]]}, "Abs"]}], "+", RowBox[{UnderoverscriptBox[
+                    "\[Sum]", RowBox[{"j", "=", RowBox[{"i", "+", "1"}]}], 
+                    "s"], TemplateBox[{SubscriptBox[RowBox[{"(", RowBox[
+                         {"V", ".", "Q", ".", TemplateBox[{"V"}, "Transpose", 
+                          SyntaxForm -> SuperscriptBox]}], ")"}], RowBox[
+                       {"i", ",", "j"}]]}, "Abs"]}]}]}], HoldForm], 
+            TraditionalForm], TraditionalForm, Editable -> True]], 
+         "DisplayFormula", CellMargins -> {{32, 12}, {9, 9}}, FontSize -> 12, 
+         ExpressionUUID -> "ca490416-ca82-408c-ad05-6d075e5214e4"],
+
+Cell["For a nonzero real vector w, the inequality 2|w_i w_j| <= \
+w_i^2+w_j^2 bounds the off-diagonal terms. The strict row inequalities then \
+give w^T V Q V^T w > 0. This is the integer positivity argument used in \
+Appendix A.", "Text", CellMargins -> {{24, 12}, {5, 5}}, 
+         LineSpacing -> {1.1, 0}, FontSize -> 11, ExpressionUUID -> 
+          "6d9cd102-a127-4e0c-b862-245da77a2afd"],
+
+Cell["Positive \
+definiteness is checked at all 5400 controls, not only at four corners. Since \
+z(x) is nonzero for x != 0, the control quartics are positive. Combined with \
+Section 5 and the positive normalization in Section 4, this proves the \
+required bound. Each replay checks 43200 blocks and 421200 strict row \
+inequalities.", "Text", CellMargins -> {{24, 12}, {5, 5}}, 
+         LineSpacing -> {1.1, 0}, FontSize -> 11, ExpressionUUID -> 
+          "ddfdd070-665a-46e5-9bf1-848a4399dff2"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["7. Complete execution", "Section", 
+         PageBreakAbove -> True, FontSize -> 17, ExpressionUUID -> 
+          "bba6a75c-0e93-475d-b4ac-da1542bd45ae"],
+
+Cell["The following call \
+starts a new run. It executes both polynomial reconstructions, all data and \
+cover checks, and both complete Bernstein replays. Verbose -> False \
+suppresses progress messages only. Full results are written by the \
+implementation under runs/<run identifier>/; the static data directory is not \
+modified.", "Text", CellMargins -> {{24, 12}, {5, 5}}, 
+         LineSpacing -> {1.1, 0}, FontSize -> 11, ExpressionUUID -> 
+          "0001110b-4f01-4fda-a125-c322d91ef0f3"],
+
+Cell[BoxData[RowBox[{RowBox[{"Clear", "[", "verification", "]"}], 
+            ";", RowBox[{"verification", "=", RowBox[{
+                "Chern4Verifier`VerifyChern4", "[", RowBox[
+                 {"packageDirectory", ",", RowBox[{"\"Verbose\"", "\[Rule]", 
+                    "False"}]}], "]"}]}], ";", RowBox[{"If", "[", 
+              RowBox[{RowBox[{RowBox[{"!", RowBox[{"AssociationQ", "[", 
+                      "verification", "]"}]}], "||", RowBox[{"!", RowBox[
+                     {"TrueQ", "[", RowBox[{"Lookup", "[", RowBox[
+                         {"verification", ",", "\"EndpointCertified\"", ",", 
+                          "False"}], "]"}], "]"}]}]}], ",", RowBox[
+                 {RowBox[{"Print", "[", "verification", "]"}], ";", 
+                  RowBox[{"Abort", "[", "]"}]}]}], "]"}], ";"}]], "Input", 
+         CellMargins -> {{24, 12}, {7, 7}}, FontSize -> 10, 
+         CellLabel -> " In[2]:=", ExpressionUUID -> 
+          "013c61bb-8ae9-453e-9062-7cc25edf33ed"],
+
+Cell[
+         "The counts below are taken from the result of this invocation.", 
+         "Text", CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+         FontSize -> 11, ExpressionUUID -> 
+          "415575f6-8aa1-4639-82fd-00124987eef8"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[RowBox[{"Grid", "[", RowBox[
+                {RowBox[{"Prepend", "[", RowBox[{RowBox[{RowBox[{"(", 
+                         RowBox[{RowBox[{"Lookup", "[", RowBox[{"#1", ",", 
+                          RowBox[{"{", RowBox[{"\"Method\"", ",", 
+                          "\"Rectangles\"", ",", "\"ControlQuartics\"", ",", 
+                          "\"IntegerMatrixChecks\"", ",", 
+                          "\"StrictRowInequalities\""}], "}"}]}], "]"}], 
+                          "&"}], ")"}], "/@", RowBox[{"verification", "[", 
+                         "\"CertificateReplays\"", "]"}]}], ",", RowBox[
+                      {"{", RowBox[{"\"Method\"", ",", "\"Rectangles\"", ",", 
+                         "\"Gram identities\"", ",", "\"Matrix blocks\"", 
+                         ",", "\"Row inequalities\""}], "}"}]}], "]"}], ",", 
+                 RowBox[{"Frame", "\[Rule]", "All"}], ",", RowBox[
+                  {"Alignment", "\[Rule]", "Left"}], ",", RowBox[{"ItemSize", 
+                   "\[Rule]", "All"}]}], "]"}]], "Input", CellOpen -> False, 
+            CellMargins -> {{24, 12}, {7, 7}}, FontSize -> 10, 
+            CellLabel -> " In[3]:=", ExpressionUUID -> 
+             "a2b6bfb3-1b00-469f-bafd-05c17b0e9062"],
+
+Cell[OutputFormData["Method     Rectangles   Gram identities   \
+Matrix blocks   Row inequalities\n\nMidpoint   24           5400              \
+43200           421200\n\nAffine     24           5400              43200     \
+      421200"], "Output", CellChangeTimes -> {4.001261766794324*^9}, 
+            CellLabel -> " Out[3]=", ExpressionUUID -> 
+             "2947795f-255b-49ba-95a7-b24685c7ae60"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[TagBox[GridBox[{{"\"Status\"", 
+                 RowBox[{"verification", "[", "\"Status\"", "]"}]}, 
+                {"\"Endpoint certified\"", RowBox[{"verification", "[", 
+                   "\"EndpointCertified\"", "]"}]}, 
+                {"\"Polynomial reconstructions\"", RowBox[{"verification", 
+                   "[", "\"PolynomialReconstructions\"", "]"}]}, 
+                {"\"Run identifier\"", RowBox[{"verification", "[", 
+                   "\"RunID\"", "]"}]}, {"\"Started (UTC)\"", RowBox[
+                  {"verification", "[", "\"StartedUTC\"", "]"}]}, 
+                {"\"Finished (UTC)\"", RowBox[{"verification", "[", 
+                   "\"FinishedUTC\"", "]"}]}, {"\"Wolfram version\"", 
+                 RowBox[{"verification", "[", "\"WolframVersion\"", "]"}]}}, 
+               AutoDelete -> False, GridBoxAlignment -> {"Columns" -> 
+                  {{Left}}}, GridBoxItemSize -> {"Columns" -> {{Automatic}}, 
+                 "Rows" -> {{Automatic}}}, GridBoxSpacings -> 
+                {"Columns" -> {{1}}, "Rows" -> {{0.7}}}], "Grid"]], "Input", 
+            CellOpen -> False, CellMargins -> {{24, 12}, {7, 7}}, 
+            FontSize -> 10, CellLabel -> " In[4]:=", ExpressionUUID -> 
+             "b51b36ae-7941-4a9b-8cc9-7be3b0d13f19"],
+
+Cell[OutputFormData["Status                       PASS\n\nEndpoint \
+certified           True\n\nPolynomial reconstructions   2\n\nRun identifier  \
+             d4fc31d8-80f6-41c4-8098-b915ff288b84\n\nStarted (UTC)            \
+    2026-10-17T21:32:20Z\n\nFinished (UTC)               \
+2026-10-17T21:36:06Z\n\nWolfram version              15.0.1 for Mac OS X ARM \
+(64-bit) (July 2, 2026)"], "Output", CellChangeTimes -> 
+             {4.001261766806748*^9}, CellLabel -> " Out[4]=", 
+            ExpressionUUID -> "efed771f-157f-4487-a08b-0c1bba818ef6"]
+}, Open  ]],
+
+Cell["The command-line entry is wolframscript -file \
+mathematica/run_verification.wls from the supplement root. It performs the \
+same complete verification without a front end. The finite assertions are \
+external inputs to the Lean theorem; a successful Wolfram run does not supply \
+a Lean proof term for them.", "Text", CellMargins -> {{24, 12}, {5, 5}}, 
+         LineSpacing -> {1.1, 0}, FontSize -> 11, ExpressionUUID -> 
+          "4f493d35-9d8b-4e0f-8f59-f84103d61033"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[RowBox[{"KeyTake", "[", RowBox[
+                {"verification", ",", RowBox[{"{", RowBox[{"\"Status\"", ",", 
+                     "\"EndpointCertified\"", ",", 
+                     "\"TotalIntegerMatrixChecks\""}], "}"}]}], "]"}]], 
+            "Input", CellOpen -> False, CellMargins -> {{24, 12}, {7, 7}}, 
+            FontSize -> 10, CellLabel -> " In[5]:=", ExpressionUUID -> 
+             "8c0607e7-71b6-4fe3-add7-57396769f5ce"],
+
+Cell[OutputFormData["<|Status -> PASS, EndpointCertified -> True, \
+\n \n>   TotalIntegerMatrixChecks -> 86400|>"], "Output", CellChangeTimes -> 
+             {4.001261766810073*^9}, CellLabel -> " Out[5]=", 
+            ExpressionUUID -> "7936a775-0ba5-4f61-8fa1-f854867de025"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+PrintingStyleEnvironment->"Printout",
+WindowSize->{808, 911},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+WindowTitle->"Second pinching: exact verification",
+Visible->False,
+PrintingCopies->1,
+PrintingPageRange->{1, Automatic},
+PageHeaders->{{
+   Cell["Second pinching: exact verification", "Header"], None, 
+   Cell[
+    TextData[{
+      CounterBox["Page"]}], "PageNumber"]}, {
+   Cell["Second pinching: exact verification", "Header"], None, 
+   Cell[
+    TextData[{
+      CounterBox["Page"]}], "PageNumber"]}},
+PageFooters->{{None, None, None}, {None, None, None}},
+PrintingOptions->{"FirstPageHeader"->False,
+"Magnification"->1,
+"PageHeaderMargins"->{20, 20},
+"PaperSize"->{595.28, 841.89},
+"PrintingMargins"->{{42, 42}, {54, 42}}},
+FrontEndVersion->"15.0 for Mac OS X ARM (64-bit) (July 2, 2026)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[StyleDefinitions -> "Default.nb"]], 
+   Cell[
+    StyleData[All, "Printout"], CellHorizontalScrolling -> False, 
+    Magnification -> 1], 
+   Cell[
+    StyleData["Title"], FontFamily -> "Times", FontColor -> GrayLevel[0]], 
+   Cell[
+    StyleData["Subtitle"], FontFamily -> "Times", FontColor -> GrayLevel[0]], 
+   
+   Cell[
+    StyleData["Section"], FontFamily -> "Times", FontColor -> GrayLevel[0]], 
+   Cell[
+    StyleData["Text"], FontFamily -> "Times", FontColor -> GrayLevel[0]], 
+   Cell[
+    StyleData["DisplayFormula"], FontFamily -> "Times", FontColor -> 
+    GrayLevel[0]], 
+   Cell[
+    StyleData["Output"], FontSize -> 10]}, Visible -> False, FrontEndVersion -> 
+  "15.0 for Mac OS X ARM (64-bit) (July 2, 2026)", StyleDefinitions -> 
+  "Default.nb"],
+ExpressionUUID->"17f7e2a7-8fed-4608-a47b-4d0fa4e8c480"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[625, 23, 180, 3, 70, "Title",ExpressionUUID->"f6e7424b-9f45-4b32-bd62-04d8e11f3073"],
+Cell[808, 28, 137, 1, 70, "Subtitle",ExpressionUUID->"737ee410-6cf9-42d7-8796-51608d6bbf0d"],
+Cell[948, 31, 452, 6, 70, "Text",ExpressionUUID->"116e40df-d279-478f-8eb2-2e8c0edc2c98"],
+Cell[CellGroupData[{
+Cell[1425, 41, 146, 2, 70, "Section",ExpressionUUID->"fb3c7a63-c282-4527-8429-06cb7a21908a"],
+Cell[1574, 45, 567, 8, 70, "Text",ExpressionUUID->"f5c93156-6e1d-4657-86a4-59cd577071b3"],
+Cell[2144, 55, 339, 4, 70, "DisplayFormula",ExpressionUUID->"d197dbb6-ae94-406a-8c52-7abc4408d21b"],
+Cell[2486, 61, 470, 6, 70, "DisplayFormula",ExpressionUUID->"22ba8e9c-8893-4327-a6f1-d6594d6e2ee8"],
+Cell[2959, 69, 533, 7, 70, "DisplayFormula",ExpressionUUID->"4edf7a3f-cc1b-4b3b-928d-8d3e061b12cc"],
+Cell[3495, 78, 511, 7, 70, "Text",ExpressionUUID->"86312713-e243-4abb-ad55-76b1ade6e878"],
+Cell[4009, 87, 419, 6, 70, "Text",ExpressionUUID->"c4020600-96f9-45d6-af9d-27bfb780c515"],
+Cell[4431, 95, 493, 7, 70, "Input",ExpressionUUID->"8f0e59de-4136-4871-a2d1-b945faee2eaf"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4961, 107, 174, 2, 70, "Section",ExpressionUUID->"11d94940-5656-440e-8d35-ef6ac3d3e203",
+ PageBreakAbove->True],
+Cell[5138, 111, 491, 6, 70, "Text",ExpressionUUID->"fa0af5fd-0258-47ce-80ac-e1a2fcff6afe"],
+Cell[5632, 119, 715, 9, 70, "DisplayFormula",ExpressionUUID->"1225e510-444a-4191-87ae-16b3cfdd3f7d"],
+Cell[6350, 130, 574, 7, 70, "DisplayFormula",ExpressionUUID->"5dc1df6a-3b02-4e97-b16a-691d41dacffa"],
+Cell[6927, 139, 607, 8, 70, "Text",ExpressionUUID->"93c87324-0fe8-425b-af4b-c827d93da0ac"],
+Cell[7537, 149, 1233, 17, 70, "DisplayFormula",ExpressionUUID->"69bbd3b3-687e-4bcb-a820-b09d39b05383"],
+Cell[8773, 168, 548, 8, 70, "Text",ExpressionUUID->"ee865140-c762-46d8-8e29-95fcd457cad5"],
+Cell[9324, 178, 691, 9, 70, "DisplayFormula",ExpressionUUID->"9643b5ff-b76e-43b4-ac17-716b7e68144f"],
+Cell[10018, 189, 395, 5, 70, "DisplayFormula",ExpressionUUID->"308802ab-4986-4fb8-91be-b4710e74bc8f"],
+Cell[10416, 196, 340, 4, 70, "DisplayFormula",ExpressionUUID->"a9f5d019-3767-43eb-8b23-3c236b0e5b19"],
+Cell[10759, 202, 499, 6, 70, "Text",ExpressionUUID->"fc67c43f-843c-46b9-a732-9212bc965eb7"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11295, 213, 186, 2, 70, "Section",ExpressionUUID->"e0819e9c-2d1a-4a76-bfb7-f63c9b1335fe",
+ PageBreakAbove->True],
+Cell[11484, 217, 545, 8, 70, "Text",ExpressionUUID->"8b825023-34d7-4142-b155-c5b78b2933a5"],
+Cell[12032, 227, 481, 7, 70, "Text",ExpressionUUID->"49c1e18f-2173-4e94-a6c9-81ac787b8392"],
+Cell[12516, 236, 1269, 17, 70, "DisplayFormula",ExpressionUUID->"cfcd6fb7-fa63-4e51-b423-0b904aac9d15"],
+Cell[13788, 255, 497, 7, 70, "Text",ExpressionUUID->"7a110654-52bf-4b48-88bd-450d0e1145dd"],
+Cell[14288, 264, 566, 8, 70, "Text",ExpressionUUID->"0e0a6898-e190-447b-bd7a-cf614bf14e9f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14891, 277, 181, 2, 70, "Section",ExpressionUUID->"025ae182-c0d1-47ab-b797-a4cf0fbe2b37",
+ PageBreakAbove->True],
+Cell[15075, 281, 539, 7, 70, "Text",ExpressionUUID->"01c687b2-afda-406b-9e3a-74b7f77a9180"],
+Cell[15617, 290, 690, 9, 70, "DisplayFormula",ExpressionUUID->"c4714fa6-c3b8-4d93-b8a5-e808d1d2351d"],
+Cell[16310, 301, 365, 5, 70, "Text",ExpressionUUID->"6ef4c5fd-9c9c-4354-a2c3-d8e6b9f1cd05"],
+Cell[16678, 308, 577, 8, 70, "Text",ExpressionUUID->"99119a24-c33e-41a9-87b3-401c123b2493"],
+Cell[17258, 318, 396, 6, 70, "Text",ExpressionUUID->"e153949b-24a4-40dc-ae32-e3fc38afa557"],
+Cell[17657, 326, 430, 6, 70, "Text",ExpressionUUID->"7e3ac9ff-9f5d-4474-aa34-c174add8a77b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18124, 337, 186, 2, 70, "Section",ExpressionUUID->"ec0192ce-a5b2-44d0-ac2b-fece6ad5b719",
+ PageBreakAbove->True],
+Cell[18313, 341, 539, 7, 70, "Text",ExpressionUUID->"a49f54f4-9141-4fc5-8eee-b817a9d5dc25"],
+Cell[18855, 350, 555, 7, 70, "Text",ExpressionUUID->"1586e7de-bcb4-471b-8494-c763fa5f130d"],
+Cell[19413, 359, 598, 8, 70, "DisplayFormula",ExpressionUUID->"0a6fac09-1e33-4efd-b17b-dd783aa93ab1"],
+Cell[20014, 369, 576, 8, 70, "Text",ExpressionUUID->"7eb52afa-4768-43d2-8f3d-1fc7baeb6ff7"],
+Cell[20593, 379, 341, 5, 70, "Text",ExpressionUUID->"782917cc-f476-40e3-b6f5-b534d04f6aff"],
+Cell[20937, 386, 986, 13, 70, "DisplayFormula",ExpressionUUID->"88d3b9cc-a41e-475a-83e2-018ae7403b2f"],
+Cell[21926, 401, 316, 4, 70, "Text",ExpressionUUID->"9dbfdb7c-92a0-4cf4-9c97-56289fb48b6f"],
+Cell[22245, 407, 504, 7, 70, "Text",ExpressionUUID->"0fb605b7-5142-4a0b-a6f6-c12190463dba"],
+Cell[22752, 416, 355, 5, 70, "Text",ExpressionUUID->"caf507f1-4046-48da-9a62-0e9ed252e6f0"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23144, 426, 189, 2, 70, "Section",ExpressionUUID->"24f14d37-0de4-43c8-a7a1-a943d4b2ef9f",
+ PageBreakAbove->True],
+Cell[23336, 430, 549, 7, 70, "Text",ExpressionUUID->"048e7fbc-b077-49dd-8220-69862c775734"],
+Cell[23888, 439, 812, 11, 70, "Text",ExpressionUUID->"ce8504d3-1558-479d-9b97-d8a6e0b55902"],
+Cell[24703, 452, 648, 8, 70, "DisplayFormula",ExpressionUUID->"d7678f28-2109-495f-be0e-1814af80e331"],
+Cell[25354, 462, 562, 7, 70, "Text",ExpressionUUID->"ad2f18da-03fe-490b-adfd-502893faa420"],
+Cell[25919, 471, 701, 9, 70, "DisplayFormula",ExpressionUUID->"f95ccddf-4e29-4f15-9dd0-0c98c7f5771f"],
+Cell[26623, 482, 487, 7, 70, "Text",ExpressionUUID->"cb10d300-9768-452c-9da1-d511f673e59f"],
+Cell[27113, 491, 1237, 16, 70, "DisplayFormula",ExpressionUUID->"ca490416-ca82-408c-ad05-6d075e5214e4"],
+Cell[28353, 509, 394, 5, 70, "Text",ExpressionUUID->"6d9cd102-a127-4e0c-b862-245da77a2afd"],
+Cell[28750, 516, 499, 7, 70, "Text",ExpressionUUID->"ddfdd070-665a-46e5-9bf1-848a4399dff2"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29286, 528, 159, 2, 48, "Section",ExpressionUUID->"bba6a75c-0e93-475d-b4ac-da1542bd45ae",
+ PageBreakAbove->True],
+Cell[29448, 532, 498, 7, 45, "Text",ExpressionUUID->"0001110b-4f01-4fda-a125-c322d91ef0f3"],
+Cell[29949, 541, 995, 14, 103, "Input",ExpressionUUID->"013c61bb-8ae9-453e-9062-7cc25edf33ed"],
+Cell[30947, 557, 253, 4, 22, "Text",ExpressionUUID->"415575f6-8aa1-4639-82fd-00124987eef8"],
+Cell[CellGroupData[{
+Cell[31225, 565, 1244, 17, 19, "Input",ExpressionUUID->"a2b6bfb3-1b00-469f-bafd-05c17b0e9062",
+ CellOpen->False],
+Cell[32472, 584, 403, 5, 76, "Output",ExpressionUUID->"2947795f-255b-49ba-95a7-b24685c7ae60"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[32912, 594, 1287, 18, 19, "Input",ExpressionUUID->"b51b36ae-7941-4a9b-8cc9-7be3b0d13f19",
+ CellOpen->False],
+Cell[34202, 614, 556, 7, 144, "Output",ExpressionUUID->"efed771f-157f-4487-a08b-0c1bba818ef6"]
+}, Open  ]],
+Cell[34773, 624, 479, 6, 45, "Text",ExpressionUUID->"4f493d35-9d8b-4e0f-8f59-f84103d61033"],
+Cell[CellGroupData[{
+Cell[35277, 634, 449, 6, 19, "Input",ExpressionUUID->"8c0607e7-71b6-4fe3-add7-57396769f5ce",
+ CellOpen->False],
+Cell[35729, 642, 278, 3, 59, "Output",ExpressionUUID->"7936a775-0ba5-4f61-8fa1-f854867de025"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

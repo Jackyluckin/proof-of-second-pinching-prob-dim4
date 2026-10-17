@@ -1,0 +1,4 @@
+# Preserve the exact bytes recorded in input_manifest.json on every platform.
+# In particular, do not normalize line endings in the exact certificate data.
+* -text
+*.pdf binary

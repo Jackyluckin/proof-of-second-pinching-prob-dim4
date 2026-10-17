@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "Please cite the accompanying manuscript when using these materials."
+type: software
+title: "A proof of the second pinching theorem in dimension four: supplementary materials"
+version: "20261017-r2"
+authors:
+  - family-names: "Zhang"
+    given-names: "Jinxi"
+    affiliation: "University of Cambridge"
+preferred-citation:
+  type: unpublished
+  title: "A proof of the second pinching theorem in dimension four"
+  authors:
+    - family-names: "Zhang"
+      given-names: "Jinxi"
+      affiliation: "University of Cambridge"
+  year: 2026

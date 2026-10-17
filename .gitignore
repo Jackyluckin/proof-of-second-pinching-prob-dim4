@@ -1,0 +1,29 @@
+# Local operating-system files
+.DS_Store
+._*
+Thumbs.db
+
+# Lean dependencies and generated artifacts
+/lean/.lake/
+
+# Wolfram execution records; the notebook and its PDF remain tracked
+/mathematica/runs/
+/mathematica/verification_result.wl
+/mathematica/verification_result.wl.tmp-*
+/mathematica/*.nb~
+
+# LaTeX intermediate files; the manuscript PDF remains tracked
+/paper/*.aux
+/paper/*.log
+/paper/*.out
+/paper/*.fls
+/paper/*.fdb_latexmk
+/paper/*.synctex.gz
+/paper/*.toc
+/paper/*.blg
+
+# Local Python environments and bytecode
+.venv/
+__pycache__/
+*.py[cod]
+*~
