@@ -1,26 +1,27 @@
 {
   "title": "A proof of the second pinching theorem in dimension four",
-  "revision": "20261017-r2",
+  "revision": "20261018-r3",
   "prepared_utc": "2026-10-17T22:22:25.673969+00:00",
   "layout": "GitHub repository: paper/, mathematica/, lean/",
   "provenance": {
     "manuscript_baseline_sha256": "73bf4b6872c421b31882587a8a5a3e8939357ea112660f6dce0107149fcc7167",
-    "manuscript_source_sha256": "89e4936f1283f143f38a6d8bc859768ff1ba28fbc3e70ca11ef2e96b5954a380",
+    "manuscript_source_sha256": "661b3395eb2633605a20ab32e21f8c4600670d776101478bc65e6921e817bf2d",
     "lean_source_archive_sha256": "7aa1149f0fbb4f5ad79db7e62e3557e943152d2066bdc1cd1c8762b7b115a7cf",
     "preserved_lean_source_and_configuration_files": 201,
-    "preserved_wolfram_implementation_and_data_files": 29,
+    "preserved_wolfram_implementation_and_data_files": 28,
     "endpoint_sha256": "e1426dde5d49594a2303ebf38d5c37b1a5001493c83770678874af87e3c86131",
     "certificate_sha256": "70f8aa19d9df2bda362a0873cbd45a9c2a4e6324c2f3b422a29376b013d88a48",
     "notebook_pdf_source": "mathematica/Verification.nb",
     "notebook_pdf_export": "Wolfram NotebookPrint from the same saved notebook",
-    "python_regression_assets": "Preserved in the development archives; not included in this distribution."
+    "python_regression_assets": "Preserved in the development archives; not included in this distribution.",
+    "previous_manuscript_source_sha256": "89e4936f1283f143f38a6d8bc859768ff1ba28fbc3e70ca11ef2e96b5954a380"
   },
   "files": {
     ".gitattributes": "d2b235884011126232245cda70b1aca290cb6a6de83a74a94d0c658c736bc78d",
     ".gitignore": "ba486d062f0b7addc607a23d9a729f3cab1d55980255929e6f26ad3d1639aa50",
-    "CITATION.cff": "b6dc997cbcc2b8ddd19ba75b15afcabac01420c119b3f1084b7f1e41ccf7d970",
+    "CITATION.cff": "1dcf7985d117e8f6f5bb184168fea9408c451d440f00c364da42301d5435ad51",
     "DATA_SPEC.md": "87829b8a50574ed8a8d500b9d28ba5a74708bac66033731bd15dd540273390b1",
-    "README.md": "385b5137a5b345c89921a4c7260fd1933cb127db2cc0ebfe9cd54ee624bd6c53",
+    "README.md": "f03c7a7ec80dd5441ea14a45961ae1a53c69dfee43dab3569ede0d1459e50a90",
     "lean/README.md": "6529607291d0a04a05e19e1ff56fb9bfeb663c501e9a6e44f6a4f5621e56935e",
     "lean/SecondPinching/AdaptedImmersionPartition.lean": "2b0b26f10ff0f06383a96f2d306297544d6d445ff4045ca48003297eeac47aeb",
     "lean/SecondPinching/Admissible.lean": "ddbd867aa9d73506118a7d00a47e562b6a378d1eb9d9bb90724ead153ee11be0",
@@ -224,7 +225,7 @@
     "lean/lakefile.toml": "d389f5fc5e4991ff9160bec098f9cabb2aa3e930e09e31239ff38e13a160529b",
     "lean/lean-toolchain": "d5edba4e4b8faad9c1baeadb265716d20d03be4d1a2647dc5e35b0c0325bea7b",
     "mathematica/Chern4Verifier.wl": "4a40bd59f9efb64d5b352ddbd7f9b1fbe6cb5622e3342f6428cd4ddb3ce476cd",
-    "mathematica/Verification.nb": "e20154ea68a8ca30b3319989bc585277b5130559cc5864acd41dd97201c50588",
+    "mathematica/Verification.nb": "241b352a1636ff3877bc7aa51a1324d823f863d7763cdc4895adfa1a392b118a",
     "mathematica/Verification.pdf": "33cc018b481d7e6cdd4d010eb2fdc2c4da59865cf65506789fedd9fc406dc20f",
     "mathematica/data/certificate.json": "70f8aa19d9df2bda362a0873cbd45a9c2a4e6324c2f3b422a29376b013d88a48",
     "mathematica/data/endpoint.json": "e1426dde5d49594a2303ebf38d5c37b1a5001493c83770678874af87e3c86131",
@@ -252,10 +253,10 @@
     "mathematica/data/witnesses/leaf_0021.json": "24f56f5436eca8a4890d684770348cdd95aae3070b8f786675797573ceb78890",
     "mathematica/data/witnesses/leaf_0022.json": "e911e7c7328b9500fd27d185a470b664faea57116eeb02e4f32e60a55a731fb6",
     "mathematica/data/witnesses/leaf_0023.json": "cd22a6b09fa8982e01c2a58cd836d1884084ac84bacad19fc9d2372453af0cdc",
-    "mathematica/data_integrity.json": "32a6ce8b7898cfc585fa25e1ea2fb362d1172ccad3e7b974992d15ab662e36c0",
+    "mathematica/data_integrity.json": "84a11a2378ac2660906890ef76c1798922f77b99e0f5538f6ebf7975f3f5b2f1",
     "mathematica/run_verification.wls": "99ac3e19b05d1836372223c68bba522e65cf8b3a7f905ce62166e85128ad83b8",
-    "paper/second_pinching_dim4.pdf": "e6ea34c628f0881b4e0df531a1181dd4d9ecaee3f3b3eacc99dc3777e42d1697",
-    "paper/second_pinching_dim4.tex": "89e4936f1283f143f38a6d8bc859768ff1ba28fbc3e70ca11ef2e96b5954a380",
+    "paper/second_pinching_dim4.pdf": "aae96b31bf4335476bbf1c33194ea3be5b1051dffcd85af29f229fdb434344ea",
+    "paper/second_pinching_dim4.tex": "661b3395eb2633605a20ab32e21f8c4600670d776101478bc65e6921e817bf2d",
     "verify_files.py": "fd4ad792b97e2cc6887ff07ea10109a51d49c299a2db8cb99fa59df51b62bb6b"
   },
   "github_packaging": {
@@ -268,8 +269,27 @@
       "verify_files.py"
     ],
     "documentation_change": "README adds the optional static-file integrity command.",
-    "mathematical_source_code_and_data": "Unchanged from the source release.",
-    "repository_url": null,
+    "mathematical_source_code_and_data": "Verifier algorithms, certificate data, and Lean source/configuration unchanged from the source release. The manuscript supplement prose was updated before this metadata revision.",
+    "repository_url": "https://github.com/Jackyluckin/proof-of-second-pinching-prob-dim4",
     "license_selected": false
+  },
+  "previous_revision": "20261017-r2",
+  "updated_utc": "2026-10-17T23:46:22.391265+00:00",
+  "publication_update": {
+    "base_commit": "0e17fd766635511a62850cfa6fe8f1170f2d8e1d",
+    "previous_manifest_sha256": "06d6f34edf63ada0eafec4a58cb357f5f916aee48057b6d1e7d4d78689a3f64a",
+    "date_local": "2026-10-18",
+    "timezone": "Europe/London",
+    "changes": [
+      "Refresh the current manuscript hashes while preserving the previous source identity.",
+      "Make the notebook window visible on opening; all cells, executable content and saved outputs are unchanged.",
+      "Correct two file-size metadata fields without changing data hashes or files.",
+      "Expand README acquisition, proof-status and execution guidance.",
+      "Add repository and manuscript URLs to CITATION.cff; align the distribution version."
+    ],
+    "scope": "Documentation, notebook visibility and distribution metadata only. No new mathematical verification is claimed.",
+    "updated_wolfram_metadata_files": [
+      "mathematica/data_integrity.json"
+    ]
   }
 }

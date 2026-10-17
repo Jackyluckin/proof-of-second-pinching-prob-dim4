@@ -2,7 +2,8 @@ cff-version: 1.2.0
 message: "Please cite the accompanying manuscript when using these materials."
 type: software
 title: "A proof of the second pinching theorem in dimension four: supplementary materials"
-version: "20261017-r2"
+version: "20261018-r3"
+repository-code: "https://github.com/Jackyluckin/proof-of-second-pinching-prob-dim4"
 authors:
   - family-names: "Zhang"
     given-names: "Jinxi"
@@ -15,3 +16,4 @@ preferred-citation:
       given-names: "Jinxi"
       affiliation: "University of Cambridge"
   year: 2026
+  url: "https://github.com/Jackyluckin/proof-of-second-pinching-prob-dim4/blob/main/paper/second_pinching_dim4.pdf"
