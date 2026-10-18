@@ -119,7 +119,8 @@ theorem joint_contraction_remainder (A : Matrix4) (τ : Cubic4) (had : PaperAdmi
   have he := joint_square_remainder A Y E had.1 hY τ had.2.1 v b₀ V hV hTV hNV
   unfold jointSquareBound at he
   rw [jointTrialTensor_norm A τ had Y hY hYtr v] at he
-  convert he using 1 <;> ring
+  convert he using 1
+  ring
 
 end
 end SecondPinching

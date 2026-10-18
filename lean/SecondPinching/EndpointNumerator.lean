@@ -86,15 +86,18 @@ def endpointRawNumerator (L N : R) (ell : Fin 4 → R)
     algebraMap ℚ R (35/4)*(∑ i, e i^2)*L^2*N -
     algebraMap ℚ R (441/16)*(∑ i, ∑ j, e i*endpointRawR T i j*e j)*L^2
 
-theorem endpointRawMoment_scale (s : R) (ell : Fin 4 → R) (k : ℕ) :
+omit [Algebra ℚ R] in
+theorem endpointRawMoment_scale [Algebra ℚ R] (s : R) (ell : Fin 4 → R) (k : ℕ) :
     endpointRawMoment (fun i => s*ell i) k = s^k*endpointRawMoment ell k := by
   simp [endpointRawMoment, mul_pow, Finset.mul_sum]
 
-theorem endpointRawNorm_scale (s : R) (T : Fin 4 → Fin 4 → Fin 4 → R) :
+omit [Algebra ℚ R] in
+theorem endpointRawNorm_scale [Algebra ℚ R] (s : R) (T : Fin 4 → Fin 4 → Fin 4 → R) :
     endpointRawNorm (fun i j k => s*T i j k) = s^2*endpointRawNorm T := by
   simp [endpointRawNorm, mul_pow, Finset.mul_sum]
 
-theorem endpointRawR_scale (s : R) (T : Fin 4 → Fin 4 → Fin 4 → R) :
+omit [Algebra ℚ R] in
+theorem endpointRawR_scale [Algebra ℚ R] (s : R) (T : Fin 4 → Fin 4 → Fin 4 → R) :
     endpointRawR (fun i j k => s*T i j k) =
       fun i j => s^2*endpointRawR T i j := by
   ext i j
@@ -103,7 +106,8 @@ theorem endpointRawR_scale (s : R) (T : Fin 4 → Fin 4 → Fin 4 → R) :
   apply Finset.sum_congr rfl; intro l _
   ring
 
-theorem endpointRawD_scale (s u : R) (ell : Fin 4 → R)
+omit [Algebra ℚ R] in
+theorem endpointRawD_scale [Algebra ℚ R] (s u : R) (ell : Fin 4 → R)
     (T : Fin 4 → Fin 4 → Fin 4 → R) :
     endpointRawD (fun i => s*ell i) (fun i j k => u*T i j k) =
       fun k => s^2*u*endpointRawD ell T k := by
@@ -112,7 +116,8 @@ theorem endpointRawD_scale (s u : R) (ell : Fin 4 → R)
   apply Finset.sum_congr rfl; intro i _
   ring
 
-theorem endpointRawA_scale (s u : R) (ell : Fin 4 → R)
+omit [Algebra ℚ R] in
+theorem endpointRawA_scale [Algebra ℚ R] (s u : R) (ell : Fin 4 → R)
     (T : Fin 4 → Fin 4 → Fin 4 → R) :
     endpointRawA (fun i => s*ell i) (fun i j k => u*T i j k) =
       s^2*u^2*endpointRawA ell T := by
@@ -122,7 +127,8 @@ theorem endpointRawA_scale (s u : R) (ell : Fin 4 → R)
   apply Finset.sum_congr rfl; intro k _
   ring
 
-theorem endpointRawBContraction_scale (s u : R) (ell : Fin 4 → R)
+omit [Algebra ℚ R] in
+theorem endpointRawBContraction_scale [Algebra ℚ R] (s u : R) (ell : Fin 4 → R)
     (T : Fin 4 → Fin 4 → Fin 4 → R) :
     endpointRawBContraction (fun i => s*ell i) (fun i j k => u*T i j k) =
       s^2*u^2*endpointRawBContraction ell T := by
@@ -132,7 +138,8 @@ theorem endpointRawBContraction_scale (s u : R) (ell : Fin 4 → R)
   apply Finset.sum_congr rfl; intro k _
   ring
 
-theorem endpointRawC_scale (s u : R) (ell : Fin 4 → R)
+omit [Algebra ℚ R] in
+theorem endpointRawC_scale [Algebra ℚ R] (s u : R) (ell : Fin 4 → R)
     (T : Fin 4 → Fin 4 → Fin 4 → R) :
     endpointRawC (fun i => s*ell i) (fun i j k => u*T i j k) =
       s*u^2*endpointRawC ell T := by
@@ -150,7 +157,8 @@ theorem endpointRawAd_scale (s u : R) (ell : Fin 4 → R)
   simp only [endpointRawAd, endpointRawD_scale]
   ring
 
-theorem endpointRawInner_scale (s u : R) (X Y : Matrix (Fin 4) (Fin 4) R) :
+omit [Algebra ℚ R] in
+theorem endpointRawInner_scale [Algebra ℚ R] (s u : R) (X Y : Matrix (Fin 4) (Fin 4) R) :
     endpointRawInner (fun i j => s*X i j) (fun i j => u*Y i j) =
       s*u*endpointRawInner X Y := by
   simp only [endpointRawInner, Finset.mul_sum]

@@ -149,7 +149,8 @@ theorem ordinaryTrace_curvatureCorrection (μ : Vector4) (t : ℝ)
     ordinaryTrace (curvatureCorrection μ ((1-t)/4)) = (t/2) • Matrix.diagonal μ := by
   rw [ordinaryTrace_curvatureCorrection_raw, hμ, hn]
   ext k l
-  by_cases h : k = l <;> simp [Matrix.diagonal_apply, h] <;> ring
+  by_cases h : k = l <;> simp [Matrix.diagonal_apply, h]
+  ring
 
 theorem weightedTrace_curvatureCorrection (μ : Vector4) (κ : ℝ)
     (hμ : ∑ i, μ i = 0) (hn : ∑ i, (μ i)^2 = 1) :
@@ -159,7 +160,8 @@ theorem weightedTrace_curvatureCorrection (μ : Vector4) (κ : ℝ)
   rw [weightedTrace_curvatureCorrection_raw, hμ, hn, cubicMoment_diagonal]
   ext k l
   by_cases h : k = l <;>
-    simp [Matrix.diagonal_pow, Matrix.diagonal_apply, Matrix.one_apply, h] <;> ring
+    simp [Matrix.diagonal_pow, Matrix.diagonal_apply, Matrix.one_apply, h]
+  ring
 
 /-- The last-slot Ricci commutator carried by the correction, with the paper's sign. -/
 theorem curvatureCorrection_commutator (μ : Vector4) (κ : ℝ) (i j k l : Fin 4) :

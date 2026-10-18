@@ -60,7 +60,7 @@ theorem normalizedPhi_diagonal (μ : Vector4) :
       (μ i)^2 - cubicMoment (Matrix.diagonal μ) * μ i - 1/4) := by
   ext i j
   by_cases h : i = j <;>
-    simp [normalizedPhi, Matrix.diagonal_pow, Matrix.diagonal_apply, Matrix.one_apply, h]
+    simp [normalizedPhi, Matrix.diagonal_pow, h]
 
 theorem normalizedPhi_symmetric_diagonal (μ : Vector4) :
     (normalizedPhi (Matrix.diagonal μ)).IsSymm := by
@@ -118,10 +118,10 @@ theorem hessianE_codomain_diagonal (μ : Vector4) (τ : Cubic4)
       Matrix.sub_apply, Matrix.smul_apply, smul_eq_mul,
       (normalizedPhi_symmetric_diagonal μ).apply, (cubicGramMatrix_symmetric τ).apply,
       identityEntry_comm, Matrix.diagonal_pow]
-    by_cases h : i = j <;> simp [Matrix.diagonal_apply, h, eq_comm]
+    by_cases h : i = j <;> simp [h, eq_comm]
   · simp only [hessianE, hessianPsi, Matrix.trace_add, Matrix.trace_sub, Matrix.trace_smul,
       trace_normalizedPhi_diagonal μ hμ hn, trace_cubicGramMatrix, hτn,
-      Matrix.diagonal_pow, Matrix.trace_diagonal, hn]
+      Matrix.diagonal_pow, Matrix.trace_diagonal]
     norm_num [Matrix.trace, Matrix.diag, Fin.sum_univ_succ]
     right
     simp [Fin.sum_univ_succ] at hn

@@ -50,7 +50,8 @@ theorem pinchingW_hasDerivAt (μ : Vector4) (τ : Cubic4) (t : ℝ) :
     exact pinchingW_eq_quadratic μ τ s
   rw [he]
   simp only [Pi.add_apply, id_eq, Nat.cast_ofNat, Nat.reduceSub, pow_one, mul_one] at h
-  convert h using 1 <;> ring
+  convert h using 1
+  ring
 
 /-- Actual second derivative, rather than only a named quadratic coefficient. -/
 theorem pinchingW_second_derivative (μ : Vector4) (τ : Cubic4) (t : ℝ) :

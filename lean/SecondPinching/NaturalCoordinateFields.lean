@@ -80,9 +80,6 @@ def scaleCoordinateVector (F : GlobalSphereImmersion M) (c : ℝ) (Y : Immersion
     (globalImmersionLocal F p).domain).smul (Y.smooth p)
   transition := by
     intro p q x hp hq
-    change c • Y.components p (chartAt Chart4 p x) =
-      fderiv ℝ (globalImmersionReparametrization F p q).map (chartAt Chart4 q x)
-        (c • Y.components q (chartAt Chart4 q x))
     rw [map_smul]
     exact congrArg (fun v : Vector4 => c • v) (Y.transition p q x hp hq)
 

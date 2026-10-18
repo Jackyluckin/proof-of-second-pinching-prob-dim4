@@ -26,7 +26,7 @@ theorem bounded_probability_four_sq (ρ : Vector4) (h0 : ∀ i, 0 ≤ ρ i)
       nlinarith [mul_nonneg (h0 i) (sub_nonneg.mpr (hhalf i))]
     rw [← Finset.mul_sum, hs] at he
     linarith
-  · push_neg at hhalf
+  · push Not at hhalf
     obtain ⟨k,hk⟩ := hhalf
     have he := Finset.sum_sq_le_sq_sum_of_nonneg
       (s := Finset.univ.erase k) (f := ρ) (fun i _ => h0 i)
@@ -53,7 +53,7 @@ theorem symmetric_matrix_norm_spectral (R : Matrix4) (hR : R.IsSymm) :
       rw [Unitary.conjStarAlgAut_apply, Matrix.trace_mul_cycle]
       simp only [Unitary.coe_star_mul_self, Matrix.one_mul]
     _ = ∑ i, (hH.eigenvalues i)^2 := by
-      simp [Λ, Matrix.diagonal_pow, Matrix.trace_diagonal, Function.comp_def]
+      simp [Λ, Matrix.diagonal_pow, Matrix.trace_diagonal]
 
 /-- Unit norm of each real spectral basis vector, in the paper's dot product. -/
 theorem real_eigenvector_dot_self (R : Matrix4) (hR : R.IsHermitian) (i : Fin 4) :
@@ -115,7 +115,7 @@ theorem weighted_matrix_square_bound (μ : Vector4) (hn : ∑ i, (μ i)^2 = 1)
       (1/3 : ℝ)*(∑ i, ∑ j, (μ i)^2*(X i j-(3/4 : ℝ)*(1 : Matrix4) i j)^2) := by
     simp [Matrix.trace, Matrix.diag, Matrix.mul_apply, pow_two, Matrix.diagonal_apply,
       Matrix.one_apply, Fin.sum_univ_succ, hX.apply]
-    simp only [hX.apply 0 1, hX.apply 0 2, hX.apply 0 3, hX.apply 1 2, hX.apply 1 3, hX.apply 2 3]
+    simp only [hX.apply 0 1, hX.apply 0 2, hX.apply 1 2]
     ring
   rw [he, hn]
   have hs : 0 ≤ ∑ i, ∑ j, (μ i)^2*(X i j-(3/4 : ℝ)*(1 : Matrix4) i j)^2 :=

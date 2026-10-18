@@ -98,8 +98,7 @@ theorem ordered_spectrum_chart (μ : Fin 4 → ℝ)
     · field_simp
   have hary : a*(r*y) = c := by rw [hry]; field_simp
   have he (i : Fin 4) : a * spectralVector r y i = 2 * μ i := by
-    fin_cases i <;> simp only [spectralVector, Matrix.cons_val_zero,
-      Matrix.cons_val_one, Matrix.cons_val_two, Matrix.cons_val_three]
+    fin_cases i <;> simp only [spectralVector]
     all_goals dsimp [a, b, c] at har hary ⊢; linarith [ht']
   have hnorm : a^2 * spectralScale r y = 4 := by
     rw [← spectralVector_normSq]

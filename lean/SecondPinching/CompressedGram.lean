@@ -110,9 +110,10 @@ def canonicalGramEntry (label : E → L) (weight : E → ℕ)
     (p : L → ℚ) (d : ℚ) (e : E) : ℚ :=
   p (label e) / ((gramFibreMultiplicity label weight (label e) : ℚ) * d)
 
+omit [Fintype E] [Fintype L] [DecidableEq L] in
 /-- Coefficient reconstruction for the canonical term; only the multiplicity
 of the requested label and the common denominator must be nonzero. -/
-theorem canonicalGramEntry_fibre (label : E → L) (weight : E → ℕ)
+theorem canonicalGramEntry_fibre [Fintype E] [Fintype L] [DecidableEq L] (label : E → L) (weight : E → ℕ)
     (p : L → ℚ) (d : ℚ) (hd : d ≠ 0) (g : L)
     (hc : gramFibreMultiplicity label weight g ≠ 0) :
     gramFibreCoefficient label weight (canonicalGramEntry label weight p d) g = p g / d := by
@@ -189,9 +190,10 @@ def compressedIntegerEntry (label : E → L) (weight : E → ℕ)
 theorem compressedGram_clearing_pos (d : ℤ) (hd : 0 < d) :
     0 < compressedGramConstant * d := mul_pos compressedGramConstant_pos hd
 
+omit [Fintype E] [Fintype L] [DecidableEq L] in
 /-- Exact integer division gives the stated positive-denominator clearing
 identity. Divisibility is a finite condition on the multiplicities. -/
-theorem compressedIntegerEntry_eq (label : E → L) (weight : E → ℕ)
+theorem compressedIntegerEntry_eq [Fintype E] [Fintype L] [DecidableEq L] (label : E → L) (weight : E → ℕ)
     (p : L → ℤ) (d : ℤ) (hd : d ≠ 0)
     (n : Fin 4 → E → ℤ) (ij : ControlIndex) (e : E)
     (hc : gramFibreMultiplicity label weight (label e) ≠ 0)

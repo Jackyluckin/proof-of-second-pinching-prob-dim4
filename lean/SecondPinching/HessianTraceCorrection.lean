@@ -14,7 +14,7 @@ def hessianTraceCorrection (μ : Vector4) (t : ℝ) : Fourth4 :=
 theorem scaledDiagonal_symmetric (μ : Vector4) (s : ℝ) :
     (s • Matrix.diagonal μ).IsSymm := by
   ext i j
-  by_cases h : i = j <;> simp [Matrix.transpose_apply, Matrix.diagonal_apply, h, eq_comm]
+  by_cases h : i = j <;> simp [Matrix.transpose_apply, h, eq_comm]
 
 theorem hessianTraceCorrection_symmetric (μ : Vector4) (t : ℝ) :
     FourthSymmetric (hessianTraceCorrection μ t) :=
@@ -75,7 +75,8 @@ theorem weightedTrace_hessianTraceCorrection (μ : Vector4) (t : ℝ)
   rw [hsum]
   ext k l
   by_cases h : k = l <;>
-    simp [Matrix.diagonal_pow, Matrix.diagonal_apply, Matrix.one_apply, h] <;> ring
+    simp [Matrix.diagonal_pow, Matrix.one_apply, h]
+  ring
 
 /-- Both cubic trace constraints, and no condition d=0, give N_tau U_0 = 0. -/
 theorem cubicContraction_hessianTraceCorrection (μ : Vector4) (τ : Cubic4)

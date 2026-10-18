@@ -71,28 +71,14 @@ theorem repeatedWeight_sum_identity (τ : Cubic4) (hτ : CubicSymmetric τ) :
     cubicSymmetric_swap12 hτ 1 2,
     cubicSymmetric_swap12 hτ 1 3,
     cubicSymmetric_swap12 hτ 2 3,
-    cubicSymmetric_swap23 hτ 0 0 1,
-    cubicSymmetric_swap23 hτ 0 0 2,
     cubicSymmetric_swap23 hτ 0 0 3,
-    cubicSymmetric_swap23 hτ 0 1 2,
-    cubicSymmetric_swap23 hτ 0 1 3,
-    cubicSymmetric_swap23 hτ 0 2 3,
-    cubicSymmetric_swap23 hτ 1 0 1,
     cubicSymmetric_swap23 hτ 1 0 2,
     cubicSymmetric_swap23 hτ 1 0 3,
-    cubicSymmetric_swap23 hτ 1 1 2,
     cubicSymmetric_swap23 hτ 1 1 3,
-    cubicSymmetric_swap23 hτ 1 2 3,
-    cubicSymmetric_swap23 hτ 2 0 1,
-    cubicSymmetric_swap23 hτ 2 0 2,
     cubicSymmetric_swap23 hτ 2 0 3,
-    cubicSymmetric_swap23 hτ 2 1 2,
     cubicSymmetric_swap23 hτ 2 1 3,
     cubicSymmetric_swap23 hτ 2 2 3,
-    cubicSymmetric_swap23 hτ 3 0 1,
-    cubicSymmetric_swap23 hτ 3 0 2,
     cubicSymmetric_swap23 hτ 3 0 3,
-    cubicSymmetric_swap23 hτ 3 1 2,
     cubicSymmetric_swap23 hτ 3 1 3,
     cubicSymmetric_swap23 hτ 3 2 3]
   ring
@@ -112,7 +98,7 @@ theorem cubicD_eq_phi_pairing (μ : Vector4) (τ : Cubic4)
       cubicD μ τ k-cubicMoment (Matrix.diagonal μ)*(∑ i, μ i*τ i i k)-
       (∑ i, τ i i k)/4 := by
     rw [normalizedPhi_diagonal]
-    simp [cubicD, Matrix.diagonal_apply, Fin.sum_univ_succ]
+    simp [cubicD, Fin.sum_univ_succ]
     ring
   rw [he, ht, hw]
   ring

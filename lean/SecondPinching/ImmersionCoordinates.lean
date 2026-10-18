@@ -102,7 +102,7 @@ theorem coordinateCovariant2_neg (Γ : Chart4 → Fin 4 → Fin 4 → Fin 4 → 
   simp only [coordinateCovariant2,Pi.neg_apply,Matrix.neg_apply]
   have hd : fderiv ℝ (fun y => -h y i j) x = -fderiv ℝ (fun y => h y i j) x := fderiv_neg
   rw [hd]
-  simp only [ContinuousLinearMap.neg_apply,mul_neg,Finset.sum_add_distrib,Finset.sum_neg_distrib]
+  simp only [neg_apply,mul_neg,Finset.sum_add_distrib,Finset.sum_neg_distrib]
   ring
 
 theorem coordinateCovariant3_neg (Γ : Chart4 → Fin 4 → Fin 4 → Fin 4 → ℝ)
@@ -111,7 +111,7 @@ theorem coordinateCovariant3_neg (Γ : Chart4 → Fin 4 → Fin 4 → Fin 4 → 
   simp only [coordinateCovariant3,Pi.neg_apply]
   have hd : fderiv ℝ (fun y => -T y i j k) x = -fderiv ℝ (fun y => T y i j k) x := fderiv_neg
   rw [hd]
-  simp only [ContinuousLinearMap.neg_apply,mul_neg,Finset.sum_add_distrib,Finset.sum_neg_distrib]
+  simp only [neg_apply,mul_neg,Finset.sum_add_distrib,Finset.sum_neg_distrib]
   ring
 
 /-- Normal reversal is derived for the actual derivatives, before normalization. -/
