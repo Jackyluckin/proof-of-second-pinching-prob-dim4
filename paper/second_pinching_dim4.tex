@@ -1,5 +1,9 @@
 \documentclass[11pt,a4paper]{amsart}
 \usepackage[T1]{fontenc}
+\usepackage{iftex}
+\ifPDFTeX
+  \PassOptionsToPackage{copyfonts}{microtype}
+\fi
 \usepackage{lmodern,amssymb,mathtools,mathrsfs,microtype,booktabs}
 \usepackage[margin=28mm]{geometry}
 \usepackage{needspace}
