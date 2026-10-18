@@ -3,6 +3,7 @@
 \usepackage{lmodern,amssymb,mathtools,mathrsfs,microtype,booktabs}
 \usepackage[margin=28mm]{geometry}
 \usepackage{needspace}
+\PassOptionsToPackage{hyphens}{url}
 \usepackage[hidelinks]{hyperref}
 \urlstyle{same}
 \numberwithin{equation}{section}
@@ -36,7 +37,7 @@
 in dimension four}
 \author{Jinxi Zhang}
 \address{University of Cambridge, Cambridge, United Kingdom}
-\date{15 October 2026}
+\date{18 October 2026}
 \subjclass[2020]{53C42, 53C24}
 \keywords{Minimal hypersurface, constant scalar curvature, Chern conjecture, second pinching problem}
 \hypersetup{pdftitle={A proof of the second pinching theorem in dimension four},
@@ -99,7 +100,6 @@ respectively, an equatorial sphere or a Clifford minimal hypersurface
 \]
 \end{theorem}
 
-\Needspace{13\baselineskip}
 Together, these theorems give the following classification for $S\le8$.
 
 \begin{corollary}\label{cor:main}
@@ -218,7 +218,6 @@ Define the three scalar contractions
  \mathcal B=\sum_{ijk}\lambda_i\lambda_jh_{ijk}^2,\qquad
  \mathcal C=\sum_{ijk}\lambda_i h_{ijk}^2.
 \end{equation}
-\Needspace{15\baselineskip}
 \begin{lemma}[Curvature identities]\label{lem:classical}
 Let $F:M^4\to\Sph^5(1)$ be a smooth minimal immersion.
 Let $h$ be its second fundamental form, $S=|h|^2$,
@@ -275,7 +274,6 @@ The pair \eqref{eq:normalization} is admissible: differentiating
 $\tr h=0$ gives its ordinary trace condition, and differentiating
 $S$ gives its $A$-weighted trace condition.
 
-\Needspace{8\baselineskip}
 For each $k$, the symmetric matrix $(\tau_{ijk})_{ij}$ is orthogonal
 to $I$ and $A$ by the two trace constraints. Its contraction with
 $A^2$ therefore depends only on the component of $A^2$ orthogonal
@@ -442,7 +440,7 @@ Since $\mathcal D$ is symmetric in its first three indices,
  \widehat U_{ijkl}=\tfrac14(\mathcal D_{ijkl}+\mathcal D_{ijlk}
                          +\mathcal D_{iklj}+\mathcal D_{jkli}).
 \]
-\Needspace{8\baselineskip}
+\Needspace{4\baselineskip}
 For $i\ne j$, symmetry in the first three indices gives
 $\widehat U_{iijj}=(\mathcal D_{iijj}+\mathcal D_{jjii})/2$.
 Thus $C_{iijj}=(\mathcal D_{iijj}-\mathcal D_{jjii})/2$;
@@ -707,15 +705,14 @@ The adjoint $Z^*:\R^4\to\Szero$ and $B$ have components
 \end{equation}
 \end{definition}
 
-The vector trial follows the direction of the prescribed contraction
-$b_0=-3Ad/2$. The matrix trial vanishes at $t=0$ and is proportional
-to $B_{1/2}$ at $t=1/2$, where the remaining algebraic inequality
-will be checked. Keeping $B=B_{1/2}$ fixed makes $W_t$ quadratic in $t$.
-The divergence terms change only its constant and linear coefficients.
-The coefficients in \eqref{eq:choice} and~\eqref{eq:Wt} give a
-nonpositive value at zero and a positive quadratic coefficient,
-as proved in Proposition~\ref{prop:convex}; the value at $1/2$ is
-bounded in Appendix~\ref{app:certificate}.
+The matrix trial vanishes at $t=0$ and is proportional to $B_{1/2}$
+at $t=1/2$. Keeping $B=B_{1/2}$ fixed makes $W_t$ quadratic in $t$;
+the divergence terms change only its constant and linear coefficients.
+The constants in \eqref{eq:choice} and~\eqref{eq:Wt} must give
+nonpositivity at $t=0$, convexity in $t$, and strict negativity at $t=1/2$.
+Proposition~\ref{prop:convex} proves the first two; Appendix~\ref{app:certificate}
+proves the third using positive-definite Gram representations checked
+in exact rational arithmetic.
 
 \subsection{The nonnegative average}
 The formulas for $a,b,c,d,R$ are tensor contractions of $A$ and
@@ -834,14 +831,12 @@ Then $\tr\Gamma=-a_0$ and
  |\tau|^2=a_0^2+3|\xi|^2+3|\Gamma|^2+|\Xi|^2,\qquad
  R_{11}=a_0^2+2|\xi|^2+|\Gamma|^2.
 \]
-\begin{samepage}
 Cauchy--Schwarz gives $a_0^2=(\tr\Gamma)^2\le3|\Gamma|^2$.
 Consequently
 \[
  2|\tau|^2-3R_{11}=-a_0^2+3|\Gamma|^2+2|\Xi|^2\ge0.
 \]
 This holds in every direction and proves the first two bounds.
-\end{samepage}
 
 For the bound on $Ad$, choose a basis with $A$ diagonal. Fix $k$ and set
 $z^{(k)}=(\tau_{iik})_i$ and
@@ -1199,25 +1194,17 @@ Lemma~\ref{lem:certificate} and
 \eqref{eq:Pidentity} then prove Proposition~\ref{prop:endpoint}.
 
 \subsection*{Electronic supplement}
-The supplementary material is available at
-\begin{center}
+The TeX source, Mathematica notebook and PDF export, and verification
+code and data are at
 \url{https://github.com/Jackyluckin/proof-of-second-pinching-prob-dim4}.
-\end{center}
-The repository contains the paper sources, the Mathematica notebook
-\texttt{Verification.nb} and its PDF export, the exact verification
-program and data, and a Lean~4 development.
-The root \texttt{README.md} gives execution and build instructions;
-\texttt{DATA\_SPEC.md} specifies the computational data.
+See \texttt{README.md} for instructions and
+\texttt{DATA\_SPEC.md} for the data format.
 
-The Lean entry theorem derives the conclusion of Theorem~\ref{thm:main}
-from its geometric hypotheses and an additional premise asserting the
-finite coefficient identities and integer positivity checks.
-These checks are performed in Mathematica, but no Lean proof of this
-premise is included. The formalisation therefore does not yet provide
-a complete proof within the Lean kernel. The classical classification
-results used in Corollary~\ref{cor:main} and its full image classification
-also lie outside its scope. The precise statements and remaining premise
-are documented in \texttt{lean/README.md}.
+The Lean version of Theorem~\ref{thm:main} is conditional on the finite
+coefficient identities and integer positivity checks in \texttt{lean/README.md}.
+Mathematica verifies them; their Lean proof is not included.
+The classical classification results and Corollary~\ref{cor:main}
+are not formalised.
 
 \subsection*{Use of AI}
 AI tools, including GPT-6 Astra, were used to explore candidate estimates,
@@ -1225,7 +1212,6 @@ develop the verification code, review the arguments, and revise the
 manuscript. The author is responsible for the mathematical content and
 its presentation.
 
-\clearpage
 \begin{thebibliography}{99}
 \bibitem{Cartan}
 \'{E}. Cartan,
