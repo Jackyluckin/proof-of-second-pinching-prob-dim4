@@ -1,26 +1,26 @@
 {
   "title": "A proof of the second pinching theorem in dimension four",
-  "revision": "20261018-r4",
+  "revision": "20261018-r5",
   "prepared_utc": "2026-10-17T22:22:25.673969+00:00",
   "layout": "GitHub repository: paper/, mathematica/, lean/",
   "provenance": {
     "manuscript_baseline_sha256": "73bf4b6872c421b31882587a8a5a3e8939357ea112660f6dce0107149fcc7167",
-    "manuscript_source_sha256": "aa3b741c8bdfb22712dc487e9d5f6cfdca17d009979dec8fcce0374ae2267dcf",
+    "manuscript_source_sha256": "33eff60383575e728f277c69c19462788762d6c04ac2d61954528aa5266d0706",
     "lean_source_archive_sha256": "7aa1149f0fbb4f5ad79db7e62e3557e943152d2066bdc1cd1c8762b7b115a7cf",
-    "preserved_lean_source_and_configuration_files": 201,
+    "preserved_lean_source_and_configuration_files": 189,
     "preserved_wolfram_implementation_and_data_files": 27,
     "endpoint_sha256": "e1426dde5d49594a2303ebf38d5c37b1a5001493c83770678874af87e3c86131",
     "certificate_sha256": "70f8aa19d9df2bda362a0873cbd45a9c2a4e6324c2f3b422a29376b013d88a48",
     "notebook_pdf_source": "mathematica/Verification.nb",
     "notebook_pdf_export": "Wolfram NotebookPrint from the same saved notebook",
     "python_regression_assets": "Preserved in the development archives; not included in this distribution.",
-    "previous_manuscript_source_sha256": "661b3395eb2633605a20ab32e21f8c4600670d776101478bc65e6921e817bf2d"
+    "previous_manuscript_source_sha256": "aa3b741c8bdfb22712dc487e9d5f6cfdca17d009979dec8fcce0374ae2267dcf"
   },
   "files": {
     ".gitattributes": "d2b235884011126232245cda70b1aca290cb6a6de83a74a94d0c658c736bc78d",
     ".gitignore": "ba486d062f0b7addc607a23d9a729f3cab1d55980255929e6f26ad3d1639aa50",
-    "CITATION.cff": "c73aff44acd08edc90bda730c746248f27ff82ef27c9ee40be06d6c64d65e046",
-    "DATA_SPEC.md": "87829b8a50574ed8a8d500b9d28ba5a74708bac66033731bd15dd540273390b1",
+    "CITATION.cff": "015d4a94234a521052a404aef6a014520f20a4a7224149e4a311565f0e5c9294",
+    "DATA_SPEC.md": "72e9ba8c8f8da149e21102639ac4ec193d55d2e460369e6ca30713cbe1d07669",
     "README.md": "f03c7a7ec80dd5441ea14a45961ae1a53c69dfee43dab3569ede0d1459e50a90",
     "lean/README.md": "6529607291d0a04a05e19e1ff56fb9bfeb663c501e9a6e44f6a4f5621e56935e",
     "lean/SecondPinching/AdaptedImmersionPartition.lean": "2b0b26f10ff0f06383a96f2d306297544d6d445ff4045ca48003297eeac47aeb",
@@ -35,7 +35,7 @@
     "lean/SecondPinching/ChartIntegralTransport.lean": "4ac1ea6fc2d95900cd629debbdfc5b0884ef06521bfa54cd5bfbd88083dee3c1",
     "lean/SecondPinching/CheckerTests.lean": "cedd296f6f9f03826c74de04607789b3055c92d2b791d8c49b604817a443aa7c",
     "lean/SecondPinching/CompactCoordinateDivergence.lean": "46e05bf6a8deb411d56acf589bb2cc9338d6fd6d2cbac83a4d94f2911705a17b",
-    "lean/SecondPinching/CompressedGram.lean": "d016bc25d8be241bee8c1edf4c256c41b877b835837bd697ee5d3e9b51bc93d3",
+    "lean/SecondPinching/CompressedGram.lean": "25bb7e17451e63faa2c9903c5520d95bfe299ec1e5b698f8d09d2846901c615a",
     "lean/SecondPinching/ConstructedImmersionFrame.lean": "83b36491968ad744f1940032ddb3a3f5bd29ba121b174db58f1bc3dee1b68068",
     "lean/SecondPinching/Contractions.lean": "9c4ba52cd53b51ee6439c8c66e51711ab2c72213b546bae64e195b5366b235f9",
     "lean/SecondPinching/CoordinateCutoffIntegration.lean": "bd2cb0acafc99e0d9f19aedde7ec13b2184c1c79dec802a696fb9ed37691e083",
@@ -52,12 +52,12 @@
     "lean/SecondPinching/CubicOperatorBound.lean": "886303d5f3ded2b217f04611e2b133db778c70035ff44fa98243c310a168fcca",
     "lean/SecondPinching/CubicRicci.lean": "dceb4d7aec37ef01ae12bf44464809dab6f27962a8d115d95ca637c9aa914693",
     "lean/SecondPinching/CubicSymmetry.lean": "a519254c99beef54a10b0a55a145a6da90f381a4ecfc99932d299e622245d386",
-    "lean/SecondPinching/CubicVectorBound.lean": "62cb44f788cf749772039490fb17bb8ad30ece9c3905503fcabba4b577206d1a",
-    "lean/SecondPinching/CurvatureCorrection.lean": "f5fd45369ed1567c5ff7412bc38879ab876b0b4af6806416a653e9c2cdb1adc5",
+    "lean/SecondPinching/CubicVectorBound.lean": "58c053412069de2a4178e9b70007c2b764aaf5e5dcb63cb2c8f32d990176dc91",
+    "lean/SecondPinching/CurvatureCorrection.lean": "b9d96530834c5da943f02f073434634c8299a2a113e78fdd0ce67d18d6d17473",
     "lean/SecondPinching/DeterminantDerivative.lean": "c5ce9dc7865e6303380f396dcd6aea472650919dfe065b7691b9544432dddaa0",
     "lean/SecondPinching/DiagonalEndpoint.lean": "9254fb2f73752611f05155efe20e8aa8e43a624c009ce30394d91efcd4f97b58",
     "lean/SecondPinching/DivergencePotentials.lean": "ad2aea75ff32a6eb49318b35b02cb4b8de5621bfbdb45314accfc52278f2807d",
-    "lean/SecondPinching/EndpointNumerator.lean": "eb349aa436325f28a7ff9f9831e9d955697ea239f2ba20b507f1b24bbac644df",
+    "lean/SecondPinching/EndpointNumerator.lean": "eae0f42fbd084c74bc2daa9773f86b8bad1004045a608911a4bc99997444b510",
     "lean/SecondPinching/EndpointPolynomial.lean": "91c5d03d0847d438be97ac997e72e505fee3ec0b4e151b7fee5fae2df9107ace",
     "lean/SecondPinching/EndpointSymmetry.lean": "626156825a464127bc6b1753da719c5b20c9a703811ffde2f82f4c4f3d6b0fe4",
     "lean/SecondPinching/FifthFrameAlgebra.lean": "24bbdaab0f7dd866c9efdceb66a65a97f736991ccfce3034f368dd48ce561d2b",
@@ -85,16 +85,16 @@
     "lean/SecondPinching/HessianContractionDifferentiation.lean": "ec9da3c091b5fb1eb4c6b1578c0f2393f64703216e02dc51f48c8722afed5df5",
     "lean/SecondPinching/HessianContractionNormalization.lean": "9a1051a629c7e2aeca063d63212acac57921f31fe949cb0170ab560a6ea0851e",
     "lean/SecondPinching/HessianDecomposition.lean": "e4a20416ece16975d71042c844e5dd57739b04f050dcf15fb634d6345cbfcd07",
-    "lean/SecondPinching/HessianQuantities.lean": "b1f485a47bda6db879c064ab56e06d4685321a29cf3e8590b2b5cfb6f7bdedc1",
+    "lean/SecondPinching/HessianQuantities.lean": "bbce1962106123165feee28b4474598f4cbe05f9728e4209407da92e485c5bf8",
     "lean/SecondPinching/HessianSimonsAlgebra.lean": "c9c7309312038d4a561819c35a04b0b35ee0ce26edb8d03ebd34f857cae15df4",
-    "lean/SecondPinching/HessianTraceCorrection.lean": "4402adbae38f8c10f5557eb5b747786125bfda99f5ebc6f1a1e157428b3acca3",
+    "lean/SecondPinching/HessianTraceCorrection.lean": "dc9631695b43fb094a5de558a1d2c568888dd02343fd1b7ed36788ad05c4988b",
     "lean/SecondPinching/ImmersionCodazzi.lean": "1b3d0b8d24cffc813f57f2ae09582ff59c9361905c7989a43bd19486b2bdbd17",
     "lean/SecondPinching/ImmersionConnection.lean": "cb25f48f676ca509ccb152670fb113236601a700e7c86a49245e9faa0ac79a1b",
     "lean/SecondPinching/ImmersionConnectionChange.lean": "6bbf47708f1c493ef46ace5a186461b99f0c3e2c4e64d7b2e92c2d0526f2b933",
     "lean/SecondPinching/ImmersionConstancyBridge.lean": "92744b1a9db4fccadee27186bf9b3abc7ef6b2d4c895ae5343d89ee61e0dfc09",
     "lean/SecondPinching/ImmersionCoordinateBridge.lean": "3fa1fb7272e9ceb8856f7794dd18f08955a33a66552f1bfb860bf728b023ac22",
     "lean/SecondPinching/ImmersionCoordinateVector.lean": "d5877e5afc35d8d681f7b307b4715996f135181054861ae75dbc8bc75dbfe9c0",
-    "lean/SecondPinching/ImmersionCoordinates.lean": "52c8984785a5fef7a11d43626c7974ec26468eecdcb00f31fc5e2b95f8df0bb2",
+    "lean/SecondPinching/ImmersionCoordinates.lean": "ef82af42bbcb7601a821978a969c273994d1bac76a4d946fd13617a0ff8113bb",
     "lean/SecondPinching/ImmersionCorrectionIntegration.lean": "9eb08e37e08069da95c747b2167c6a5927866ecbaf2e252cf19ef612c8ac7e13",
     "lean/SecondPinching/ImmersionCubicFlux.lean": "d2f87d402b8de4b7a02b3966ee7ad71e80aaab2216a3fcd400aca12fabb45f32",
     "lean/SecondPinching/ImmersionCurvature.lean": "1163d0b163e3effd170aa6a321134ab6b8291c57fe992f14bd9d21b326ff89bf",
@@ -132,7 +132,7 @@
     "lean/SecondPinching/IntrinsicCubic.lean": "4f397b012801f887d6d82d6afe99ffb25a8ee4e21c06afe956213abfb38a70a5",
     "lean/SecondPinching/IntrinsicGluing.lean": "8abb6ea5113d2e46ac51a469031477b4dff79cc1f8cff323da46e00ce702c86a",
     "lean/SecondPinching/IntrinsicIntegral.lean": "190e7b0c0e35ca9b325d3d8c00973ab6035b30cd052eca022e8f7a3db7445ee5",
-    "lean/SecondPinching/IntrinsicJoint.lean": "4fa856fac311e86d7c7354d24bcf136ed60c31b1a2d6fc27b4bcb115ac7a6e5d",
+    "lean/SecondPinching/IntrinsicJoint.lean": "934e8837ca6e72018270be874ddb5e38240a8d8ec46dd5d480d9d0c07e9e6536",
     "lean/SecondPinching/IntrinsicRegularity.lean": "f26a738ff0e3f08e4265af3a3809554c9f059a0765db69bf625f5648c8bd4ca5",
     "lean/SecondPinching/IntrinsicRemainder.lean": "8a9a33780b528484e63c04d5e494b643e448feb85380e5f537a136156990e166",
     "lean/SecondPinching/IntrinsicTrial.lean": "52c12cd44d99fd71f178f384a3526eeac3055bc2246ef00acd28351fa47f7d47",
@@ -150,7 +150,7 @@
     "lean/SecondPinching/MovingFrameFourth.lean": "ee842ac42434c848c1de9e235ac6569807822528c1e68d759a7eed002714278a",
     "lean/SecondPinching/MovingFrameHessian.lean": "38516750a28f0d699fa2fed6edfe1ad81d99ebafbc484a4ba7e90a59c9ee386d",
     "lean/SecondPinching/NativeSphereImmersion.lean": "90542157bacaf5e481d11b797d0db1f0e5940f035b35e0bd00842b3144bd3b5b",
-    "lean/SecondPinching/NaturalCoordinateFields.lean": "5947d05b1f1e91205edc21fb02fbe8f7eb3a861816caad8584931ce97e977b00",
+    "lean/SecondPinching/NaturalCoordinateFields.lean": "f5ca944af3f717fbd10d3dea76b2ed3b46239cc0e40f01353450aca631c33e8e",
     "lean/SecondPinching/NormalReversal.lean": "59ef59deaec88982eafd41d42401a2eb713baa5ad506300439773137569e3112",
     "lean/SecondPinching/NormalizedChart.lean": "d5d090ad0f5cb9dcec04629749c5c2f6fd0b498480bafa9032b4d159febde9c5",
     "lean/SecondPinching/OrdinaryTrace.lean": "e751bbdf7bb378db297d7ac5647e23ab6d907f7adcb0b52d619bd9933ec570f1",
@@ -167,7 +167,7 @@
     "lean/SecondPinching/PengTerngExpressions.lean": "5cc30360c23cbe137cd2109e71827ee92792b0a6967bd0301cad960f49e74094",
     "lean/SecondPinching/PengTerngNormAlgebra.lean": "35f17ee71176838dcdbd8f24475b11120314987e3c6bd716f361d57dc661283b",
     "lean/SecondPinching/PengTerngNormalization.lean": "83436b29a7018abe8c61ec7fe3e6cac0f6f2968fb730b888c6e731f53e6afdc3",
-    "lean/SecondPinching/QuadraticEstimate.lean": "2f31e0aed8f4db6f8eee4fbcc02725af420cb025a40bdf427b002afa6e1eda70",
+    "lean/SecondPinching/QuadraticEstimate.lean": "23203da5a6da046c0346ce93688306092691145c16ac358106d5e9810d70554d",
     "lean/SecondPinching/ReducedHessian.lean": "bf3add7ed71b935d4020b7afcb1ff7d17e6c2762ff59785e63e5d2bf459cdacd",
     "lean/SecondPinching/ReducedHessianBridge.lean": "2c083d90ce9a5d9e1039775ddf7e9410ada1ec6b542ee7bd73bd14a6bdd48d2c",
     "lean/SecondPinching/ReleasedCertificate.lean": "e733165727da58d1b87becf3697bf8a2e4b6d71567c49570b70876c17d8f433e",
@@ -208,7 +208,7 @@
     "lean/SecondPinching/SimonsDifferentiation.lean": "4a72f9f366c7b4cac9fb701517149d69874719478c0ca2b511aa891ff9407f09",
     "lean/SecondPinching/SmoothGramSchmidt.lean": "c7b70c17d90ab9bf887d6812ac1cefc21c75c5d7f4f702aed083da06983cb99f",
     "lean/SecondPinching/SpectralChart.lean": "0b27506916bbee9b51c21367cd1f1da79ff8c9eff3e3a83a961f521c44501bd7",
-    "lean/SecondPinching/SpectralReduction.lean": "904c30316af7841c54ec55de09ac689eb32db648fa51e9bc42a4f04b75db746b",
+    "lean/SecondPinching/SpectralReduction.lean": "d81f0b6dcdcaa516691d50b5eed4c0d20e4397e2a86f2ee180f95f8279c4e1a5",
     "lean/SecondPinching/SphereParametrization.lean": "0c0fac9ddb7db5c75440058b2c72eb2f443d396bf6b407bc69bedc9f3746ebe3",
     "lean/SecondPinching/SphereSecondFundamentalVector.lean": "d33f81613bc5f07180576801baace30a487fd23d96e987bfc9c39804b7538b80",
     "lean/SecondPinching/TensorChangeAlgebra.lean": "1ade602bf631469ade1b9e7b6d590166c83ec0e0a3f04524f95baf1d31f5889d",
@@ -219,7 +219,7 @@
     "lean/SecondPinching/VectorCoordinateAlgebra.lean": "7bc9829d3d8027d3a7c687eb390d9dfdab1188c7a9279dbf467cc7a120818c56",
     "lean/SecondPinching/VectorDivergenceProduct.lean": "8e25e39e6380ccaf473eaed5e0a9d5f5fcdf4de55c229b7f4fada242ed792670",
     "lean/SecondPinching/VolumeDensityReparametrization.lean": "2d71545083ba35f0cfbeff0332a2083d960a0a9b63a8d54523d7f3539c1fb0f3",
-    "lean/SecondPinching/WConvexity.lean": "0024a06a7a72a2c76a07c460bc564f326439ebeedbdd86e545e4a074527eab95",
+    "lean/SecondPinching/WConvexity.lean": "b7b2f851687c0168f24e98fdebb42b44b5a69f117553f9bbd12984ca240023a8",
     "lean/SecondPinching.lean": "8e9386cbd4a9cdc63ddda6e91012419847d89d5a5318c907ac153a22b6a7b75a",
     "lean/lake-manifest.json": "908e6f6bab4f43b2be229d5b8c8d893e1b56b35eb0f64c4b2ae98e251927c524",
     "lean/lakefile.toml": "d389f5fc5e4991ff9160bec098f9cabb2aa3e930e09e31239ff38e13a160529b",
@@ -255,8 +255,8 @@
     "mathematica/data/witnesses/leaf_0023.json": "cd22a6b09fa8982e01c2a58cd836d1884084ac84bacad19fc9d2372453af0cdc",
     "mathematica/data_integrity.json": "84a11a2378ac2660906890ef76c1798922f77b99e0f5538f6ebf7975f3f5b2f1",
     "mathematica/run_verification.wls": "99ac3e19b05d1836372223c68bba522e65cf8b3a7f905ce62166e85128ad83b8",
-    "paper/second_pinching_dim4.pdf": "b448571dd93d9ca18be8d90f9aaddf226b6828b987672c7eadc34ed5e18e8af4",
-    "paper/second_pinching_dim4.tex": "aa3b741c8bdfb22712dc487e9d5f6cfdca17d009979dec8fcce0374ae2267dcf",
+    "paper/second_pinching_dim4.pdf": "0086f8af4da2ad7797f8d3bc722e1ac6c841d2e5d3967b6ed3d8b6df223b0421",
+    "paper/second_pinching_dim4.tex": "33eff60383575e728f277c69c19462788762d6c04ac2d61954528aa5266d0706",
     "verify_files.py": "fd4ad792b97e2cc6887ff07ea10109a51d49c299a2db8cb99fa59df51b62bb6b"
   },
   "github_packaging": {
@@ -269,33 +269,21 @@
       "verify_files.py"
     ],
     "documentation_change": "README adds the optional static-file integrity command.",
-    "mathematical_source_code_and_data": "Manuscript mathematical statements, verification algorithms, exact certificate data, and Lean sources/configuration are unchanged. The Wolfram source differs only in its leading paper-title comment; notebook prose, PDF layout and distribution metadata are revised.",
+    "mathematical_source_code_and_data": "Mathematical statements, verification algorithms, certificate data and Lean declaration types are unchanged. Minor prose, font setup and Lean proof syntax corrected.",
     "repository_url": "https://github.com/Jackyluckin/proof-of-second-pinching-prob-dim4",
     "license_selected": false
   },
-  "previous_revision": "20261018-r3",
-  "updated_utc": "2026-10-18T00:34:19.373730+00:00",
+  "previous_revision": "20261018-r4",
+  "updated_utc": "2026-10-18T01:50:19.451446+00:00",
   "publication_update": {
-    "base_commit": "271ccac4a66c18b5d60ec3dca0c7c667183928ed",
-    "previous_manifest_sha256": "7767a3b0b28a5c95724f29beb1d7fc6737e8a70cf612af822f5accb3dd907d39",
+    "base_commit": "3a6d812f90007b8f77353d01accac47274d255e1",
+    "previous_manifest_sha256": "8fe38a489b4257cc2ec61947e968721aa4b23a97fad903f6a4fc0b8ad6247198",
     "date_local": "2026-10-18",
     "timezone": "Europe/London",
     "changes": [
-      "Replace internal TeX labels in the notebook with the manuscript numbers and regenerate its PDF.",
-      "Match the paper title in the verifier comment without changing executable expressions.",
-      "Explain the common inputs and separate full-domain Bernstein conversions.",
-      "Clarify the three requirements on the trial constants without adding a discovery narrative.",
-      "Remove excess page-break constraints, shorten repeated supplement prose, retain the appendix on a new page, and update the manuscript date.",
-      "Update distribution version and all changed-file hashes."
+      "Minor text fixes."
     ],
-    "fresh_notebook_run": {
-      "run_id": "0b23d128-1067-43e2-a204-16348e975df8",
-      "started_utc": "2026-10-18T00:19:20Z",
-      "finished_utc": "2026-10-18T00:22:32Z",
-      "wolfram_version": "15.0.1 for Mac OS X ARM (64-bit) (July 2, 2026)",
-      "total_integer_matrix_checks": 86400
-    },
-    "scope": "Editorial and layout changes; formulas, hypotheses, algorithms and exact data preserved. Fresh native Mathematica verification was performed. No new Lean build or full semantic audit of the Lean development is claimed."
+    "scope": "Prose, font setup and Lean warning cleanup; mathematical content and exact data unchanged."
   },
   "publication_history": [
     {
@@ -316,6 +304,31 @@
         "updated_wolfram_metadata_files": [
           "mathematica/data_integrity.json"
         ]
+      }
+    },
+    {
+      "revision": "20261018-r4",
+      "update": {
+        "base_commit": "271ccac4a66c18b5d60ec3dca0c7c667183928ed",
+        "previous_manifest_sha256": "7767a3b0b28a5c95724f29beb1d7fc6737e8a70cf612af822f5accb3dd907d39",
+        "date_local": "2026-10-18",
+        "timezone": "Europe/London",
+        "changes": [
+          "Replace internal TeX labels in the notebook with the manuscript numbers and regenerate its PDF.",
+          "Match the paper title in the verifier comment without changing executable expressions.",
+          "Explain the common inputs and separate full-domain Bernstein conversions.",
+          "Clarify the three requirements on the trial constants without adding a discovery narrative.",
+          "Remove excess page-break constraints, shorten repeated supplement prose, retain the appendix on a new page, and update the manuscript date.",
+          "Update distribution version and all changed-file hashes."
+        ],
+        "fresh_notebook_run": {
+          "run_id": "0b23d128-1067-43e2-a204-16348e975df8",
+          "started_utc": "2026-10-18T00:19:20Z",
+          "finished_utc": "2026-10-18T00:22:32Z",
+          "wolfram_version": "15.0.1 for Mac OS X ARM (64-bit) (July 2, 2026)",
+          "total_integer_matrix_checks": 86400
+        },
+        "scope": "Editorial and layout changes; formulas, hypotheses, algorithms and exact data preserved. Fresh native Mathematica verification was performed. No new Lean build or full semantic audit of the Lean development is claimed."
       }
     }
   ]

@@ -129,7 +129,7 @@ programs are not part of this public distribution.
 ## Intermediate scalings
 
 The final polynomial is the same in all reconstruction paths. However,
-The auxiliary Python closed constructor uses F=L^3*N*B, whereas Wolfram's `ff` is
+the auxiliary Python closed constructor uses F=L^3*N*B, whereas Wolfram's `ff` is
 L^2*N*B. Both use a numerator for L*K_A. The raw Python constructor uses
 covariant coordinates of L^3*N*B in its nine-dimensional matrix basis;
 its metric inverse is part of the contractions. The raw Wolfram constructor

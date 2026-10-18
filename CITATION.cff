@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "Please cite the accompanying manuscript when using these materials."
 type: software
 title: "A proof of the second pinching theorem in dimension four: supplementary materials"
-version: "20261018-r4"
+version: "20261018-r5"
 repository-code: "https://github.com/Jackyluckin/proof-of-second-pinching-prob-dim4"
 authors:
   - family-names: "Zhang"
