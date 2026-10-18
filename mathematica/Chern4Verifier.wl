@@ -1,6 +1,6 @@
 (* ::Package:: *)
 (* Exact verification of the algebraic endpoint in
-   "A computer-assisted proof of the second pinching theorem in dimension four".
+   "A proof of the second pinching theorem in dimension four".
    Data are included in the accompanying directory. No Python, numerical
    optimiser, floating-point eigensolver, or network connection is used.
    Tensor inner products sum over all ordered indices. *)

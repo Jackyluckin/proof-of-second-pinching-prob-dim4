@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[     44625,        801]
-NotebookOptionsPosition[     36047,        650]
-NotebookOutlinePosition[     37890,        707]
-CellTagsIndexPosition[     37847,        704]
+NotebookDataLength[     44492,        857]
+NotebookOptionsPosition[     35855,        705]
+NotebookOutlinePosition[     37727,        763]
+CellTagsIndexPosition[     37684,        760]
 WindowTitle->Second pinching: exact verification
 WindowFrame->Normal*)
 
@@ -47,11 +47,10 @@ Cell["An admissible pair \
 consists of a symmetric trace-free 4 by 4 matrix A and a symmetric cubic \
 tensor tau, both of ordered norm one, with vanishing ordinary and A-weighted \
 cubic traces. In a principal frame A = diag(mu_1,...,mu_4). These are \
-Definition def:admissible and equation eq:admissible of the paper. No \
-restriction to distinct or nonzero principal curvatures is imposed.", "Text", 
-         CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
-         FontSize -> 11, ExpressionUUID -> 
-          "f5c93156-6e1d-4657-86a4-59cd577071b3"],
+Definition 2.2 and equation (2.11) of the paper. No restriction to distinct \
+or nonzero principal curvatures is imposed.", "Text", CellMargins -> 
+          {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, FontSize -> 11, 
+         ExpressionUUID -> "f5c93156-6e1d-4657-86a4-59cd577071b3"],
 
 Cell[BoxData[TagBox[FormBox[TagBox[RowBox[{RowBox[{"Tr", "[", "A", 
                  "]"}], "\[LongEqual]", "0"}], HoldForm], TraditionalForm], 
@@ -93,27 +92,31 @@ VerifyChern4; their formulas are not reimplemented in this notebook.",
          FontSize -> 11, ExpressionUUID -> 
           "c4020600-96f9-45d6-af9d-27bfb780c515"],
 
-Cell[BoxData[RowBox[{RowBox[{"packageDirectory", "=", 
-              RowBox[{"NotebookDirectory", "[", "]"}]}], ";", 
-            RowBox[{"Get", "[", RowBox[{"FileNameJoin", "[", RowBox[
-                 {"{", RowBox[{"packageDirectory", ",", 
-                    "\"Chern4Verifier.wl\""}], "}"}], "]"}], "]"}], ";"}]], 
-         "Input", CellMargins -> {{24, 12}, {7, 7}}, FontSize -> 10, 
-         CellLabel -> " In[1]:=", ExpressionUUID -> 
-          "8f0e59de-4136-4871-a2d1-b945faee2eaf"]
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"packageDirectory", "=", 
+   RowBox[{"NotebookDirectory", "[", "]"}]}], ";", 
+  RowBox[{"Get", "[", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{"packageDirectory", ",", "\"\<Chern4Verifier.wl\>\""}], "}"}], 
+    "]"}], "]"}], ";"}]], "Input",
+ CellMargins->{{24, 12}, {7, 7}},
+ FontSize->10,
+ CellLabel->" In[1]:=",ExpressionUUID->"8f0e59de-4136-4871-a2d1-b945faee2eaf"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["2. Spectral and cubic parametrization", 
-         "Section", PageBreakAbove -> True, FontSize -> 17, 
+         "Section", PageBreakAbove -> Automatic, FontSize -> 17, 
          ExpressionUUID -> "11d94940-5656-440e-8d35-ef6ac3d3e203"],
 
 Cell["Input: (r,y) in the closed unit square and a nonzero vector x \
 of twelve real amplitudes. Output: the unnormalized eigenvalue vector ell, a \
 symmetric cubic T, and the positive normalizations L and N. Routine makeChart \
-constructs these objects. Paper labels: eq:spectralchart, eq:cubicchart and \
-eq:normalizedchart.", "Text", CellMargins -> {{24, 12}, {5, 5}}, 
+constructs these objects. See the spectral and cubic parametrizations \
+(A.2)-(A.5) in Appendix A.", "Text", CellMargins -> {{24, 12}, {5, 5}}, 
          LineSpacing -> {1.1, 0}, FontSize -> 11, ExpressionUUID -> 
           "fa0af5fd-0258-47ce-80ac-e1a2fcff6afe"],
 
@@ -212,7 +215,7 @@ repeated and zero eigenvalues.", "Text", CellMargins -> {{24, 12}, {5, 5}},
 Cell[CellGroupData[{
 
 Cell["3. Fourth-tensor contractions and Gram operators", "Section", 
-         PageBreakAbove -> True, FontSize -> 17, ExpressionUUID -> 
+         PageBreakAbove -> Automatic, FontSize -> 17, ExpressionUUID -> 
           "e0819e9c-2d1a-4a76-bfb7-f63c9b1335fe"],
 
 Cell["Input: the \
@@ -220,7 +223,8 @@ unnormalized ell and T. Output: the ordinary-trace-free dual Gram matrix and \
 the matrices for the two contractions. Routine rawGram constructs them \
 directly from 35 symmetric fourth-tensor coordinates. Routine \
 checkGramFormulas compares them with the closed matrix formulas of the paper. \
-Paper labels: eq:maps, eq:P0, eq:K, eq:ZH and eq:Grams.", "Text", 
+See the contraction maps (3.1), trace projection (3.7), Gram operators \
+(4.1)-(4.2) and identities (4.4) in the paper.", "Text", 
          CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
          FontSize -> 11, ExpressionUUID -> 
           "8b825023-34d7-4142-b155-c5b78b2933a5"],
@@ -276,16 +280,16 @@ final polynomial is checked after those scalings are removed.", "Text",
 Cell[CellGroupData[{
 
 Cell["4. Reconstruction of the endpoint polynomial", 
-         "Section", PageBreakAbove -> True, FontSize -> 17, 
+         "Section", PageBreakAbove -> Automatic, FontSize -> 17, 
          ExpressionUUID -> "025ae182-c0d1-47ab-b797-a4cf0fbe2b37"],
 
 Cell["Input: the symbolic chart and the trial choices in equation \
-eq:choice. Output: an exact polynomial P in r,y,x_1,...,x_12. Routine \
+(5.2). Output: an exact polynomial P in r,y,x_1,...,x_12. Routine \
 closedPolynomial uses the expanded formula for W_(1/2). Routine rawPolynomial \
 instead assembles the projected fourth-tensor norm and the three zero-average \
-corrections. Paper labels: eq:endpointexpanded and eq:Pidentity.", "Text", 
-         CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
-         FontSize -> 11, ExpressionUUID -> 
+corrections. See the expanded formula (A.1) and polynomial identity (A.6) in \
+Appendix A.", "Text", CellMargins -> {{24, 12}, {5, 5}}, 
+         LineSpacing -> {1.1, 0}, FontSize -> 11, ExpressionUUID -> 
           "01c687b2-afda-406b-9e3a-74b7f77a9180"],
 
 Cell[BoxData[TagBox[FormBox[TagBox[RowBox[{"P", "\[LongEqual]", 
@@ -336,26 +340,27 @@ arrays. The final scaled P is the object compared in all reconstructions.",
 Cell[CellGroupData[{
 
 Cell["5. The rectangular cover and Bernstein expansion", "Section", 
-         PageBreakAbove -> True, FontSize -> 17, ExpressionUUID -> 
+         PageBreakAbove -> Automatic, FontSize -> 17, ExpressionUUID -> 
           "ec0192ce-a5b2-44d0-ac2b-fece6ad5b719"],
 
 Cell["Input: P, its \
 denominator channel and the 24 binary leaf paths in certificate.json. Output: \
 integer-scaled Bernstein arrays on every closed leaf rectangle. Routine \
 checkCover verifies the full binary prefix tree. Routines integerTransforms \
-and affineTransform provide the two conversion methods used by replay. Paper \
-labels: lem:certificate and eq:Bernstein.", "Text", CellMargins -> 
-          {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, FontSize -> 11, 
-         ExpressionUUID -> "a49f54f4-9141-4fc5-8eee-b817a9d5dc25"],
-
-Cell["At even tree depth a bit bisects the r interval; at odd depth \
-it bisects the y interval. The two children retain the lower and upper closed \
-halves. Every non-leaf prefix has both children, and no listed leaf contains \
-another. The leaf rectangles cover the entire closed square, including its \
-boundary. The literal paths and their order are specified in DATA_SPEC.md.", 
-         "Text", CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+and affineTransform provide the two conversion methods used by replay. See \
+Lemma A.1 and the Bernstein expansions (A.8) in Appendix A.", "Text", 
+         CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
          FontSize -> 11, ExpressionUUID -> 
-          "1586e7de-bcb4-471b-8494-c763fa5f130d"],
+          "a49f54f4-9141-4fc5-8eee-b817a9d5dc25"],
+
+Cell["At even tree depth a \
+bit bisects the r interval; at odd depth it bisects the y interval. The two \
+children retain the lower and upper closed halves. Every non-leaf prefix has \
+both children, and no listed leaf contains another. The leaf rectangles cover \
+the entire closed square, including its boundary. The literal paths and their \
+order are specified in DATA_SPEC.md.", "Text", CellMargins -> 
+          {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, FontSize -> 11, 
+         ExpressionUUID -> "1586e7de-bcb4-471b-8494-c763fa5f130d"],
 
 Cell[BoxData[TagBox[FormBox[TagBox[RowBox[{SubscriptBox["b", "i"], 
                "\[LongEqual]", RowBox[{UnderoverscriptBox["\[Sum]", 
@@ -414,27 +419,32 @@ every control quartic implies positivity on each complete closed rectangle.",
          FontSize -> 11, ExpressionUUID -> 
           "0fb605b7-5142-4a0b-a6f6-c12190463dba"],
 
-Cell["Midpoint and Affine \
-are two complete conversions of the same data on the same rectangles. Their \
-counts are reported separately. They do not cover different mathematical \
-regions.", "Text", CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> 
-          {1.1, 0}, FontSize -> 11, ExpressionUUID -> 
+Cell["Midpoint restriction \
+and direct affine substitution each compute every Bernstein control on the \
+same 24-rectangle cover. Together with the polynomial identities and positive \
+normalization established above, either complete set of Gram identities and \
+positivity checks proves the required bound. The second conversion provides a \
+consistency check on the Bernstein computation. The two methods share the \
+input data and the Gram and integer-positivity routines; their counts are \
+reported separately.", "Text", CellMargins -> {{24, 12}, {5, 5}}, 
+         LineSpacing -> {1.1, 0}, FontSize -> 11, ExpressionUUID -> 
           "caf507f1-4046-48da-9a62-0e9ed252e6f0"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell["6. Gram identities and integer positive definiteness", 
-         "Section", PageBreakAbove -> True, FontSize -> 17, 
+         "Section", PageBreakAbove -> Automatic, FontSize -> 17, 
          ExpressionUUID -> "24f14d37-0de4-43c8-a7a1-a943d4b2ef9f"],
 
 Cell["Input: each control quartic, its positive denominator \
 coefficient and the supplied Gram correction and congruence witness. Output: \
 the full Gram coefficient identity and positivity of all eight blocks. \
 Routine bookkeeping fixes the ordered monomial positions; verifyLeaf checks \
-all controls. Paper labels: eq:compressedgram, eq:Gramcertificate and \
-eq:integercriterion.", "Text", CellMargins -> {{24, 12}, {5, 5}}, 
-         LineSpacing -> {1.1, 0}, FontSize -> 11, ExpressionUUID -> 
+all controls. See the Gram reconstruction (A.10), its polynomial identity \
+(A.11) and the integer criterion (A.9) in Appendix A.", "Text", 
+         CellMargins -> {{24, 12}, {5, 5}}, LineSpacing -> {1.1, 0}, 
+         FontSize -> 11, ExpressionUUID -> 
           "048e7fbc-b077-49dd-8220-69862c775734"],
 
 Cell["The vector z(x) \
@@ -527,7 +537,7 @@ inequalities.", "Text", CellMargins -> {{24, 12}, {5, 5}},
 Cell[CellGroupData[{
 
 Cell["7. Complete execution", "Section", 
-         PageBreakAbove -> True, FontSize -> 17, ExpressionUUID -> 
+         PageBreakAbove -> Automatic, FontSize -> 17, ExpressionUUID -> 
           "bba6a75c-0e93-475d-b4ac-da1542bd45ae"],
 
 Cell["The following call \
@@ -539,21 +549,30 @@ modified.", "Text", CellMargins -> {{24, 12}, {5, 5}},
          LineSpacing -> {1.1, 0}, FontSize -> 11, ExpressionUUID -> 
           "0001110b-4f01-4fda-a125-c322d91ef0f3"],
 
-Cell[BoxData[RowBox[{RowBox[{"Clear", "[", "verification", "]"}], 
-            ";", RowBox[{"verification", "=", RowBox[{
-                "Chern4Verifier`VerifyChern4", "[", RowBox[
-                 {"packageDirectory", ",", RowBox[{"\"Verbose\"", "\[Rule]", 
-                    "False"}]}], "]"}]}], ";", RowBox[{"If", "[", 
-              RowBox[{RowBox[{RowBox[{"!", RowBox[{"AssociationQ", "[", 
-                      "verification", "]"}]}], "||", RowBox[{"!", RowBox[
-                     {"TrueQ", "[", RowBox[{"Lookup", "[", RowBox[
-                         {"verification", ",", "\"EndpointCertified\"", ",", 
-                          "False"}], "]"}], "]"}]}]}], ",", RowBox[
-                 {RowBox[{"Print", "[", "verification", "]"}], ";", 
-                  RowBox[{"Abort", "[", "]"}]}]}], "]"}], ";"}]], "Input", 
-         CellMargins -> {{24, 12}, {7, 7}}, FontSize -> 10, 
-         CellLabel -> " In[2]:=", ExpressionUUID -> 
-          "013c61bb-8ae9-453e-9062-7cc25edf33ed"],
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Clear", "[", "verification", "]"}], ";", 
+  RowBox[{"verification", "=", 
+   RowBox[{"Chern4Verifier`VerifyChern4", "[", 
+    RowBox[{"packageDirectory", ",", 
+     RowBox[{"\"\<Verbose\>\"", "\[Rule]", "False"}]}], "]"}]}], ";", 
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"!", 
+      RowBox[{"AssociationQ", "[", "verification", "]"}]}], "||", 
+     RowBox[{"!", 
+      RowBox[{"TrueQ", "[", 
+       RowBox[{"Lookup", "[", 
+        RowBox[{
+        "verification", ",", "\"\<EndpointCertified\>\"", ",", "False"}], 
+        "]"}], "]"}]}]}], ",", 
+    RowBox[{
+     RowBox[{"Print", "[", "verification", "]"}], ";", 
+     RowBox[{"Abort", "[", "]"}]}]}], "]"}], ";"}]], "Input",
+ CellMargins->{{24, 12}, {7, 7}},
+ FontSize->10,
+ CellLabel->" In[2]:=",ExpressionUUID->"013c61bb-8ae9-453e-9062-7cc25edf33ed"],
 
 Cell[
          "The counts below are taken from the result of this invocation.", 
@@ -563,63 +582,93 @@ Cell[
 
 Cell[CellGroupData[{
 
-Cell[BoxData[RowBox[{"Grid", "[", RowBox[
-                {RowBox[{"Prepend", "[", RowBox[{RowBox[{RowBox[{"(", 
-                         RowBox[{RowBox[{"Lookup", "[", RowBox[{"#1", ",", 
-                          RowBox[{"{", RowBox[{"\"Method\"", ",", 
-                          "\"Rectangles\"", ",", "\"ControlQuartics\"", ",", 
-                          "\"IntegerMatrixChecks\"", ",", 
-                          "\"StrictRowInequalities\""}], "}"}]}], "]"}], 
-                          "&"}], ")"}], "/@", RowBox[{"verification", "[", 
-                         "\"CertificateReplays\"", "]"}]}], ",", RowBox[
-                      {"{", RowBox[{"\"Method\"", ",", "\"Rectangles\"", ",", 
-                         "\"Gram identities\"", ",", "\"Matrix blocks\"", 
-                         ",", "\"Row inequalities\""}], "}"}]}], "]"}], ",", 
-                 RowBox[{"Frame", "\[Rule]", "All"}], ",", RowBox[
-                  {"Alignment", "\[Rule]", "Left"}], ",", RowBox[{"ItemSize", 
-                   "\[Rule]", "All"}]}], "]"}]], "Input", CellOpen -> False, 
-            CellMargins -> {{24, 12}, {7, 7}}, FontSize -> 10, 
-            CellLabel -> " In[3]:=", ExpressionUUID -> 
-             "a2b6bfb3-1b00-469f-bafd-05c17b0e9062"],
+Cell[BoxData[
+ RowBox[{"Grid", "[", 
+  RowBox[{
+   RowBox[{"Prepend", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Lookup", "[", 
+         RowBox[{"#1", ",", 
+          RowBox[{"{", 
+           
+           RowBox[{"\"\<Method\>\"", ",", "\"\<Rectangles\>\"", 
+            ",", "\"\<ControlQuartics\>\"", ",", "\"\<IntegerMatrixChecks\>\"",
+             ",", "\"\<StrictRowInequalities\>\""}], "}"}]}], "]"}], "&"}], 
+       ")"}], "/@", 
+      RowBox[{"verification", "[", "\"\<CertificateReplays\>\"", "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Method\>\"", ",", "\"\<Rectangles\>\"", 
+       ",", "\"\<Gram identities\>\"", ",", "\"\<Matrix blocks\>\"", 
+       ",", "\"\<Row inequalities\>\""}], "}"}]}], "]"}], ",", 
+   RowBox[{"Frame", "\[Rule]", "All"}], ",", 
+   RowBox[{"Alignment", "\[Rule]", "Left"}], ",", 
+   RowBox[{"ItemSize", "\[Rule]", "All"}]}], "]"}]], "Input",
+ CellMargins->{{24, 12}, {7, 7}},
+ CellOpen->False,
+ FontSize->10,
+ CellLabel->" In[3]:=",ExpressionUUID->"a2b6bfb3-1b00-469f-bafd-05c17b0e9062"],
 
-Cell[OutputFormData["Method     Rectangles   Gram identities   \
-Matrix blocks   Row inequalities\n\nMidpoint   24           5400              \
-43200           421200\n\nAffine     24           5400              43200     \
-      421200"], "Output", CellChangeTimes -> {4.001261766794324*^9}, 
-            CellLabel -> " Out[3]=", ExpressionUUID -> 
-             "2947795f-255b-49ba-95a7-b24685c7ae60"]
+Cell[OutputFormData["\<\
+Method     Rectangles   Gram identities   Matrix blocks   Row inequalities
+
+Midpoint   24           5400              43200           421200
+
+Affine     24           5400              43200           421200\
+\>"], "Output",
+ CellChangeTimes->{4.001261766794324*^9, 4.0012717524145517`*^9},
+ CellLabel->" Out[3]=",ExpressionUUID->"00ebcf96-2912-4178-a8f8-5e1d36366cf8"]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
-Cell[BoxData[TagBox[GridBox[{{"\"Status\"", 
-                 RowBox[{"verification", "[", "\"Status\"", "]"}]}, 
-                {"\"Endpoint certified\"", RowBox[{"verification", "[", 
-                   "\"EndpointCertified\"", "]"}]}, 
-                {"\"Polynomial reconstructions\"", RowBox[{"verification", 
-                   "[", "\"PolynomialReconstructions\"", "]"}]}, 
-                {"\"Run identifier\"", RowBox[{"verification", "[", 
-                   "\"RunID\"", "]"}]}, {"\"Started (UTC)\"", RowBox[
-                  {"verification", "[", "\"StartedUTC\"", "]"}]}, 
-                {"\"Finished (UTC)\"", RowBox[{"verification", "[", 
-                   "\"FinishedUTC\"", "]"}]}, {"\"Wolfram version\"", 
-                 RowBox[{"verification", "[", "\"WolframVersion\"", "]"}]}}, 
-               AutoDelete -> False, GridBoxAlignment -> {"Columns" -> 
-                  {{Left}}}, GridBoxItemSize -> {"Columns" -> {{Automatic}}, 
-                 "Rows" -> {{Automatic}}}, GridBoxSpacings -> 
-                {"Columns" -> {{1}}, "Rows" -> {{0.7}}}], "Grid"]], "Input", 
-            CellOpen -> False, CellMargins -> {{24, 12}, {7, 7}}, 
-            FontSize -> 10, CellLabel -> " In[4]:=", ExpressionUUID -> 
-             "b51b36ae-7941-4a9b-8cc9-7be3b0d13f19"],
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\"\<Status\>\"", 
+     RowBox[{"verification", "[", "\"\<Status\>\"", "]"}]},
+    {"\"\<Endpoint certified\>\"", 
+     RowBox[{"verification", "[", "\"\<EndpointCertified\>\"", "]"}]},
+    {"\"\<Polynomial reconstructions\>\"", 
+     RowBox[{
+     "verification", "[", "\"\<PolynomialReconstructions\>\"", "]"}]},
+    {"\"\<Run identifier\>\"", 
+     RowBox[{"verification", "[", "\"\<RunID\>\"", "]"}]},
+    {"\"\<Started (UTC)\>\"", 
+     RowBox[{"verification", "[", "\"\<StartedUTC\>\"", "]"}]},
+    {"\"\<Finished (UTC)\>\"", 
+     RowBox[{"verification", "[", "\"\<FinishedUTC\>\"", "]"}]},
+    {"\"\<Wolfram version\>\"", 
+     RowBox[{"verification", "[", "\"\<WolframVersion\>\"", "]"}]}
+   },
+   AutoDelete->False,
+   GridBoxAlignment->{"Columns" -> {{Left}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+   GridBoxSpacings->{"Columns" -> {{1}}, "Rows" -> {{0.7}}}],
+  "Grid"]], "Input",
+ CellMargins->{{24, 12}, {7, 7}},
+ CellOpen->False,
+ FontSize->10,
+ CellLabel->" In[4]:=",ExpressionUUID->"b51b36ae-7941-4a9b-8cc9-7be3b0d13f19"],
 
-Cell[OutputFormData["Status                       PASS\n\nEndpoint \
-certified           True\n\nPolynomial reconstructions   2\n\nRun identifier  \
-             d4fc31d8-80f6-41c4-8098-b915ff288b84\n\nStarted (UTC)            \
-    2026-10-17T21:32:20Z\n\nFinished (UTC)               \
-2026-10-17T21:36:06Z\n\nWolfram version              15.0.1 for Mac OS X ARM \
-(64-bit) (July 2, 2026)"], "Output", CellChangeTimes -> 
-             {4.001261766806748*^9}, CellLabel -> " Out[4]=", 
-            ExpressionUUID -> "efed771f-157f-4487-a08b-0c1bba818ef6"]
+Cell[OutputFormData["\<\
+Status                       PASS
+
+Endpoint certified           True
+
+Polynomial reconstructions   2
+
+Run identifier               0b23d128-1067-43e2-a204-16348e975df8
+
+Started (UTC)                2026-10-18T00:19:20Z
+
+Finished (UTC)               2026-10-18T00:22:32Z
+
+Wolfram version              15.0.1 for Mac OS X ARM (64-bit) (July 2, 2026)\
+\>"], "Output",
+ CellChangeTimes->{4.001261766806748*^9, 4.001271752437772*^9},
+ CellLabel->" Out[4]=",ExpressionUUID->"395d37a1-34dd-4b80-81a8-6cc04565f2d3"]
 }, Open  ]],
 
 Cell["The command-line entry is wolframscript -file \
@@ -632,18 +681,24 @@ a Lean proof term for them.", "Text", CellMargins -> {{24, 12}, {5, 5}},
 
 Cell[CellGroupData[{
 
-Cell[BoxData[RowBox[{"KeyTake", "[", RowBox[
-                {"verification", ",", RowBox[{"{", RowBox[{"\"Status\"", ",", 
-                     "\"EndpointCertified\"", ",", 
-                     "\"TotalIntegerMatrixChecks\""}], "}"}]}], "]"}]], 
-            "Input", CellOpen -> False, CellMargins -> {{24, 12}, {7, 7}}, 
-            FontSize -> 10, CellLabel -> " In[5]:=", ExpressionUUID -> 
-             "8c0607e7-71b6-4fe3-add7-57396769f5ce"],
+Cell[BoxData[
+ RowBox[{"KeyTake", "[", 
+  RowBox[{"verification", ",", 
+   RowBox[{"{", 
+    RowBox[{"\"\<Status\>\"", ",", "\"\<EndpointCertified\>\"", 
+     ",", "\"\<TotalIntegerMatrixChecks\>\""}], "}"}]}], "]"}]], "Input",
+ CellMargins->{{24, 12}, {7, 7}},
+ CellOpen->False,
+ FontSize->10,
+ CellLabel->" In[5]:=",ExpressionUUID->"8c0607e7-71b6-4fe3-add7-57396769f5ce"],
 
-Cell[OutputFormData["<|Status -> PASS, EndpointCertified -> True, \
-\n \n>   TotalIntegerMatrixChecks -> 86400|>"], "Output", CellChangeTimes -> 
-             {4.001261766810073*^9}, CellLabel -> " Out[5]=", 
-            ExpressionUUID -> "7936a775-0ba5-4f61-8fa1-f854867de025"]
+Cell[OutputFormData["\<\
+<|Status -> PASS, EndpointCertified -> True, 
+ 
+>   TotalIntegerMatrixChecks -> 86400|>\
+\>"], "Output",
+ CellChangeTimes->{4.001261766810073*^9, 4.001271752442775*^9},
+ CellLabel->" Out[5]=",ExpressionUUID->"1b8d9042-04d7-4cc3-8e6e-1a78ed93a9a2"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
@@ -683,7 +738,8 @@ StyleDefinitions->Notebook[{
     StyleData["Subtitle"], FontFamily -> "Times", FontColor -> GrayLevel[0]], 
    
    Cell[
-    StyleData["Section"], FontFamily -> "Times", FontColor -> GrayLevel[0]], 
+    StyleData["Section"], PageBreakBelow -> False, FontFamily -> "Times", 
+    FontColor -> GrayLevel[0]], 
    Cell[
     StyleData["Text"], FontFamily -> "Times", FontColor -> GrayLevel[0]], 
    Cell[
@@ -712,94 +768,94 @@ Cell[808, 28, 137, 1, 70, "Subtitle",ExpressionUUID->"737ee410-6cf9-42d7-8796-51
 Cell[948, 31, 452, 6, 70, "Text",ExpressionUUID->"116e40df-d279-478f-8eb2-2e8c0edc2c98"],
 Cell[CellGroupData[{
 Cell[1425, 41, 146, 2, 70, "Section",ExpressionUUID->"fb3c7a63-c282-4527-8429-06cb7a21908a"],
-Cell[1574, 45, 567, 8, 70, "Text",ExpressionUUID->"f5c93156-6e1d-4657-86a4-59cd577071b3"],
-Cell[2144, 55, 339, 4, 70, "DisplayFormula",ExpressionUUID->"d197dbb6-ae94-406a-8c52-7abc4408d21b"],
-Cell[2486, 61, 470, 6, 70, "DisplayFormula",ExpressionUUID->"22ba8e9c-8893-4327-a6f1-d6594d6e2ee8"],
-Cell[2959, 69, 533, 7, 70, "DisplayFormula",ExpressionUUID->"4edf7a3f-cc1b-4b3b-928d-8d3e061b12cc"],
-Cell[3495, 78, 511, 7, 70, "Text",ExpressionUUID->"86312713-e243-4abb-ad55-76b1ade6e878"],
-Cell[4009, 87, 419, 6, 70, "Text",ExpressionUUID->"c4020600-96f9-45d6-af9d-27bfb780c515"],
-Cell[4431, 95, 493, 7, 70, "Input",ExpressionUUID->"8f0e59de-4136-4871-a2d1-b945faee2eaf"]
+Cell[1574, 45, 539, 7, 70, "Text",ExpressionUUID->"f5c93156-6e1d-4657-86a4-59cd577071b3"],
+Cell[2116, 54, 339, 4, 70, "DisplayFormula",ExpressionUUID->"d197dbb6-ae94-406a-8c52-7abc4408d21b"],
+Cell[2458, 60, 470, 6, 70, "DisplayFormula",ExpressionUUID->"22ba8e9c-8893-4327-a6f1-d6594d6e2ee8"],
+Cell[2931, 68, 533, 7, 70, "DisplayFormula",ExpressionUUID->"4edf7a3f-cc1b-4b3b-928d-8d3e061b12cc"],
+Cell[3467, 77, 511, 7, 70, "Text",ExpressionUUID->"86312713-e243-4abb-ad55-76b1ade6e878"],
+Cell[3981, 86, 419, 6, 70, "Text",ExpressionUUID->"c4020600-96f9-45d6-af9d-27bfb780c515"],
+Cell[4403, 94, 425, 11, 70, "Input",ExpressionUUID->"8f0e59de-4136-4871-a2d1-b945faee2eaf"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4961, 107, 174, 2, 70, "Section",ExpressionUUID->"11d94940-5656-440e-8d35-ef6ac3d3e203",
- PageBreakAbove->True],
-Cell[5138, 111, 491, 6, 70, "Text",ExpressionUUID->"fa0af5fd-0258-47ce-80ac-e1a2fcff6afe"],
-Cell[5632, 119, 715, 9, 70, "DisplayFormula",ExpressionUUID->"1225e510-444a-4191-87ae-16b3cfdd3f7d"],
-Cell[6350, 130, 574, 7, 70, "DisplayFormula",ExpressionUUID->"5dc1df6a-3b02-4e97-b16a-691d41dacffa"],
-Cell[6927, 139, 607, 8, 70, "Text",ExpressionUUID->"93c87324-0fe8-425b-af4b-c827d93da0ac"],
-Cell[7537, 149, 1233, 17, 70, "DisplayFormula",ExpressionUUID->"69bbd3b3-687e-4bcb-a820-b09d39b05383"],
-Cell[8773, 168, 548, 8, 70, "Text",ExpressionUUID->"ee865140-c762-46d8-8e29-95fcd457cad5"],
-Cell[9324, 178, 691, 9, 70, "DisplayFormula",ExpressionUUID->"9643b5ff-b76e-43b4-ac17-716b7e68144f"],
-Cell[10018, 189, 395, 5, 70, "DisplayFormula",ExpressionUUID->"308802ab-4986-4fb8-91be-b4710e74bc8f"],
-Cell[10416, 196, 340, 4, 70, "DisplayFormula",ExpressionUUID->"a9f5d019-3767-43eb-8b23-3c236b0e5b19"],
-Cell[10759, 202, 499, 6, 70, "Text",ExpressionUUID->"fc67c43f-843c-46b9-a732-9212bc965eb7"]
+Cell[4865, 110, 179, 2, 70, "Section",ExpressionUUID->"11d94940-5656-440e-8d35-ef6ac3d3e203",
+ PageBreakAbove->Automatic],
+Cell[5047, 114, 492, 6, 70, "Text",ExpressionUUID->"fa0af5fd-0258-47ce-80ac-e1a2fcff6afe"],
+Cell[5542, 122, 715, 9, 70, "DisplayFormula",ExpressionUUID->"1225e510-444a-4191-87ae-16b3cfdd3f7d"],
+Cell[6260, 133, 574, 7, 70, "DisplayFormula",ExpressionUUID->"5dc1df6a-3b02-4e97-b16a-691d41dacffa"],
+Cell[6837, 142, 607, 8, 70, "Text",ExpressionUUID->"93c87324-0fe8-425b-af4b-c827d93da0ac"],
+Cell[7447, 152, 1233, 17, 70, "DisplayFormula",ExpressionUUID->"69bbd3b3-687e-4bcb-a820-b09d39b05383"],
+Cell[8683, 171, 548, 8, 70, "Text",ExpressionUUID->"ee865140-c762-46d8-8e29-95fcd457cad5"],
+Cell[9234, 181, 691, 9, 70, "DisplayFormula",ExpressionUUID->"9643b5ff-b76e-43b4-ac17-716b7e68144f"],
+Cell[9928, 192, 395, 5, 70, "DisplayFormula",ExpressionUUID->"308802ab-4986-4fb8-91be-b4710e74bc8f"],
+Cell[10326, 199, 340, 4, 70, "DisplayFormula",ExpressionUUID->"a9f5d019-3767-43eb-8b23-3c236b0e5b19"],
+Cell[10669, 205, 499, 6, 70, "Text",ExpressionUUID->"fc67c43f-843c-46b9-a732-9212bc965eb7"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[11295, 213, 186, 2, 70, "Section",ExpressionUUID->"e0819e9c-2d1a-4a76-bfb7-f63c9b1335fe",
- PageBreakAbove->True],
-Cell[11484, 217, 545, 8, 70, "Text",ExpressionUUID->"8b825023-34d7-4142-b155-c5b78b2933a5"],
-Cell[12032, 227, 481, 7, 70, "Text",ExpressionUUID->"49c1e18f-2173-4e94-a6c9-81ac787b8392"],
-Cell[12516, 236, 1269, 17, 70, "DisplayFormula",ExpressionUUID->"cfcd6fb7-fa63-4e51-b423-0b904aac9d15"],
-Cell[13788, 255, 497, 7, 70, "Text",ExpressionUUID->"7a110654-52bf-4b48-88bd-450d0e1145dd"],
-Cell[14288, 264, 566, 8, 70, "Text",ExpressionUUID->"0e0a6898-e190-447b-bd7a-cf614bf14e9f"]
+Cell[11205, 216, 191, 2, 70, "Section",ExpressionUUID->"e0819e9c-2d1a-4a76-bfb7-f63c9b1335fe",
+ PageBreakAbove->Automatic],
+Cell[11399, 220, 609, 9, 70, "Text",ExpressionUUID->"8b825023-34d7-4142-b155-c5b78b2933a5"],
+Cell[12011, 231, 481, 7, 70, "Text",ExpressionUUID->"49c1e18f-2173-4e94-a6c9-81ac787b8392"],
+Cell[12495, 240, 1269, 17, 70, "DisplayFormula",ExpressionUUID->"cfcd6fb7-fa63-4e51-b423-0b904aac9d15"],
+Cell[13767, 259, 497, 7, 70, "Text",ExpressionUUID->"7a110654-52bf-4b48-88bd-450d0e1145dd"],
+Cell[14267, 268, 566, 8, 70, "Text",ExpressionUUID->"0e0a6898-e190-447b-bd7a-cf614bf14e9f"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[14891, 277, 181, 2, 70, "Section",ExpressionUUID->"025ae182-c0d1-47ab-b797-a4cf0fbe2b37",
- PageBreakAbove->True],
-Cell[15075, 281, 539, 7, 70, "Text",ExpressionUUID->"01c687b2-afda-406b-9e3a-74b7f77a9180"],
-Cell[15617, 290, 690, 9, 70, "DisplayFormula",ExpressionUUID->"c4714fa6-c3b8-4d93-b8a5-e808d1d2351d"],
-Cell[16310, 301, 365, 5, 70, "Text",ExpressionUUID->"6ef4c5fd-9c9c-4354-a2c3-d8e6b9f1cd05"],
-Cell[16678, 308, 577, 8, 70, "Text",ExpressionUUID->"99119a24-c33e-41a9-87b3-401c123b2493"],
-Cell[17258, 318, 396, 6, 70, "Text",ExpressionUUID->"e153949b-24a4-40dc-ae32-e3fc38afa557"],
-Cell[17657, 326, 430, 6, 70, "Text",ExpressionUUID->"7e3ac9ff-9f5d-4474-aa34-c174add8a77b"]
+Cell[14870, 281, 186, 2, 70, "Section",ExpressionUUID->"025ae182-c0d1-47ab-b797-a4cf0fbe2b37",
+ PageBreakAbove->Automatic],
+Cell[15059, 285, 551, 7, 70, "Text",ExpressionUUID->"01c687b2-afda-406b-9e3a-74b7f77a9180"],
+Cell[15613, 294, 690, 9, 70, "DisplayFormula",ExpressionUUID->"c4714fa6-c3b8-4d93-b8a5-e808d1d2351d"],
+Cell[16306, 305, 365, 5, 70, "Text",ExpressionUUID->"6ef4c5fd-9c9c-4354-a2c3-d8e6b9f1cd05"],
+Cell[16674, 312, 577, 8, 70, "Text",ExpressionUUID->"99119a24-c33e-41a9-87b3-401c123b2493"],
+Cell[17254, 322, 396, 6, 70, "Text",ExpressionUUID->"e153949b-24a4-40dc-ae32-e3fc38afa557"],
+Cell[17653, 330, 430, 6, 70, "Text",ExpressionUUID->"7e3ac9ff-9f5d-4474-aa34-c174add8a77b"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[18124, 337, 186, 2, 70, "Section",ExpressionUUID->"ec0192ce-a5b2-44d0-ac2b-fece6ad5b719",
- PageBreakAbove->True],
-Cell[18313, 341, 539, 7, 70, "Text",ExpressionUUID->"a49f54f4-9141-4fc5-8eee-b817a9d5dc25"],
-Cell[18855, 350, 555, 7, 70, "Text",ExpressionUUID->"1586e7de-bcb4-471b-8494-c763fa5f130d"],
-Cell[19413, 359, 598, 8, 70, "DisplayFormula",ExpressionUUID->"0a6fac09-1e33-4efd-b17b-dd783aa93ab1"],
-Cell[20014, 369, 576, 8, 70, "Text",ExpressionUUID->"7eb52afa-4768-43d2-8f3d-1fc7baeb6ff7"],
-Cell[20593, 379, 341, 5, 70, "Text",ExpressionUUID->"782917cc-f476-40e3-b6f5-b534d04f6aff"],
-Cell[20937, 386, 986, 13, 70, "DisplayFormula",ExpressionUUID->"88d3b9cc-a41e-475a-83e2-018ae7403b2f"],
-Cell[21926, 401, 316, 4, 70, "Text",ExpressionUUID->"9dbfdb7c-92a0-4cf4-9c97-56289fb48b6f"],
-Cell[22245, 407, 504, 7, 70, "Text",ExpressionUUID->"0fb605b7-5142-4a0b-a6f6-c12190463dba"],
-Cell[22752, 416, 355, 5, 70, "Text",ExpressionUUID->"caf507f1-4046-48da-9a62-0e9ed252e6f0"]
+Cell[18120, 341, 191, 2, 70, "Section",ExpressionUUID->"ec0192ce-a5b2-44d0-ac2b-fece6ad5b719",
+ PageBreakAbove->Automatic],
+Cell[18314, 345, 565, 8, 70, "Text",ExpressionUUID->"a49f54f4-9141-4fc5-8eee-b817a9d5dc25"],
+Cell[18882, 355, 547, 7, 70, "Text",ExpressionUUID->"1586e7de-bcb4-471b-8494-c763fa5f130d"],
+Cell[19432, 364, 598, 8, 70, "DisplayFormula",ExpressionUUID->"0a6fac09-1e33-4efd-b17b-dd783aa93ab1"],
+Cell[20033, 374, 576, 8, 70, "Text",ExpressionUUID->"7eb52afa-4768-43d2-8f3d-1fc7baeb6ff7"],
+Cell[20612, 384, 341, 5, 70, "Text",ExpressionUUID->"782917cc-f476-40e3-b6f5-b534d04f6aff"],
+Cell[20956, 391, 986, 13, 70, "DisplayFormula",ExpressionUUID->"88d3b9cc-a41e-475a-83e2-018ae7403b2f"],
+Cell[21945, 406, 316, 4, 70, "Text",ExpressionUUID->"9dbfdb7c-92a0-4cf4-9c97-56289fb48b6f"],
+Cell[22264, 412, 504, 7, 70, "Text",ExpressionUUID->"0fb605b7-5142-4a0b-a6f6-c12190463dba"],
+Cell[22771, 421, 681, 9, 70, "Text",ExpressionUUID->"caf507f1-4046-48da-9a62-0e9ed252e6f0"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[23144, 426, 189, 2, 70, "Section",ExpressionUUID->"24f14d37-0de4-43c8-a7a1-a943d4b2ef9f",
- PageBreakAbove->True],
-Cell[23336, 430, 549, 7, 70, "Text",ExpressionUUID->"048e7fbc-b077-49dd-8220-69862c775734"],
-Cell[23888, 439, 812, 11, 70, "Text",ExpressionUUID->"ce8504d3-1558-479d-9b97-d8a6e0b55902"],
-Cell[24703, 452, 648, 8, 70, "DisplayFormula",ExpressionUUID->"d7678f28-2109-495f-be0e-1814af80e331"],
-Cell[25354, 462, 562, 7, 70, "Text",ExpressionUUID->"ad2f18da-03fe-490b-adfd-502893faa420"],
-Cell[25919, 471, 701, 9, 70, "DisplayFormula",ExpressionUUID->"f95ccddf-4e29-4f15-9dd0-0c98c7f5771f"],
-Cell[26623, 482, 487, 7, 70, "Text",ExpressionUUID->"cb10d300-9768-452c-9da1-d511f673e59f"],
-Cell[27113, 491, 1237, 16, 70, "DisplayFormula",ExpressionUUID->"ca490416-ca82-408c-ad05-6d075e5214e4"],
-Cell[28353, 509, 394, 5, 70, "Text",ExpressionUUID->"6d9cd102-a127-4e0c-b862-245da77a2afd"],
-Cell[28750, 516, 499, 7, 70, "Text",ExpressionUUID->"ddfdd070-665a-46e5-9bf1-848a4399dff2"]
+Cell[23489, 435, 194, 2, 70, "Section",ExpressionUUID->"24f14d37-0de4-43c8-a7a1-a943d4b2ef9f",
+ PageBreakAbove->Automatic],
+Cell[23686, 439, 596, 8, 70, "Text",ExpressionUUID->"048e7fbc-b077-49dd-8220-69862c775734"],
+Cell[24285, 449, 812, 11, 70, "Text",ExpressionUUID->"ce8504d3-1558-479d-9b97-d8a6e0b55902"],
+Cell[25100, 462, 648, 8, 70, "DisplayFormula",ExpressionUUID->"d7678f28-2109-495f-be0e-1814af80e331"],
+Cell[25751, 472, 562, 7, 70, "Text",ExpressionUUID->"ad2f18da-03fe-490b-adfd-502893faa420"],
+Cell[26316, 481, 701, 9, 70, "DisplayFormula",ExpressionUUID->"f95ccddf-4e29-4f15-9dd0-0c98c7f5771f"],
+Cell[27020, 492, 487, 7, 70, "Text",ExpressionUUID->"cb10d300-9768-452c-9da1-d511f673e59f"],
+Cell[27510, 501, 1237, 16, 70, "DisplayFormula",ExpressionUUID->"ca490416-ca82-408c-ad05-6d075e5214e4"],
+Cell[28750, 519, 394, 5, 70, "Text",ExpressionUUID->"6d9cd102-a127-4e0c-b862-245da77a2afd"],
+Cell[29147, 526, 499, 7, 70, "Text",ExpressionUUID->"ddfdd070-665a-46e5-9bf1-848a4399dff2"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[29286, 528, 159, 2, 48, "Section",ExpressionUUID->"bba6a75c-0e93-475d-b4ac-da1542bd45ae",
- PageBreakAbove->True],
-Cell[29448, 532, 498, 7, 45, "Text",ExpressionUUID->"0001110b-4f01-4fda-a125-c322d91ef0f3"],
-Cell[29949, 541, 995, 14, 103, "Input",ExpressionUUID->"013c61bb-8ae9-453e-9062-7cc25edf33ed"],
-Cell[30947, 557, 253, 4, 22, "Text",ExpressionUUID->"415575f6-8aa1-4639-82fd-00124987eef8"],
+Cell[29683, 538, 164, 2, 70, "Section",ExpressionUUID->"bba6a75c-0e93-475d-b4ac-da1542bd45ae",
+ PageBreakAbove->Automatic],
+Cell[29850, 542, 498, 7, 70, "Text",ExpressionUUID->"0001110b-4f01-4fda-a125-c322d91ef0f3"],
+Cell[30351, 551, 860, 23, 70, "Input",ExpressionUUID->"013c61bb-8ae9-453e-9062-7cc25edf33ed"],
+Cell[31214, 576, 253, 4, 70, "Text",ExpressionUUID->"415575f6-8aa1-4639-82fd-00124987eef8"],
 Cell[CellGroupData[{
-Cell[31225, 565, 1244, 17, 19, "Input",ExpressionUUID->"a2b6bfb3-1b00-469f-bafd-05c17b0e9062",
+Cell[31492, 584, 1076, 27, 19, "Input",ExpressionUUID->"a2b6bfb3-1b00-469f-bafd-05c17b0e9062",
  CellOpen->False],
-Cell[32472, 584, 403, 5, 76, "Output",ExpressionUUID->"2947795f-255b-49ba-95a7-b24685c7ae60"]
+Cell[32571, 613, 393, 8, 67, "Output",ExpressionUUID->"00ebcf96-2912-4178-a8f8-5e1d36366cf8"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[32912, 594, 1287, 18, 19, "Input",ExpressionUUID->"b51b36ae-7941-4a9b-8cc9-7be3b0d13f19",
+Cell[33001, 626, 1112, 26, 19, "Input",ExpressionUUID->"b51b36ae-7941-4a9b-8cc9-7be3b0d13f19",
  CellOpen->False],
-Cell[34202, 614, 556, 7, 144, "Output",ExpressionUUID->"efed771f-157f-4487-a08b-0c1bba818ef6"]
+Cell[34116, 654, 532, 16, 136, "Output",ExpressionUUID->"395d37a1-34dd-4b80-81a8-6cc04565f2d3"]
 }, Open  ]],
-Cell[34773, 624, 479, 6, 45, "Text",ExpressionUUID->"4f493d35-9d8b-4e0f-8f59-f84103d61033"],
+Cell[34663, 673, 479, 6, 70, "Text",ExpressionUUID->"4f493d35-9d8b-4e0f-8f59-f84103d61033"],
 Cell[CellGroupData[{
-Cell[35277, 634, 449, 6, 19, "Input",ExpressionUUID->"8c0607e7-71b6-4fe3-add7-57396769f5ce",
+Cell[35167, 683, 373, 9, 19, "Input",ExpressionUUID->"8c0607e7-71b6-4fe3-add7-57396769f5ce",
  CellOpen->False],
-Cell[35729, 642, 278, 3, 59, "Output",ExpressionUUID->"7936a775-0ba5-4f61-8fa1-f854867de025"]
+Cell[35543, 694, 272, 6, 50, "Output",ExpressionUUID->"1b8d9042-04d7-4cc3-8e6e-1a78ed93a9a2"]
 }, Open  ]]
 }, Open  ]]
 }, Open  ]]
